@@ -79,20 +79,22 @@ namespace {
     unsigned long beats = 0;
     pointer = read_varint(pointer, beats);
     byte note = *(pointer++);
-    bool timer1 = !(note & 0x80);
+    bool timer1 = (note & 0x80);
     note &= 0x7f;
     if (note == 0) {
       silence_midi(timer1);      
-    } else if (note == 1) {   // Change tempo
+    } else if (note == 1) {   // Silence both
+      set_pwm_off();
+    } else if (note == 2) {   // Change tempo
       pointer = read_varint(pointer, current_tempo);
-    } else if (note == 2) {   // LED instructions
+    } else if (note == 3) {   // LED instructions
       byte n_instructions = *(pointer++);
       LEDInstruction* inst_pointer = (LEDInstruction*)pointer;
       for (byte i = 0; i < n_instructions; i++) {
         processor(*(inst_pointer++));
       }
       pointer = (byte*)inst_pointer;
-    } else if (note == 3) {   // End of file
+    } else if (note == 4) {   // End of file
       pointer = nullptr;
     } else {
       byte volume = *(pointer++);
@@ -190,4 +192,8 @@ void start_midi(byte* midi_pointer, unsigned long ticks_per_beat) {
   current_midi_pointer = midi_pointer;
   current_ticks_per_beat = 0;
   prev_mark_us = micros();
+}
+
+void load_next_song() { 
+  start_midi(MARIO, 1024);
 }

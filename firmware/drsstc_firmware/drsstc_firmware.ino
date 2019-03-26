@@ -107,8 +107,13 @@ void update_state_machine() {
         // When the run switch is first engaged, determine the mode
         led_ring.reset();
         switch (digitalRead(MODE_IN)) {
-          case LOW:  change_state(SLOW_PULSE); break;
-          case HIGH: change_state(MUSIC_PLAY); break;
+          case LOW:  
+            change_state(SLOW_PULSE); 
+            break;
+          case HIGH: 
+            load_next_song();
+            change_state(MUSIC_PLAY); 
+            break;
         }
       } else if (millis() - last_state_change > LIGHT_SHOW_TIMEOUT) {
         change_state(SHUTDOWN);
@@ -141,6 +146,7 @@ void update_state_machine() {
       break;
     case MUSIC_INT:
       if (millis() - last_state_change > MUSIC_INT_PERIOD) {
+        load_next_song();
         switch (digitalRead(MSTR_EN)) {
           case LOW: change_state(MUSIC_PAUSE);
           case HIGH: change_state(MUSIC_PLAY);
