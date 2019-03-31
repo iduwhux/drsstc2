@@ -1,9 +1,8 @@
 #pragma once
 
 #include <arduino.h>
-#include "TimeSignature.h"
 #include <Adafruit_NeoPixel.h>
-
+typedef unsigned long time_t;
 
 // LED segments for LEDInstruction
 // Single LEDs from 0x00-0x0f
@@ -33,13 +32,6 @@ struct LEDState {
 
   LEDState() = default;
   
-  // Initialize from instruction (4-bit to 8-bit conversion)
-  LEDState(const LEDInstruction& inst) :
-    active(!inst.disable), 
-    red(inst.red << 4), 
-    green(inst.green << 4), 
-    blue(inst.blue << 4) { }
-
   void reset();
 };
 
@@ -86,9 +78,6 @@ public:
 
   // Constructor from NEOPIXEL pin number
   LEDRing(int pin);
-
-  // Update segments/rotations from instruction
-  void process(const LEDInstruction& inst);
 
   // Reset all state data
   void reset_state();

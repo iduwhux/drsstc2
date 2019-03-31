@@ -2,11 +2,8 @@
 
 // Setup neopixel ring
 LEDRing led_ring(NEOPIXEL);
-void led_ring_process_instruction(const LEDInstruction& inst) {
-  led_ring.process(inst);
-}
 bool play_music_with_led() {
-  return play_midi(&led_ring_process_instruction);
+  return play_midi(led_ring);
 }
 
 #define DAC_ADDRESS       0x60

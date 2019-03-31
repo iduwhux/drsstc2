@@ -1,5 +1,6 @@
 #include "MusicPlayer.h"
 #include "pin_definitions.h"
+#include "LEDRing.h"
 
 const uint16_t PRESCALE1_VALUES[] = {1, 8, 64, 256, 1024};
 const uint16_t PRESCALE2_VALUES[] = {1, 8, 32, 64, 128, 256, 1024};
@@ -75,7 +76,7 @@ namespace {
   }
 
   unsigned long current_tempo = 500000; // us per beat (500000 = 120 bpm)
-  const byte* play_midi_pointer(LEDProcessor processor, const byte* pointer) {
+  const byte* play_midi_pointer(LEDRing& led_ring, const byte* pointer) {
     if (!pointer) return nullptr;
     unsigned long beats = 0;
     pointer = read_varint(pointer, beats);
@@ -90,15 +91,9 @@ namespace {
       pointer = read_varint(pointer, current_tempo);
     } else if (note == 3) {   // LED instructions (multiple)
       byte n_instructions = *(pointer++);
-      const LEDInstruction* inst_pointer = (LEDInstruction*)pointer;
-      for (byte i = 0; i < n_instructions; i++) {
-        processor(*(inst_pointer++));
-      }
-      pointer = (byte*)inst_pointer;
+      pointer = led_ring.read_midi_data(pointer, n_instructions);
     } else if (note == 4) {   // LED instruction (single)
-      LEDInstruction* inst_pointer = (LEDInstruction*)pointer;
-      processor(*(inst_pointer++));
-      pointer = (byte*)inst_pointer;
+      pointer = led_ring.read_midi_data(pointer, 1);
     } else if (note == 5) {   // End of file
       pointer = nullptr;
     } else {
@@ -164,7 +159,7 @@ void play_midi_note(uint8_t note, uint8_t volume, bool timer1) {
   }
 }
 
-bool play_midi(LEDProcessor processor) {
+bool play_midi(LEDRing& led_ring) {
   if (is_paused || !current_midi_pointer) return false;
   unsigned long timestamp = micros();
   if (prev_mark_us == 0 || prev_mark_us > timestamp) prev_mark_us = timestamp; // catch micros wraparound
@@ -172,7 +167,7 @@ bool play_midi(LEDProcessor processor) {
   unsigned long rem_us = next_ticks * current_tempo / current_ticks_per_beat;
   while (timestamp >= prev_mark_us + rem_us) {
     prev_mark_us += rem_us;
-    current_midi_pointer = play_midi_pointer(processor, current_midi_pointer);
+    current_midi_pointer = play_midi_pointer(led_ring, current_midi_pointer);
     if (current_midi_pointer) {
       next_ticks = peek_midi_time(current_midi_pointer);
       rem_us = next_ticks * current_tempo / current_ticks_per_beat;      

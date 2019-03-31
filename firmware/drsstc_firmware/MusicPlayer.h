@@ -1,7 +1,6 @@
 #pragma once
 
 #include <arduino.h>
-#include "TimeSignature.h"
 
 void setup_timers();
 
@@ -14,9 +13,13 @@ inline void silence_midi(bool timer1 = true) {
   }
 }
 
-typedef void (*LEDProcessor)(const LEDInstruction&);
+//typedef void (*LEDProcessor)(const LEDInstruction&);
 
-bool play_midi(LEDProcessor led_processor); // Returns false when song is over
+// Forward declaration
+class LEDRing;
+
+bool play_midi(LEDRing& led_ring);   // Returns false when song is over
+//bool play_midi(LEDProcessor led_processor); // Returns false when song is over
 void pause_midi();
 void resume_midi();
 void start_midi(byte* midi_pointer, unsigned long ticks_per_beat);

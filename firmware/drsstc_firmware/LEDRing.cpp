@@ -29,56 +29,6 @@ LEDRing::LEDRing(int pin) : strip(NUM_LEDS, pin, NEO_GRB + NEO_KHZ800) {
   strip.show();
 }
 
-namespace {
-  void apply_instruction_to_rotation(const LEDInstruction& inst, const time_t timestamp, LEDRotation& rot) {
-    if (inst.set_start) rot.current_index = inst.start_idx;
-    rot.step_size = (inst.segment == ROT_LEFT) ? -(int)inst.step_size : inst.step_size;
-    rot.last_rotation = timestamp;
-    rot.rotation_period = inst.time_ms;
-    rot.disable = inst.disable;
-  }
-}
-
-void LEDRing::process(const LEDInstruction& inst) {
-  if (inst.segment == RESET) {
-    reset_state(); return;
-  }
-  time_t timestamp = millis();
-  LEDSegment* segment = nullptr;
-  if (inst.segment < NUM_LEDS) {
-    segment = &individual[inst.segment];
-  }
-  switch (inst.segment) {
-    case ALL: segment = &all; break;
-    case EVEN: segment = &even; break;
-    case ODD: segment = &odd; break;
-  }
-  if (inst.segment >= QUADS && inst.segment < QUADS + 4) {
-    segment = &quads[inst.segment - QUADS];
-  }
-  if (segment) {
-    if (inst.flash || inst.fade) {
-      segment->alternate = inst;
-      segment->timer_start = timestamp;
-      segment->timer_length = inst.time_ms;
-      segment->flashing = inst.flash;
-      segment->fading = inst.fade;
-    } else {
-      segment->main = inst;
-      if (inst.solid) {
-        segment->timer_start = 0;
-        segment->timer_length = 0;
-        segment->flashing = false;
-        segment->fading = false;
-      }
-    }
-  } else if (inst.segment == ROT_LEFT || inst.segment == ROT_RIGHT) {
-    if (inst.apply_to_individual) apply_instruction_to_rotation(inst, timestamp, individual_rot);
-    if (inst.apply_to_quad)       apply_instruction_to_rotation(inst, timestamp, quad_rot);
-    if (inst.apply_to_even_odd)   apply_instruction_to_rotation(inst, timestamp, even_odd_rot);
-  }
-}
-
 void LEDRing::reset_state() {
   for (int i = 0; i < NUM_LEDS; i++) {
     individual[i] = LEDSegment();
