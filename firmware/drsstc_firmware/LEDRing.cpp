@@ -198,7 +198,7 @@ void LEDSegment::reset() {
 #define RESET_SEGMENT 3
 
 namespace {
-  byte* read_state_from_midi_data(byte* pointer, bool color_wheel, LEDState& state) {
+  const byte* read_state_from_midi_data(const byte* pointer, bool color_wheel, LEDState& state) {
     if (color_wheel) {
       byte wheel_index = *(pointer++);
       if (wheel_index < NUM_COLORS) {
@@ -216,7 +216,7 @@ namespace {
     return pointer;
   }
 
-  byte* read_ms_from_midi_data(byte* pointer, time_t& ms) {
+  const byte* read_ms_from_midi_data(const byte* pointer, time_t& ms) {
     byte time_period = *(pointer++);
     bool long_scale = time_period & 0x80;
     time_t t = time_period & 0x7f;
@@ -228,7 +228,7 @@ namespace {
     return pointer;
   }
 
-  byte* apply_midi_data_to_segment(byte* pointer, LEDSegment& segment, bool color_wheel, byte behavior) {
+  const byte* apply_midi_data_to_segment(const byte* pointer, LEDSegment& segment, bool color_wheel, byte behavior) {
     if (behavior == 0) {                         // SOLID
       pointer = read_state_from_midi_data(pointer, color_wheel, segment.main);
       segment.set_solid();
@@ -246,7 +246,7 @@ namespace {
   }
 }
 
-byte* LEDRing::read_midi_data(byte* pointer, size_t n_instructions) {
+const byte* LEDRing::read_midi_data(const byte* pointer, size_t n_instructions) {
   for (size_t i = 0; i < n_instructions; i++) {
     byte seg_byte = *(pointer++);
     byte segment     = seg_byte & 0x1f;  // 5 LSB are a segment code

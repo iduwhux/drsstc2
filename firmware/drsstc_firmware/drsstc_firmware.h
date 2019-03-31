@@ -1,5 +1,6 @@
 #pragma once
 
+#include "pin_definitions.h"
 #include <arduino.h>
 #include "TimeSignature.h"
 #include "LEDRing.h"

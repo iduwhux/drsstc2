@@ -104,7 +104,7 @@ public:
 
   void light_show();
 
-  byte* read_midi_data(byte* pointer, size_t n_instructions);
+  const byte* read_midi_data(const byte* pointer, size_t n_instructions);
 private:
   Adafruit_NeoPixel strip;
 };

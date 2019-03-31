@@ -1,4 +1,5 @@
 #include "MusicPlayer.h"
+#include "pin_definitions.h"
 
 const uint16_t PRESCALE1_VALUES[] = {1, 8, 64, 256, 1024};
 const uint16_t PRESCALE2_VALUES[] = {1, 8, 32, 64, 128, 256, 1024};
@@ -56,7 +57,7 @@ namespace {
     }
   }
 
-  byte* read_varint(byte* pointer, unsigned long& value) {
+  const byte* read_varint(const byte* pointer, unsigned long& value) {
     if (!pointer) return nullptr;
     byte byte_value = *(pointer++);
     value = byte_value & 0x7f;
@@ -67,14 +68,14 @@ namespace {
     return pointer;
   }
 
-  unsigned long peek_midi_time(byte* pointer) {
+  unsigned long peek_midi_time(const byte* pointer) {
     unsigned long midi_time = 0;
     pointer = read_varint(pointer, midi_time);
     return midi_time;
   }
 
   unsigned long current_tempo = 500000; // us per beat (500000 = 120 bpm)
-  byte* play_midi_pointer(LEDProcessor processor, byte* pointer) {
+  const byte* play_midi_pointer(LEDProcessor processor, const byte* pointer) {
     if (!pointer) return nullptr;
     unsigned long beats = 0;
     pointer = read_varint(pointer, beats);
@@ -89,7 +90,7 @@ namespace {
       pointer = read_varint(pointer, current_tempo);
     } else if (note == 3) {   // LED instructions (multiple)
       byte n_instructions = *(pointer++);
-      LEDInstruction* inst_pointer = (LEDInstruction*)pointer;
+      const LEDInstruction* inst_pointer = (LEDInstruction*)pointer;
       for (byte i = 0; i < n_instructions; i++) {
         processor(*(inst_pointer++));
       }
@@ -107,7 +108,7 @@ namespace {
     return pointer;
   }
 
-  byte* current_midi_pointer = nullptr;
+  const byte* current_midi_pointer = nullptr;
   unsigned long current_ticks_per_beat = 256;
 
   bool is_paused = false;
@@ -192,7 +193,7 @@ void resume_midi() {
   prev_mark_us = micros();
 }
 
-void start_midi(byte* midi_pointer, unsigned long ticks_per_beat) {
+void start_midi(const byte* midi_pointer, unsigned long ticks_per_beat) {
   current_midi_pointer = midi_pointer;
   current_ticks_per_beat = 0;
   prev_mark_us = micros();
@@ -200,4 +201,15 @@ void start_midi(byte* midi_pointer, unsigned long ticks_per_beat) {
 
 void load_next_song() { 
   start_midi(MARIO, 1024);
+}
+
+void send_single_pulse(unsigned long us) {
+    // Set timer 1 pin manual
+    TCCR1A = 0;
+    // Toggle timer 1 pin for a few us
+    digitalWrite(PWM_1, HIGH);
+    delayMicroseconds(us);
+    digitalWrite(PWM_1, LOW);
+    // Set timer 1 pin linked to output compare
+    TCCR1A = _BV(COM1A1) | _BV(WGM11);
 }

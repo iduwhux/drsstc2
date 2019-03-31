@@ -62,3 +62,5 @@ inline void set_pwm_off() {
   OCR1A = 0;
   OCR2B = 0;
 }
+
+void send_single_pulse(unsigned long us);

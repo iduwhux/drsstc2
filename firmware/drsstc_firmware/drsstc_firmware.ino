@@ -1,17 +1,5 @@
 #include "drsstc_firmware.h"
 
-// Pin definitions
-#define NEOPIXEL    2
-#define PWM_1       9 // Labeled 'B' on board
-#define PWM_2       3 // Labeled 'A' on board
-#define OCD_DETECT  8
-#define LED1       10
-#define LED2       11
-#define MSTR_EN    A0
-#define MODE_IN    A1
-#define TEST_IN    A2
-#define TRIG_IN    A3
-
 // Setup neopixel ring
 LEDRing led_ring(NEOPIXEL);
 void led_ring_process_instruction(const LEDInstruction& inst) {
@@ -163,38 +151,36 @@ void update_state_machine() {
   }
 }
 
+unsigned long last_slow_pulse = 0;
+#define SLOW_PULSE_LENGTH    40 // microseconds
+#define SLOW_PULSE_DELAY   2000 // milliseconds
 void slow_pulse() {
-  set_timer1_prescale(0x05); // CS bits = 0x05 = 1024x prescaler
-  OCR1A = 2;   // 128us pulses 
-  ICR1 = 1500; // 10.4 Hz frequency
-  OCR2B = 0;
   led_ring.turn_off_leds();
+  set_pwm_off();
+  unsigned long timestamp = millis();
+  if (last_slow_pulse == 0 || timestamp >= last_slow_pulse + SLOW_PULSE_DELAY) {
+    send_single_pulse(SLOW_PULSE_LENGTH);
+    last_slow_pulse = timestamp;
+  }
 }
 
 unsigned long test_mode_pulse_start = 0;
 bool test_mode_pulse = false;
-#define TEST_MODE_PULSE_LENGTH 10   // microseconds
-#define TEST_MODE_PULSE_DELAY 1000  // milliseconds
+#define TEST_MODE_PULSE_LENGTH   10 // microseconds
+#define TEST_MODE_PULSE_DELAY  1000 // milliseconds
 
 void test_mode() {
   led_ring.light_show();
   set_pwm_off();
   if (test_mode_pulse) {
-    if (test_mode_pulse_start + TEST_MODE_PULSE_DELAY >= millis()) {
+    if (test_mode_pulse_start + TEST_MODE_PULSE_DELAY >= millis()
+        && digitalRead(TRIG_IN) == LOW) {
       test_mode_pulse = false;
       test_mode_pulse_start = 0;
     }
   } else {
     if (digitalRead(MSTR_EN) == HIGH && digitalRead(TRIG_IN) == HIGH) {
-      // Set timer 1 pin manual
-      TCCR1A = 0;
-      // Toggle timer 1 pin for a few us
-      digitalWrite(PWM_1, HIGH);
-      delayMicroseconds(TEST_MODE_PULSE_LENGTH);
-      digitalWrite(PWM_1, LOW);
-      // Set timer 1 pin linked to output compare
-      TCCR1A = _BV(COM1A1) | _BV(WGM11);
-
+      send_single_pulse(TEST_MODE_PULSE_LENGTH);
       test_mode_pulse = true;
       test_mode_pulse_start = millis();
     }
