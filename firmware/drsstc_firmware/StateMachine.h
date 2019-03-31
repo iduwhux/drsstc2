@@ -1,3 +1,5 @@
+#pragma once
+
 // State machine
 #define STARTUP     0  // Initial state
 #define LIGHT_SHOW  1  // LEDs running but no pulses

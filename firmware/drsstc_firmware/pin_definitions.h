@@ -1,3 +1,5 @@
+#pragma once
+
 // Pin definitions
 #define NEOPIXEL    2
 #define PWM_1       9 // Labeled 'B' on board
