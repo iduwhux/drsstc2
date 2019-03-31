@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -15026,11 +15026,6 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 </net>
 <net name="PRIMARY" class="0">
 <segment>
-<pinref part="U14" gate="G$1" pin="INPUT_A"/>
-<wire x1="-74.93" y1="82.55" x2="-102.87" y2="82.55" width="0.1524" layer="91"/>
-<label x="-102.87" y="82.55" size="1.778" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <wire x1="-85.09" y1="203.2" x2="-85.09" y2="210.82" width="0.1524" layer="91"/>
 <wire x1="-85.09" y1="210.82" x2="-85.09" y2="213.36" width="0.1524" layer="91"/>
 <wire x1="-85.09" y1="213.36" x2="-80.01" y2="213.36" width="0.1524" layer="91"/>
@@ -15244,6 +15239,11 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <wire x1="-110.49" y1="219.71" x2="-15.24" y2="219.71" width="0.1524" layer="91"/>
 <wire x1="-15.24" y1="219.71" x2="-13.97" y2="219.71" width="0.1524" layer="91"/>
 <wire x1="-13.97" y1="219.71" x2="-13.97" y2="209.55" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U14" gate="G$1" pin="INPUT_A"/>
+<wire x1="-74.93" y1="82.55" x2="-102.87" y2="82.55" width="0.1524" layer="91"/>
+<label x="-102.87" y="82.55" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="INB" class="0">
