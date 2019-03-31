@@ -10,6 +10,7 @@
 #define MSTR_EN    A0
 #define MODE_IN    A1
 #define TEST_IN    A2
+#define TRIG_IN    A3
 
 // Setup neopixel ring
 LEDRing led_ring(NEOPIXEL);
@@ -35,6 +36,7 @@ void setup() {
   pinMode(MSTR_EN, INPUT);
   pinMode(MODE_IN, INPUT);
   pinMode(TEST_IN, INPUT);
+  pinMode(TRIG_IN, INPUT);
 
   // Initialize output pins
   digitalWrite(PWM_1, LOW);
@@ -169,25 +171,90 @@ void slow_pulse() {
   led_ring.turn_off_leds();
 }
 
-#define NOTE_A4 69
-#define LED_TEST_DELAY 500
-time_t led_timer = 0;
-uint8_t led_phase = 0;
+unsigned long test_mode_pulse_start = 0;
+bool test_mode_pulse = false;
+#define TEST_MODE_PULSE_LENGTH 10   // microseconds
+#define TEST_MODE_PULSE_DELAY 1000  // milliseconds
+
 void test_mode() {
   led_ring.light_show();
-  play_midi_note(NOTE_A4, 1, true);
-  time_t timestamp = millis();
-  if (led_timer == 0) led_timer = timestamp;
-  if (timestamp - led_timer > LED_TEST_DELAY) {
-    led_phase++;
-    digitalWrite(LED1,(led_phase & 1) ? HIGH : LOW);
-    digitalWrite(LED2,(led_phase & 2) ? HIGH : LOW);
-    led_timer = timestamp;    
+  set_pwm_off();
+  if (test_mode_pulse) {
+    if (test_mode_pulse_start + TEST_MODE_PULSE_DELAY >= millis()) {
+      test_mode_pulse = false;
+      test_mode_pulse_start = 0;
+    }
+  } else {
+    if (digitalRead(MSTR_EN) == HIGH && digitalRead(TRIG_IN) == HIGH) {
+      // Set timer 1 pin manual
+      TCCR1A = 0;
+      // Toggle timer 1 pin for a few us
+      digitalWrite(PWM_1, HIGH);
+      delayMicroseconds(TEST_MODE_PULSE_LENGTH);
+      digitalWrite(PWM_1, LOW);
+      // Set timer 1 pin linked to output compare
+      TCCR1A = _BV(COM1A1) | _BV(WGM11);
+
+      test_mode_pulse = true;
+      test_mode_pulse_start = millis();
+    }
   }
+}
+
+unsigned long last_flash_ms = 0;
+bool status_leds[2] = {false, false};
+
+#define FLASH_DELAY 250
+
+void flash_status() {
+  unsigned long timestamp = millis();
+  bool flash_change = (last_flash_ms == 0 || timestamp >= last_flash_ms + FLASH_DELAY);
+  if (flash_change) last_flash_ms = timestamp;
+  switch (current_state) {
+    case STARTUP:
+      // At startup, both LEDs flash synchronously
+      if (flash_change) {
+        status_leds[0] = !status_leds[0];
+        status_leds[1] = status_leds[0];
+      }
+      break;
+    case LIGHT_SHOW:
+      // During the light show state, only the second LED flashes
+      status_leds[0] = false;
+      if (flash_change) status_leds[1] = !status_leds[1];
+      break;
+    // One or the other LED is solid during "normal" operation modes
+    case SLOW_PULSE:
+      status_leds[0] = true;
+      status_leds[1] = false;
+      break;
+    case MUSIC_PLAY:
+    case MUSIC_PAUSE:
+    case MUSIC_INT:
+      status_leds[0] = false;
+      status_leds[1] = true;
+      break;
+    case TEST_MODE:
+      // In test mode, only the first LED flashes
+      if (flash_change) status_leds[0] = !status_leds[0];
+      // The second LED pulses when a test pulse is sent
+      status_leds[1] = test_mode_pulse;
+      break;
+    case SHUTDOWN:
+      // In the shutdown state, both LEDs flash asynchronously
+      if (flash_change) {
+        status_leds[0] = !status_leds[0];
+        status_leds[1] = !status_leds[0];
+      }
+      break;
+  }
+  digitalWrite(LED1, status_leds[0] ? HIGH : LOW);
+  digitalWrite(LED2, status_leds[1] ? HIGH : LOW);
 }
 
 void loop() {
   update_state_machine();
+  flash_status();
   switch (current_state) {
     case LIGHT_SHOW: 
     case MUSIC_INT:
