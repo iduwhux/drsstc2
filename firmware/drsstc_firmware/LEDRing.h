@@ -4,6 +4,26 @@
 #include "TimeSignature.h"
 #include <Adafruit_NeoPixel.h>
 
+
+// LED segments for LEDInstruction
+// Single LEDs from 0x00-0x0f
+#define NUM_LEDS   16
+#define ALL      0x10
+#define EVEN     0x11
+#define ODD      0x12
+// From QUADS to QUADS + 3 (0x16)
+#define QUADS  0x13
+
+// These 'segments' are used to signal the rotation control
+#define RESET     0x17
+#define ALL_INDIV 0x18
+
+#define ROT_LEFT  0x19
+#define ROT_RIGHT 0x1a
+
+#define NUM_COLORS 21
+extern const byte COLOR_WHEEL[] PROGMEM;
+
 // State of a single LED
 struct LEDState {
   bool active = false;
@@ -19,6 +39,8 @@ struct LEDState {
     red(inst.red << 4), 
     green(inst.green << 4), 
     blue(inst.blue << 4) { }
+
+  void reset();
 };
 
 // Encodes flashing/fading logic for an LED segment (w/1 or more LEDs)
@@ -30,6 +52,9 @@ struct LEDSegment {
   bool   flashing     = false;
   bool   flash_phase  = false;  // If true, display foreground
   bool   fading       = false;
+
+  void reset();
+  void set_solid();
 };
 
 // Stores the state of a rotation for some LED segment
@@ -78,6 +103,8 @@ public:
   void update();
 
   void light_show();
+
+  byte* read_midi_data(byte* pointer, size_t n_instructions);
 private:
   Adafruit_NeoPixel strip;
 };

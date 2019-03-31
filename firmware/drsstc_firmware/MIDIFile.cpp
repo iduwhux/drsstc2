@@ -87,14 +87,18 @@ namespace {
       set_pwm_off();
     } else if (note == 2) {   // Change tempo
       pointer = read_varint(pointer, current_tempo);
-    } else if (note == 3) {   // LED instructions
+    } else if (note == 3) {   // LED instructions (multiple)
       byte n_instructions = *(pointer++);
       LEDInstruction* inst_pointer = (LEDInstruction*)pointer;
       for (byte i = 0; i < n_instructions; i++) {
         processor(*(inst_pointer++));
       }
       pointer = (byte*)inst_pointer;
-    } else if (note == 4) {   // End of file
+    } else if (note == 4) {   // LED instruction (single)
+      LEDInstruction* inst_pointer = (LEDInstruction*)pointer;
+      processor(*(inst_pointer++));
+      pointer = (byte*)inst_pointer;
+    } else if (note == 5) {   // End of file
       pointer = nullptr;
     } else {
       byte volume = *(pointer++);

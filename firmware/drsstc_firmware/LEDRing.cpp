@@ -170,3 +170,111 @@ void LEDRing::update() {
   }
   strip.show();
 }
+
+void LEDState::reset() {
+  red = 0;
+  green = 0;
+  blue = 0;
+  active = false;
+}
+
+void LEDSegment::set_solid() {
+  alternate.reset();
+  timer_start = 0;
+  timer_length = 0;
+  flashing = false;
+  flash_phase = false;
+  fading = false;
+}
+
+void LEDSegment::reset() {
+  main.reset();
+  set_solid();
+}
+
+#define SOLID_COLOR   0
+#define FLASHING      1
+#define FADING        2
+#define RESET_SEGMENT 3
+
+namespace {
+  byte* read_state_from_midi_data(byte* pointer, bool color_wheel, LEDState& state) {
+    if (color_wheel) {
+      byte wheel_index = *(pointer++);
+      if (wheel_index < NUM_COLORS) {
+        state.red   = COLOR_WHEEL[wheel_index * 3];
+        state.green = COLOR_WHEEL[wheel_index * 3 + 1];
+        state.blue  = COLOR_WHEEL[wheel_index * 3 + 2];
+      }
+    } else {
+      state.red   = *(pointer++);
+      state.green = *(pointer++);
+      state.blue  = *(pointer++);
+    }
+    state.active = true;
+
+    return pointer;
+  }
+
+  byte* read_ms_from_midi_data(byte* pointer, time_t& ms) {
+    byte time_period = *(pointer++);
+    bool long_scale = time_period & 0x80;
+    time_t t = time_period & 0x7f;
+    if (long_scale) {
+      ms = t << 6;  // (0-127 x64ms = 0.0-8.0s)
+    } else {
+      ms = t << 2;  // (0-127 x4ms  = 0.0-0.5s)
+    }
+    return pointer;
+  }
+
+  byte* apply_midi_data_to_segment(byte* pointer, LEDSegment& segment, bool color_wheel, byte behavior) {
+    if (behavior == 0) {                         // SOLID
+      pointer = read_state_from_midi_data(pointer, color_wheel, segment.main);
+      segment.set_solid();
+    } else if (behavior == 1 || behavior == 2) { // FLASHING or FADING
+      pointer = read_state_from_midi_data(pointer, color_wheel, segment.main);
+      pointer = read_state_from_midi_data(pointer, color_wheel, segment.alternate);
+      pointer = read_ms_from_midi_data(pointer, segment.timer_length);
+      segment.timer_start = millis();
+      segment.flashing = (behavior == 1);
+      segment.fading   = (behavior == 2);
+    } else if (behavior == 3) {                 // RESET
+      segment.reset();
+    }
+    return pointer;
+  }
+}
+
+byte* LEDRing::read_midi_data(byte* pointer, size_t n_instructions) {
+  for (size_t i = 0; i < n_instructions; i++) {
+    byte seg_byte = *(pointer++);
+    byte segment     = seg_byte & 0x1f;  // 5 LSB are a segment code
+    if (segment == RESET) { reset(); continue; }
+    if (segment == ROT_LEFT || segment == ROT_RIGHT) {
+      byte init_index = *(pointer++);
+      
+    }
+
+    bool color_wheel = seg_byte & 0x20;  // Bit 6 is a flag to use the color-wheel instead of RGB codes
+    byte behavior    = seg_byte >> 6;    // 2 MSB
+    LEDSegment* seg_ptr = nullptr;
+    if (segment < NUM_LEDS) {
+      pointer = apply_midi_data_to_segment(pointer, individual[segment], color_wheel, behavior);
+    } else if (segment == ALL) {
+      pointer = apply_midi_data_to_segment(pointer, all, color_wheel, behavior);
+    } else if (segment == EVEN) {
+      pointer = apply_midi_data_to_segment(pointer, even, color_wheel, behavior);
+    } else if (segment == ODD) {
+      pointer = apply_midi_data_to_segment(pointer, odd, color_wheel, behavior);
+    } else if (segment >= QUADS && segment < QUADS + 4) {
+      pointer = apply_midi_data_to_segment(pointer, quads[segment - QUADS], color_wheel, behavior);
+    } else if (segment == ALL_INDIV) {
+      for (size_t seg_i = 0; seg_i < NUM_LEDS; seg_i++) {
+        pointer = apply_midi_data_to_segment(pointer, individual[seg_i], color_wheel, behavior);        
+      }
+    }
+
+    return pointer;
+  }
+}
