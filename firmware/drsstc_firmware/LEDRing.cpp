@@ -1,6 +1,33 @@
 #include "LEDRing.h"
 
-#define DEFAULT_BRIGHTNESS 50
+void LEDState::reset() {
+  red = 0;
+  green = 0;
+  blue = 0;
+  active = false;
+}
+
+void LEDSegment::reset() {
+  main.reset();
+  set_solid();
+}
+
+void LEDSegment::set_solid() {
+  alternate.reset();
+  timer_start = 0;
+  timer_length = 0;
+  flashing = false;
+  flash_phase = false;
+  fading = false;
+}
+
+void LEDRotation::reset() {
+  current_index = 0;
+  step_size = 0;
+  last_rotation = 0;
+  rotation_period = 0;
+  disable = true;
+}
 
 void LEDRotation::update(unsigned long timestamp) {
   if (disable || rotation_period == 0) return;
@@ -20,6 +47,8 @@ int LEDRotation::apply_to_led(int led_index) {
   return new_index;
 }
 
+#define DEFAULT_BRIGHTNESS 50
+
 // Constructor for LEDRing
 LEDRing::LEDRing(int pin) : strip(NUM_LEDS, pin, NEO_GRB + NEO_KHZ800) { 
   // Initialize Neopixel strip
@@ -31,17 +60,17 @@ LEDRing::LEDRing(int pin) : strip(NUM_LEDS, pin, NEO_GRB + NEO_KHZ800) {
 
 void LEDRing::reset_state() {
   for (int i = 0; i < NUM_LEDS; i++) {
-    individual[i] = LEDSegment();
+    individual[i].reset();
   }
-  all = LEDSegment();
-  even = LEDSegment();
-  odd = LEDSegment();
+  all.reset();
+  even.reset();
+  odd.reset();
   for (int i = 0; i < 4; i++) {
-    quads[i] = LEDSegment();
+    quads[i].reset();
   }
-  individual_rot = LEDRotation();
-  quad_rot = LEDRotation();
-  even_odd_rot = LEDRotation();
+  individual_rot.reset();
+  quad_rot.reset();
+  even_odd_rot.reset();
 }
 
 void LEDRing::turn_off_leds() {
@@ -121,27 +150,6 @@ void LEDRing::update() {
   strip.show();
 }
 
-void LEDState::reset() {
-  red = 0;
-  green = 0;
-  blue = 0;
-  active = false;
-}
-
-void LEDSegment::set_solid() {
-  alternate.reset();
-  timer_start = 0;
-  timer_length = 0;
-  flashing = false;
-  flash_phase = false;
-  fading = false;
-}
-
-void LEDSegment::reset() {
-  main.reset();
-  set_solid();
-}
-
 #define SOLID_COLOR   0
 #define FLASHING      1
 #define FADING        2
@@ -194,14 +202,6 @@ namespace {
     }
     return pointer;
   }
-}
-
-void LEDRotation::reset() {
-  current_index = 0;
-  step_size = 0;
-  last_rotation = 0;
-  rotation_period = 0;
-  disable = true;
 }
 
 const byte* LEDRing::read_midi_data(const byte* pointer, size_t n_instructions) {
@@ -258,7 +258,6 @@ const byte* LEDRing::read_midi_data(const byte* pointer, size_t n_instructions) 
     return pointer;
   }
 }
-
 
 extern const byte COLOR_WHEEL[] PROGMEM = 
   {255,   0,   0,   // red

@@ -92,11 +92,15 @@ public:
   // Update LEDs
   void update();
 
+  // Cycle through the wheel of standard colors
   void light_show();
 
+  // Read binary instruction data from MIDI stream
   const byte* read_midi_data(const byte* pointer, size_t n_instructions);
+  
 private:
   Adafruit_NeoPixel strip;
 };
 
+// Single main instance for LEDRing
 extern LEDRing led_ring;

@@ -1,4 +1,4 @@
-#include "MusicPlayer.h"
+#include "MIDIPlayer.h"
 
 extern const byte MARIO[] PROGMEM  =
 {     0x80,0x02,0x09,0x13,0xff, //     0 TEMPO > 150015

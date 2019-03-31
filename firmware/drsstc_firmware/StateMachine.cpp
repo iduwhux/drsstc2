@@ -2,7 +2,7 @@
 #include <arduino.h>
 #include "pin_definitions.h"
 #include "LEDRing.h"
-#include "MusicPlayer.h"
+#include "MIDIPlayer.h"
 
 namespace {
   int current_state = STARTUP;

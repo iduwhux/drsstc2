@@ -1,4 +1,4 @@
-#include "MusicPlayer.h"
+#include "MIDIPlayer.h"
 #include "pin_definitions.h"
 #include "LEDRing.h"
 
@@ -108,6 +108,21 @@ namespace {
 
   bool is_paused = false;
   unsigned long prev_mark_us = 0;
+
+  inline void set_timer1_prescale(uint8_t CS_bits = 1) {
+    CS_bits = (CS_bits == 0) ? 1 : (CS_bits > 5 ? 5 : CS_bits);
+    
+    // WGM13 + WGM12 (0x18) = fast PWM mode, ICR1 as TOP
+    TCCR1B = _BV(WGM13) | _BV(WGM12) | CS_bits;
+  }
+  
+  // Default value = 128x
+  inline void set_timer2_prescale(uint8_t CS_bits = 5) {
+    CS_bits = (CS_bits == 0) ? 1 : (CS_bits > 7 ? 7 : CS_bits);
+    
+    // WGM22 (0x08) = fast PWM mode, OCR2A as TOP
+    TCCR2B = _BV(WGM22) | CS_bits;
+  }
 } // namespace
 
 void setup_timers() {
@@ -128,6 +143,19 @@ void setup_timers() {
   set_timer2_prescale();
   OCR2B = 0;   // 0% duty cycle
   OCR2A = 255; // Lowest frequency at 128x prescale = 488 Hz
+}
+
+void silence_midi(bool timer1) {
+  if (timer1) {
+    OCR1A = 0;
+  } else {
+    OCR2B = 0;
+  }
+}
+
+void set_pwm_off() {
+  OCR1A = 0;
+  OCR2B = 0;
 }
 
 // Number of 16MHz clock cycles in one 250 kHz cycle (16e6/250e3 = 64)
