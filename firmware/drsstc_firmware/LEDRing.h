@@ -1,6 +1,6 @@
 #pragma once
 
-#include <arduino.h>
+//#include <arduino.h>
 #include <Adafruit_NeoPixel.h>
 typedef unsigned long time_t;
 
@@ -97,3 +97,5 @@ public:
 private:
   Adafruit_NeoPixel strip;
 };
+
+extern LEDRing led_ring;

@@ -76,7 +76,7 @@ namespace {
   }
 
   unsigned long current_tempo = 500000; // us per beat (500000 = 120 bpm)
-  const byte* play_midi_pointer(LEDRing& led_ring, const byte* pointer) {
+  const byte* play_midi_pointer(const byte* pointer) {
     if (!pointer) return nullptr;
     unsigned long beats = 0;
     pointer = read_varint(pointer, beats);
@@ -159,7 +159,7 @@ void play_midi_note(uint8_t note, uint8_t volume, bool timer1) {
   }
 }
 
-bool play_midi(LEDRing& led_ring) {
+bool play_midi() {
   if (is_paused || !current_midi_pointer) return false;
   unsigned long timestamp = micros();
   if (prev_mark_us == 0 || prev_mark_us > timestamp) prev_mark_us = timestamp; // catch micros wraparound
@@ -167,7 +167,7 @@ bool play_midi(LEDRing& led_ring) {
   unsigned long rem_us = next_ticks * current_tempo / current_ticks_per_beat;
   while (timestamp >= prev_mark_us + rem_us) {
     prev_mark_us += rem_us;
-    current_midi_pointer = play_midi_pointer(led_ring, current_midi_pointer);
+    current_midi_pointer = play_midi_pointer(current_midi_pointer);
     if (current_midi_pointer) {
       next_ticks = peek_midi_time(current_midi_pointer);
       rem_us = next_ticks * current_tempo / current_ticks_per_beat;      

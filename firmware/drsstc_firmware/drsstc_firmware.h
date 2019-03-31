@@ -1,12 +1,9 @@
 #pragma once
 
-#include <arduino.h>
-#include "pin_definitions.h"
-#include "LEDRing.h"
-#include "MusicPlayer.h"
-#include <Wire.h>
-
-#include <MCP47X6.h>
-#ifdef __AVR__
-  #include <avr/power.h>
-#endif
+#include <arduino.h>          // Main Arduino header
+#include "pin_definitions.h"  // Pin numbers
+#include "StateMachine.h"     // Define states
+#include "LEDRing.h"          // Neopixel
+#include "MusicPlayer.h"      // MIDI->timers
+#include <Wire.h>             // I2C (for DAC)
+#include <MCP47X6.h>          // DAC
