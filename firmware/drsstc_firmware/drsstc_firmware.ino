@@ -43,20 +43,21 @@ void setup() {
   setup_timers();
 }
 
-
 void loop() {
   update_state_machine();
-  flash_status();
   switch (get_current_state()) {
     case LIGHT_SHOW: 
     case MUSIC_INT:
-      led_ring.light_show(); break;
+      led_ring.light_show(); 
+      break;
     case SLOW_PULSE: 
-      slow_pulse(); break;
+      slow_pulse(); 
+      break;
     case MUSIC_PLAY:
       if (!play_midi()) change_state(MUSIC_INT);
       break;
     case TEST_MODE: 
-      test_mode(); break;
+      test_mode(); 
+      break;
   }
 }

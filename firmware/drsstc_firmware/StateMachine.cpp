@@ -102,6 +102,7 @@ void update_state_machine() {
         change_state(STARTUP);
       }
   }
+  flash_status();
 }
 
 #define FLASH_DELAY 250

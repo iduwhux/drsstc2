@@ -2,7 +2,7 @@
 
 #define DEFAULT_BRIGHTNESS 50
 
-void LEDRotation::update(time_t timestamp) {
+void LEDRotation::update(unsigned long timestamp) {
   if (disable || rotation_period == 0) return;
   if (last_rotation == 0) last_rotation = timestamp;
   while (timestamp > last_rotation + rotation_period) {
@@ -71,7 +71,7 @@ namespace {
     if (overlay.active) orig = overlay;
   }
   
-  void apply_segment_to_state(LEDSegment& segment, time_t timestamp, LEDState& state) {
+  void apply_segment_to_state(LEDSegment& segment, unsigned long timestamp, LEDState& state) {
     double t = 
       (timestamp < segment.timer_start) ? 0 : (double)(timestamp - segment.timer_start)
         / (segment.timer_length > 0 ? segment.timer_length : 1000);  // 1000 ms default
@@ -96,7 +96,7 @@ namespace {
 }
 
 void LEDRing::update() {
-  time_t timestamp = millis();
+  unsigned long timestamp = millis();
   individual_rot.update(timestamp);
   quad_rot.update(timestamp);
   even_odd_rot.update(timestamp);
@@ -166,10 +166,10 @@ namespace {
     return pointer;
   }
 
-  const byte* read_ms_from_midi_data(const byte* pointer, time_t& ms) {
+  const byte* read_ms_from_midi_data(const byte* pointer, unsigned long& ms) {
     byte time_period = *(pointer++);
     bool long_scale = time_period & 0x80;
-    time_t t = time_period & 0x7f;
+    unsigned long t = time_period & 0x7f;
     if (long_scale) {
       ms = t << 6;  // (0-127 x64ms = 0.0-8.0s)
     } else {
@@ -196,32 +196,62 @@ namespace {
   }
 }
 
+void LEDRotation::reset() {
+  current_index = 0;
+  step_size = 0;
+  last_rotation = 0;
+  rotation_period = 0;
+  disable = true;
+}
+
 const byte* LEDRing::read_midi_data(const byte* pointer, size_t n_instructions) {
   for (size_t i = 0; i < n_instructions; i++) {
     byte seg_byte = *(pointer++);
     byte segment     = seg_byte & 0x1f;  // 5 LSB are a segment code
     if (segment == RESET) { reset(); continue; }
-    if (segment == ROT_LEFT || segment == ROT_RIGHT) {
-      byte init_index = *(pointer++);
-      
-    }
-
-    bool color_wheel = seg_byte & 0x20;  // Bit 6 is a flag to use the color-wheel instead of RGB codes
-    byte behavior    = seg_byte >> 6;    // 2 MSB
-    LEDSegment* seg_ptr = nullptr;
-    if (segment < NUM_LEDS) {
-      pointer = apply_midi_data_to_segment(pointer, individual[segment], color_wheel, behavior);
-    } else if (segment == ALL) {
-      pointer = apply_midi_data_to_segment(pointer, all, color_wheel, behavior);
-    } else if (segment == EVEN) {
-      pointer = apply_midi_data_to_segment(pointer, even, color_wheel, behavior);
-    } else if (segment == ODD) {
-      pointer = apply_midi_data_to_segment(pointer, odd, color_wheel, behavior);
-    } else if (segment >= QUADS && segment < QUADS + 4) {
-      pointer = apply_midi_data_to_segment(pointer, quads[segment - QUADS], color_wheel, behavior);
-    } else if (segment == ALL_INDIV) {
-      for (size_t seg_i = 0; seg_i < NUM_LEDS; seg_i++) {
-        pointer = apply_midi_data_to_segment(pointer, individual[seg_i], color_wheel, behavior);        
+    if (segment >= INDIV_ROT && segment <= EVEN_ODD_ROT) {
+      LEDRotation& rot = individual_rot;
+      switch (segment) {
+        case QUAD_ROT: rot = quad_rot; break;
+        case EVEN_ODD_ROT: rot = even_odd_rot; break;
+      }
+      if (seg_byte & 0x80) {
+        rot.reset();
+      } else {
+        byte index_pos = *(pointer++);
+        while (index_pos >= NUM_LEDS) index_pos -= NUM_LEDS;
+        rot.current_index = index_pos;
+        if (seg_byte & 0x40) { // Moving
+          rot.last_rotation = millis();
+          rot.step_size = (seg_byte & 0x20) ? 1 : -1;
+          pointer = read_ms_from_midi_data(pointer, rot.rotation_period);
+        } else {               // Static
+          rot.last_rotation = 0;
+          rot.step_size = 0;
+          rot.rotation_period = 0;
+        }
+        rot.disable = false;
+      }
+      bool moving  = seg_byte  & 0x40; // If false, only a single index position is read
+      byte index_position = *(pointer++);
+    } else {
+      bool color_wheel = seg_byte & 0x20;  // Bit 6 is a flag to use the color-wheel instead of RGB codes
+      byte behavior    = seg_byte >> 6;    // 2 MSB
+      LEDSegment* seg_ptr = nullptr;
+      if (segment < NUM_LEDS) {
+        pointer = apply_midi_data_to_segment(pointer, individual[segment], color_wheel, behavior);
+      } else if (segment == ALL) {
+        pointer = apply_midi_data_to_segment(pointer, all, color_wheel, behavior);
+      } else if (segment == EVEN) {
+        pointer = apply_midi_data_to_segment(pointer, even, color_wheel, behavior);
+      } else if (segment == ODD) {
+        pointer = apply_midi_data_to_segment(pointer, odd, color_wheel, behavior);
+      } else if (segment >= QUADS && segment < QUADS + 4) {
+        pointer = apply_midi_data_to_segment(pointer, quads[segment - QUADS], color_wheel, behavior);
+      } else if (segment == ALL_INDIV) {
+        for (size_t seg_i = 0; seg_i < NUM_LEDS; seg_i++) {
+          pointer = apply_midi_data_to_segment(pointer, individual[seg_i], color_wheel, behavior);        
+        }
       }
     }
 
@@ -254,14 +284,14 @@ extern const byte COLOR_WHEEL[] PROGMEM =
    255,   0,  85};
 
 namespace {
-  time_t last_update = 0;
+  unsigned long last_update = 0;
   double last_offset = 0.0;
 }
 
 #define LIGHT_SHOW_ROT_PERIOD 2000
 
 void LEDRing::light_show() {
-  time_t timestamp = millis();
+  unsigned long timestamp = millis();
   if (last_update == 0 || last_update > timestamp) last_update = timestamp;
   double t_offset = last_offset + (double)(timestamp - last_update) / (LIGHT_SHOW_ROT_PERIOD * NUM_LEDS);
   while (t_offset < 0) t_offset += NUM_COLORS;

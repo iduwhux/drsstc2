@@ -1,25 +1,26 @@
 #pragma once
 
-//#include <arduino.h>
 #include <Adafruit_NeoPixel.h>
-typedef unsigned long time_t;
 
-// LED segments for LEDInstruction
+// LED segments
 // Single LEDs from 0x00-0x0f
-#define NUM_LEDS   16
-#define ALL      0x10
-#define EVEN     0x11
-#define ODD      0x12
+#define NUM_LEDS    16
+#define ALL       0x10
+#define EVEN      0x11
+#define ODD       0x12
 // From QUADS to QUADS + 3 (0x16)
-#define QUADS  0x13
+#define QUADS     0x13
 
-// These 'segments' are used to signal the rotation control
-#define RESET     0x17
-#define ALL_INDIV 0x18
+// Control 'segments'
+#define RESET     0x17  // Resets all segments
+#define ALL_INDIV 0x18  // Followed by NUM_LEDS individual colors
 
-#define ROT_LEFT  0x19
-#define ROT_RIGHT 0x1a
+// Rotation 'segments'
+#define INDIV_ROT    0x19
+#define QUAD_ROT     0x1a
+#define EVEN_ODD_ROT 0x1b
 
+// Preprogrammed colors
 #define NUM_COLORS 21
 extern const byte COLOR_WHEEL[] PROGMEM;
 
@@ -31,7 +32,6 @@ struct LEDState {
   byte blue   = 0;
 
   LEDState() = default;
-  
   void reset();
 };
 
@@ -39,8 +39,8 @@ struct LEDState {
 struct LEDSegment {
   LEDState main;                // Background color
   LEDState alternate;           // Foreground color
-  time_t timer_start  = 0;      // Timer for flash/fade
-  time_t timer_length = 0;      // Length of flash/fade
+  unsigned long timer_start  = 0;      // Timer for flash/fade
+  unsigned long timer_length = 0;      // Length of flash/fade
   bool   flashing     = false;
   bool   flash_phase  = false;  // If true, display foreground
   bool   fading       = false;
@@ -53,11 +53,12 @@ struct LEDSegment {
 struct LEDRotation {
   int    current_index   = 0;
   int    step_size       = 0;
-  time_t last_rotation   = 0;
-  time_t rotation_period = 0;
+  unsigned long last_rotation   = 0;
+  unsigned long rotation_period = 0;
   bool   disable         = true;
 
-  void update(time_t timestamp);
+  void reset();
+  void update(unsigned long timestamp);
   int apply_to_led(int led_index);
 };
 
