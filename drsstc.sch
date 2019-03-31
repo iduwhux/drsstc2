@@ -11611,7 +11611,7 @@ Source: AVX .. aphvc.pdf</description>
 <text x="0" y="6.1931" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
 <text x="0" y="-6.1931" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
 </package>
-<package name="HDRRAR28W64P254_2X14_3606X850X508B" urn="urn:adsk.eagle:footprint:7083986/1" library_version="23">
+<package name="HDRRAR28W64P254_2X14_3606X850X508B" urn="urn:adsk.eagle:footprint:7083986/1" library_version="39">
 <description>Double-row, 28-pin Receptacle Header (Female) Right Angle, 2.54 mm (0.10 in) row pitch, 2.54 mm (0.10 in) col pitch, 8.50 mm insulator length, 36.06 X 8.50 X 5.08 mm body
 &lt;p&gt;Double-row (2X14), 28-pin Receptacle Header (Female) Right Angle package with 2.54 mm (0.10 in) row pitch, 2.54 mm (0.10 in) col pitch, 0.64 mm lead width, 3.15 mm tail length and 8.50 mm insulator length with body size 36.06 X 8.50 X 5.08 mm, pin pattern - clockwise from top left&lt;/p&gt;</description>
 <circle x="-1.3565" y="0" radius="0.25" width="0" layer="21"/>
@@ -11716,7 +11716,7 @@ Source: AVX .. aphvc.pdf</description>
 <text x="0" y="2.2336" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
 <text x="0" y="-1.7936" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
 </package>
-<package name="CAPAE830X1050" urn="urn:adsk.eagle:footprint:7532732/1" library_version="23">
+<package name="CAPAE830X1050" urn="urn:adsk.eagle:footprint:7532732/1" library_version="39">
 <description>ECAP (Aluminum Electrolytic Capacitor), 8.30 X 10.50 mm body
 &lt;p&gt;ECAP (Aluminum Electrolytic Capacitor) package with body size 8.30 X 10.50 mm&lt;/p&gt;</description>
 <wire x1="-4.25" y1="1.3141" x2="-4.25" y2="2.655" width="0.12" layer="21"/>
@@ -11744,6 +11744,24 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="5.525" y1="2.325" x2="-5.525" y2="2.325" width="0.127" layer="21"/>
 <wire x1="-5.525" y1="2.325" x2="-5.525" y2="-2.325" width="0.127" layer="21"/>
 <text x="-6.35" y="0" size="1.27" layer="21" font="vector" rot="R90" align="center">&gt;NAME</text>
+</package>
+<package name="RESAD1560W80L1200D400B" urn="urn:adsk.eagle:footprint:10159535/1" library_version="44">
+<description>Axial Resistor, 15.60 mm pitch, 12.00 mm body length, 4.00 mm body diameter
+&lt;p&gt;Axial Resistor package with 15.60 mm pitch, 0.80 mm lead diameter, 12.00 mm body length and 4.00 mm body diameter&lt;/p&gt;</description>
+<wire x1="-6" y1="2" x2="-6" y2="-2" width="0.12" layer="21"/>
+<wire x1="-6" y1="-2" x2="6" y2="-2" width="0.12" layer="21"/>
+<wire x1="6" y1="-2" x2="6" y2="2" width="0.12" layer="21"/>
+<wire x1="6" y1="2" x2="-6" y2="2" width="0.12" layer="21"/>
+<wire x1="-6" y1="0" x2="-6.746" y2="0" width="0.12" layer="21"/>
+<wire x1="6" y1="0" x2="6.746" y2="0" width="0.12" layer="21"/>
+<wire x1="6" y1="-2" x2="-6" y2="-2" width="0.12" layer="51"/>
+<wire x1="-6" y1="-2" x2="-6" y2="2" width="0.12" layer="51"/>
+<wire x1="-6" y1="2" x2="6" y2="2" width="0.12" layer="51"/>
+<wire x1="6" y1="2" x2="6" y2="-2" width="0.12" layer="51"/>
+<pad name="1" x="-7.8" y="0" drill="1" diameter="1.6"/>
+<pad name="2" x="7.8" y="0" drill="1" diameter="1.6"/>
+<text x="0" y="2.635" size="1.27" layer="25" align="bottom-center">&gt;NAME</text>
+<text x="0" y="-2.635" size="1.27" layer="27" align="top-center">&gt;VALUE</text>
 </package>
 </packages>
 <packages3d>
@@ -11794,7 +11812,7 @@ Source: AVX .. aphvc.pdf</description>
 <packageinstance name="TO-263-5"/>
 </packageinstances>
 </package3d>
-<package3d name="HDRRAR28W64P254_2X14_3606X850X508B" urn="urn:adsk.eagle:package:7083979/1" type="model" library_version="23">
+<package3d name="HDRRAR28W64P254_2X14_3606X850X508B" urn="urn:adsk.eagle:package:7083979/1" type="model" library_version="39">
 <description>Double-row, 28-pin Receptacle Header (Female) Right Angle, 2.54 mm (0.10 in) row pitch, 2.54 mm (0.10 in) col pitch, 8.50 mm insulator length, 36.06 X 8.50 X 5.08 mm body
 &lt;p&gt;Double-row (2X14), 28-pin Receptacle Header (Female) Right Angle package with 2.54 mm (0.10 in) row pitch, 2.54 mm (0.10 in) col pitch, 0.64 mm lead width, 3.15 mm tail length and 8.50 mm insulator length with body size 36.06 X 8.50 X 5.08 mm, pin pattern - clockwise from top left&lt;/p&gt;</description>
 <packageinstances>
@@ -11821,7 +11839,7 @@ Source: AVX .. aphvc.pdf</description>
 <packageinstance name="SOT353"/>
 </packageinstances>
 </package3d>
-<package3d name="CAPAE830X1050" urn="urn:adsk.eagle:package:7532729/1" type="model" library_version="23">
+<package3d name="CAPAE830X1050" urn="urn:adsk.eagle:package:7532729/1" type="model" library_version="39">
 <description>ECAP (Aluminum Electrolytic Capacitor), 8.30 X 10.50 mm body
 &lt;p&gt;ECAP (Aluminum Electrolytic Capacitor) package with body size 8.30 X 10.50 mm&lt;/p&gt;</description>
 <packageinstances>
@@ -11833,9 +11851,16 @@ Source: AVX .. aphvc.pdf</description>
 <packageinstance name="XTAL"/>
 </packageinstances>
 </package3d>
+<package3d name="RESAD1560W80L1200D400B" urn="urn:adsk.eagle:package:10159534/1" type="model" library_version="44">
+<description>Axial Resistor, 15.60 mm pitch, 12.00 mm body length, 4.00 mm body diameter
+&lt;p&gt;Axial Resistor package with 15.60 mm pitch, 0.80 mm lead diameter, 12.00 mm body length and 4.00 mm body diameter&lt;/p&gt;</description>
+<packageinstances>
+<packageinstance name="RESAD1560W80L1200D400B"/>
+</packageinstances>
+</package3d>
 </packages3d>
 <symbols>
-<symbol name="COMP_2" urn="urn:adsk.eagle:symbol:6996414/1" library_version="1">
+<symbol name="COMP_2" urn="urn:adsk.eagle:symbol:6996414/3" library_version="40">
 <wire x1="-3.81" y1="3.175" x2="-3.81" y2="1.905" width="0.1524" layer="94"/>
 <wire x1="-4.445" y1="2.54" x2="-3.175" y2="2.54" width="0.1524" layer="94"/>
 <wire x1="-4.445" y1="-2.54" x2="-3.175" y2="-2.54" width="0.1524" layer="94"/>
@@ -11855,14 +11880,14 @@ Source: AVX .. aphvc.pdf</description>
 <text x="1.27" y="3.175" size="0.8128" layer="93" rot="R90">BAL</text>
 <text x="-1.27" y="-5.715" size="0.8128" layer="93" rot="R90">VCC-</text>
 <text x="3.81" y="1.905" size="0.8128" layer="93" rot="R90">BAL/STROBE</text>
-<pin name="BAL/S" x="2.54" y="7.62" visible="off" length="short" direction="pas" rot="R270"/>
-<pin name="IN-" x="-7.62" y="-2.54" visible="off" length="short" direction="in"/>
-<pin name="IN+" x="-7.62" y="2.54" visible="off" length="short" direction="in"/>
-<pin name="BAL" x="0" y="7.62" visible="off" length="short" direction="pas" rot="R270"/>
-<pin name="OUT" x="7.62" y="0" visible="off" length="short" direction="out" rot="R180"/>
-<pin name="GND" x="0" y="-7.62" visible="off" length="short" direction="pas" rot="R90"/>
-<pin name="VCC+" x="-2.54" y="7.62" visible="off" length="short" direction="pwr" rot="R270"/>
-<pin name="VCC-" x="-2.54" y="-7.62" visible="off" length="short" direction="pwr" rot="R90"/>
+<pin name="BAL/S" x="2.54" y="7.62" visible="pad" length="short" direction="pas" rot="R270"/>
+<pin name="IN-" x="-7.62" y="-2.54" visible="pad" length="short" direction="in"/>
+<pin name="IN+" x="-7.62" y="2.54" visible="pad" length="short" direction="in"/>
+<pin name="BAL" x="0" y="7.62" visible="pad" length="short" direction="pas" rot="R270"/>
+<pin name="OUT" x="7.62" y="0" visible="pad" length="short" direction="out" rot="R180"/>
+<pin name="GND" x="0" y="-7.62" visible="pad" length="short" direction="pas" rot="R90"/>
+<pin name="VCC+" x="-2.54" y="7.62" visible="pad" length="short" direction="pwr" rot="R270"/>
+<pin name="VCC-" x="-2.54" y="-7.62" visible="pad" length="short" direction="pwr" rot="R90"/>
 </symbol>
 <symbol name="LM8365" urn="urn:adsk.eagle:symbol:6996413/2" library_version="25">
 <pin name="/RESET" x="-10.16" y="0" visible="pin" length="short" direction="pwr"/>
@@ -11924,7 +11949,7 @@ Source: AVX .. aphvc.pdf</description>
 <pin name="I1" x="-12.7" y="-2.54" visible="pad" length="middle" direction="in" swaplevel="1"/>
 <pin name="O" x="12.7" y="0" visible="pad" length="middle" direction="out" rot="R180"/>
 </symbol>
-<symbol name="COMP" urn="urn:adsk.eagle:symbol:6996415/1" library_version="1">
+<symbol name="COMP" urn="urn:adsk.eagle:symbol:6996415/3" library_version="42">
 <wire x1="-3.81" y1="3.175" x2="-3.81" y2="1.905" width="0.1524" layer="94"/>
 <wire x1="-4.445" y1="2.54" x2="-3.175" y2="2.54" width="0.1524" layer="94"/>
 <wire x1="-4.445" y1="-2.54" x2="-3.175" y2="-2.54" width="0.1524" layer="94"/>
@@ -11939,17 +11964,17 @@ Source: AVX .. aphvc.pdf</description>
 <text x="2.54" y="5.715" size="1.778" layer="95">&gt;NAME</text>
 <text x="2.54" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
 <text x="1.27" y="-5.08" size="0.8128" layer="93" rot="R90">GND</text>
-<text x="1.27" y="3.175" size="0.8128" layer="93" rot="R90">VCC+</text>
-<text x="-1.27" y="4.445" size="0.8128" layer="93" rot="R90">LATCH_EN</text>
+<text x="-1.27" y="5.715" size="0.8128" layer="93" rot="R90">VCC+</text>
+<text x="1.27" y="4.445" size="0.8128" layer="93" rot="R90">LATCH_EN</text>
 <text x="-1.27" y="-5.715" size="0.8128" layer="93" rot="R90">VCC-</text>
-<pin name="/Q" x="7.62" y="2.54" visible="off" length="short" direction="pas" rot="R180"/>
-<pin name="-IN" x="-7.62" y="-2.54" visible="off" length="short" direction="in"/>
-<pin name="+IN" x="-7.62" y="2.54" visible="off" length="short" direction="in"/>
-<pin name="VCC+" x="0" y="7.62" visible="off" length="short" direction="pas" rot="R270"/>
-<pin name="Q" x="7.62" y="0" visible="off" length="short" direction="out" rot="R180"/>
-<pin name="GND" x="0" y="-7.62" visible="off" length="short" direction="pas" rot="R90"/>
-<pin name="LATCH_EN" x="-2.54" y="7.62" visible="off" length="short" direction="pwr" rot="R270"/>
-<pin name="VCC-" x="-2.54" y="-7.62" visible="off" length="short" direction="pwr" rot="R90"/>
+<pin name="/Q" x="7.62" y="2.54" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="-IN" x="-7.62" y="-2.54" visible="pad" length="short" direction="in"/>
+<pin name="+IN" x="-7.62" y="2.54" visible="pad" length="short" direction="in"/>
+<pin name="VCC+" x="-2.54" y="7.62" visible="pad" length="short" direction="pas" rot="R270"/>
+<pin name="Q" x="7.62" y="0" visible="pad" length="short" direction="out" rot="R180"/>
+<pin name="GND" x="0" y="-7.62" visible="pad" length="short" direction="pas" rot="R90"/>
+<pin name="LATCH_EN" x="0" y="7.62" visible="pad" length="short" direction="pwr" rot="R270"/>
+<pin name="VCC-" x="-2.54" y="-7.62" visible="pad" length="short" direction="pwr" rot="R90"/>
 </symbol>
 <symbol name="UCC27423" urn="urn:adsk.eagle:symbol:6996419/2" library_version="26">
 <pin name="ENA" x="-10.16" y="7.62" visible="pin" length="short"/>
@@ -12108,7 +12133,7 @@ Source: AVX .. aphvc.pdf</description>
 <pin name="A4" x="-10.16" y="-15.24" length="short"/>
 <pin name="A5" x="-10.16" y="-17.78" length="short"/>
 </symbol>
-<symbol name="OR" urn="urn:adsk.eagle:symbol:7507350/1" library_version="17">
+<symbol name="OR" urn="urn:adsk.eagle:symbol:7507350/2" library_version="43">
 <wire x1="-1.27" y1="5.08" x2="-7.62" y2="5.08" width="0.4064" layer="94"/>
 <wire x1="-1.27" y1="-5.08" x2="-7.62" y2="-5.08" width="0.4064" layer="94"/>
 <wire x1="-7.62" y1="2.54" x2="-6.35" y2="2.54" width="0.1524" layer="94"/>
@@ -12121,8 +12146,8 @@ Source: AVX .. aphvc.pdf</description>
 <pin name="I0" x="-12.7" y="2.54" visible="pad" length="middle" direction="in" swaplevel="1"/>
 <pin name="I1" x="-12.7" y="-2.54" visible="pad" length="middle" direction="in" swaplevel="1"/>
 <pin name="O" x="12.7" y="0" visible="pad" length="middle" direction="out" rot="R180"/>
-<pin name="VCC" x="0" y="5.08" visible="off" length="point" direction="pwr" rot="R270"/>
-<pin name="GND" x="0" y="-5.08" visible="off" length="point" direction="pwr" rot="R270"/>
+<pin name="VCC" x="0" y="5.08" visible="pad" length="point" direction="pwr" rot="R270"/>
+<pin name="GND" x="0" y="-5.08" visible="pad" length="point" direction="pwr" rot="R270"/>
 </symbol>
 <symbol name="C-US" urn="urn:adsk.eagle:symbol:7532736/1" library_version="20">
 <wire x1="-2.54" y1="0" x2="2.54" y2="0" width="0.254" layer="94"/>
@@ -12150,9 +12175,24 @@ Source: AVX .. aphvc.pdf</description>
 <pin name="2" x="2.54" y="0" visible="off" length="point" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="1" x="-2.54" y="0" visible="off" length="point" direction="pas" swaplevel="1"/>
 </symbol>
+<symbol name="R-US" urn="urn:adsk.eagle:symbol:8424392/1" library_version="44">
+<wire x1="-2.54" y1="0" x2="-2.159" y2="1.016" width="0.2032" layer="94"/>
+<wire x1="-2.159" y1="1.016" x2="-1.524" y2="-1.016" width="0.2032" layer="94"/>
+<wire x1="-1.524" y1="-1.016" x2="-0.889" y2="1.016" width="0.2032" layer="94"/>
+<wire x1="-0.889" y1="1.016" x2="-0.254" y2="-1.016" width="0.2032" layer="94"/>
+<wire x1="-0.254" y1="-1.016" x2="0.381" y2="1.016" width="0.2032" layer="94"/>
+<wire x1="0.381" y1="1.016" x2="1.016" y2="-1.016" width="0.2032" layer="94"/>
+<wire x1="1.016" y1="-1.016" x2="1.651" y2="1.016" width="0.2032" layer="94"/>
+<wire x1="1.651" y1="1.016" x2="2.286" y2="-1.016" width="0.2032" layer="94"/>
+<wire x1="2.286" y1="-1.016" x2="2.54" y2="0" width="0.2032" layer="94"/>
+<text x="-3.81" y="1.4986" size="1.778" layer="95">&gt;NAME</text>
+<text x="-3.81" y="-3.302" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="2" x="5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
+<pin name="1" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+</symbol>
 </symbols>
 <devicesets>
-<deviceset name="LM311" urn="urn:adsk.eagle:component:6996422/2" prefix="U" library_version="15">
+<deviceset name="LM311" urn="urn:adsk.eagle:component:6996422/4" prefix="U" library_version="40">
 <gates>
 <gate name="G$1" symbol="COMP_2" x="0" y="0"/>
 </gates>
@@ -12303,7 +12343,7 @@ Source: AVX .. aphvc.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="TL3116" urn="urn:adsk.eagle:component:6996423/2" prefix="U" library_version="15">
+<deviceset name="TL3116" urn="urn:adsk.eagle:component:6996423/4" prefix="U" library_version="42">
 <gates>
 <gate name="G$1" symbol="COMP" x="0" y="0"/>
 </gates>
@@ -12439,7 +12479,7 @@ Source: AVX .. aphvc.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="LED_HDR" urn="urn:adsk.eagle:component:7084005/2" prefix="JP" library_version="23">
+<deviceset name="LED_HDR" urn="urn:adsk.eagle:component:7084005/2" prefix="JP" library_version="39">
 <gates>
 <gate name="G$1" symbol="LED_PINHD" x="2.54" y="15.24"/>
 <gate name="G$2" symbol="LED_PINHD" x="2.54" y="-17.78"/>
@@ -12530,7 +12570,7 @@ Source: AVX .. aphvc.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="74AHCT1G32" urn="urn:adsk.eagle:component:7507351/2" prefix="U" library_version="18">
+<deviceset name="74AHCT1G32" urn="urn:adsk.eagle:component:7507351/3" prefix="U" library_version="43">
 <gates>
 <gate name="G$1" symbol="OR" x="0" y="0"/>
 </gates>
@@ -12552,7 +12592,7 @@ Source: AVX .. aphvc.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="UWT1V221MNL1GS" urn="urn:adsk.eagle:component:7532737/2" prefix="C" library_version="23">
+<deviceset name="UWT1V221MNL1GS" urn="urn:adsk.eagle:component:7532737/2" prefix="C" library_version="39">
 <gates>
 <gate name="G$1" symbol="C-US" x="0" y="0"/>
 </gates>
@@ -12583,6 +12623,25 @@ Source: AVX .. aphvc.pdf</description>
 </connects>
 <package3dinstances>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:7614122/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="51OHM_RES" urn="urn:adsk.eagle:component:10159537/1" prefix="R" library_version="44">
+<gates>
+<gate name="G$1" symbol="R-US" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="RESAD1560W80L1200D400B">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:10159534/1"/>
 </package3dinstances>
 <technologies>
 <technology name=""/>
@@ -13848,7 +13907,7 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <part name="C13" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="C-EU" device="C1206" package3d_urn="urn:adsk.eagle:package:23618/2" value="100nF"/>
 <part name="R12" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2" value="100k"/>
 <part name="C15" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="C-EU" device="C0402" package3d_urn="urn:adsk.eagle:package:23626/1" value="160pF"/>
-<part name="R15" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2" value="51"/>
+<part name="R15" library="drsstc" library_urn="urn:adsk.eagle:library:6996412" deviceset="51OHM_RES" device="" package3d_urn="urn:adsk.eagle:package:10159534/1" value="51"/>
 <part name="FB" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="5MM" package3d_urn="urn:adsk.eagle:package:38044/1"/>
 <part name="GND19" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="U5" library="drsstc" library_urn="urn:adsk.eagle:library:6996412" deviceset="UCC27423" device="" package3d_urn="urn:adsk.eagle:package:6996308/2"/>
@@ -13920,19 +13979,17 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <part name="JP16" library="drsstc" library_urn="urn:adsk.eagle:library:6996412" deviceset="LED_HDR" device="" package3d_urn="urn:adsk.eagle:package:7083979/1"/>
 <part name="PRIM_PREC_SELECT" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X3" device="" package3d_urn="urn:adsk.eagle:package:22458/2"/>
 <part name="R1" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2" value="10k"/>
-<part name="CNTRL" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X6" device="" package3d_urn="urn:adsk.eagle:package:22472/2"/>
 <part name="P+4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="R2" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2" value="10k"/>
 <part name="R3" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2" value="10k"/>
 <part name="R4" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2" value="10k"/>
 <part name="GND12" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="TP2" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X4" device="" package3d_urn="urn:adsk.eagle:package:22407/2"/>
+<part name="TP2" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X6" device="" package3d_urn="urn:adsk.eagle:package:22472/2"/>
 <part name="U2" library="drsstc" library_urn="urn:adsk.eagle:library:6996412" deviceset="74AHCT1G32" device="" package3d_urn="urn:adsk.eagle:package:7507336/2"/>
 <part name="I2C" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X4" device="" package3d_urn="urn:adsk.eagle:package:22407/2"/>
 <part name="GND9" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="P+10" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="PWR" library="SparkFun-Connectors" library_urn="urn:adsk.eagle:library:513" deviceset="CONN_02" device="5MM" package3d_urn="urn:adsk.eagle:package:38044/1"/>
-<part name="GND3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="NEOPIXEL" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X3" device="" package3d_urn="urn:adsk.eagle:package:22458/2"/>
 <part name="P+1" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
@@ -13953,7 +14010,6 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <part name="FB_TP" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
 <part name="OCD_TP" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
 <part name="PWR_TP" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
-<part name="P+6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="12V" library="nixie_ticker" library_urn="urn:adsk.eagle:library:3857935" deviceset="LED_1206" device="" package3d_urn="urn:adsk.eagle:package:7609480/2"/>
 <part name="R28" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2" value="2k"/>
 <part name="5V" library="nixie_ticker" library_urn="urn:adsk.eagle:library:3857935" deviceset="LED_1206" device="" package3d_urn="urn:adsk.eagle:package:7609480/2"/>
@@ -13970,6 +14026,15 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <part name="12V_TP2" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
 <part name="R33" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2" value="10k"/>
 <part name="MOV" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="R1206" package3d_urn="urn:adsk.eagle:package:23540/2" value="10k"/>
+<part name="GND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="TRIG" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
+<part name="TEST" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
+<part name="MODE" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
+<part name="MSTR" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
+<part name="P+6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
+<part name="P+25" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
+<part name="P+26" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
+<part name="P+27" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -14162,15 +14227,14 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <attribute name="VALUE" x="-46.99" y="116.84" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="R1" gate="G$1" x="10.16" y="269.24" rot="R270"/>
-<instance part="CNTRL" gate="A" x="45.72" y="279.4"/>
 <instance part="P+4" gate="VCC" x="7.62" y="287.02" smashed="yes" rot="R270">
 <attribute name="VALUE" x="8.89" y="287.02" size="1.778" layer="96" align="center-left"/>
 </instance>
 <instance part="R2" gate="G$1" x="17.78" y="269.24" rot="R270"/>
 <instance part="R3" gate="G$1" x="24.13" y="269.24" rot="R270"/>
 <instance part="R4" gate="G$1" x="30.48" y="269.24" rot="R270"/>
-<instance part="GND12" gate="1" x="-118.11" y="210.82"/>
-<instance part="TP2" gate="A" x="-115.57" y="226.06" rot="R90"/>
+<instance part="GND12" gate="1" x="-120.65" y="220.98"/>
+<instance part="TP2" gate="A" x="-113.03" y="226.06" rot="R90"/>
 <instance part="U2" gate="G$1" x="-35.56" y="275.59" smashed="yes" rot="R180">
 <attribute name="NAME" x="-27.94" y="269.875" size="1.778" layer="95" rot="R180"/>
 </instance>
@@ -14185,7 +14249,6 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <attribute name="VALUE" x="-35.56" y="232.41" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="PWR" gate="G$1" x="-198.12" y="276.86"/>
-<instance part="GND3" gate="1" x="35.56" y="289.56" rot="R180"/>
 <instance part="NEOPIXEL" gate="A" x="-33.02" y="297.18"/>
 <instance part="P+1" gate="VCC" x="-41.91" y="304.8"/>
 <instance part="GND2" gate="1" x="-41.91" y="292.1"/>
@@ -14197,10 +14260,10 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <instance part="C5" gate="G$1" x="-110.49" y="242.57"/>
 <instance part="P+5" gate="VCC" x="-110.49" y="260.35"/>
 <instance part="P+7" gate="VCC" x="-67.31" y="287.02" rot="R270"/>
-<instance part="C1" gate="G$1" x="-38.1" y="285.75" rot="R270"/>
-<instance part="GND7" gate="1" x="-35.56" y="262.89"/>
-<instance part="P+3" gate="VCC" x="-35.56" y="288.29" smashed="yes">
-<attribute name="VALUE" x="-33.02" y="290.83" size="1.778" layer="96" rot="R180"/>
+<instance part="C1" gate="G$1" x="-38.1" y="262.89" rot="R270"/>
+<instance part="GND7" gate="1" x="-35.56" y="285.75" rot="R180"/>
+<instance part="P+3" gate="VCC" x="-31.75" y="264.16" smashed="yes" rot="R270">
+<attribute name="VALUE" x="-29.21" y="261.62" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="GDT1_TP" gate="G$1" x="63.5" y="153.67" rot="R270"/>
 <instance part="GDT2_TP" gate="G$1" x="63.5" y="191.77" rot="R270"/>
@@ -14217,7 +14280,6 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <attribute name="NAME" x="-185.42" y="264.795" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-186.69" y="275.59" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="P+6" gate="VCC" x="35.56" y="269.24" rot="R180"/>
 <instance part="12V" gate="G$1" x="-100.33" y="271.78"/>
 <instance part="R28" gate="G$1" x="-100.33" y="281.94" rot="R90"/>
 <instance part="5V" gate="G$1" x="-100.33" y="242.57"/>
@@ -14227,7 +14289,7 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <instance part="R30" gate="G$1" x="20.32" y="248.92" rot="R180"/>
 <instance part="R31" gate="G$1" x="20.32" y="256.54" rot="R180"/>
 <instance part="GND34" gate="1" x="33.02" y="243.84"/>
-<instance part="GND35" gate="1" x="-45.72" y="285.75" rot="R270"/>
+<instance part="GND35" gate="1" x="-45.72" y="262.89" rot="R270"/>
 <instance part="GND36" gate="1" x="-161.29" y="229.87"/>
 <instance part="12V_TP1" gate="G$1" x="-138.43" y="257.81" smashed="yes" rot="R270">
 <attribute name="NAME" x="-130.175" y="256.54" size="1.778" layer="95" rot="R90"/>
@@ -14240,6 +14302,23 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 </instance>
 <instance part="R33" gate="G$1" x="-148.59" y="227.33" rot="R180"/>
 <instance part="MOV" gate="G$1" x="-189.23" y="270.51" rot="R270"/>
+<instance part="GND4" gate="1" x="0" y="215.9"/>
+<instance part="TRIG" gate="G$1" x="44.45" y="292.1"/>
+<instance part="TEST" gate="G$1" x="44.45" y="283.21"/>
+<instance part="MODE" gate="G$1" x="44.45" y="274.32"/>
+<instance part="MSTR" gate="G$1" x="44.45" y="265.43"/>
+<instance part="P+6" gate="VCC" x="39.37" y="292.1" smashed="yes" rot="R90">
+<attribute name="VALUE" x="38.1" y="292.1" size="1.778" layer="96" rot="R180" align="center-left"/>
+</instance>
+<instance part="P+25" gate="VCC" x="39.37" y="283.21" smashed="yes" rot="R90">
+<attribute name="VALUE" x="38.1" y="283.21" size="1.778" layer="96" rot="R180" align="center-left"/>
+</instance>
+<instance part="P+26" gate="VCC" x="39.37" y="274.32" smashed="yes" rot="R90">
+<attribute name="VALUE" x="38.1" y="274.32" size="1.778" layer="96" rot="R180" align="center-left"/>
+</instance>
+<instance part="P+27" gate="VCC" x="39.37" y="265.43" smashed="yes" rot="R90">
+<attribute name="VALUE" x="38.1" y="265.43" size="1.778" layer="96" rot="R180" align="center-left"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -14334,11 +14413,12 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <pinref part="GND17" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U6" gate="G$1" pin="VCC+"/>
-<wire x1="-97.79" y1="190.5" x2="-92.71" y2="190.5" width="0.1524" layer="91"/>
 <pinref part="C12" gate="G$1" pin="2"/>
 <wire x1="-92.71" y1="190.5" x2="-92.71" y2="195.58" width="0.1524" layer="91"/>
 <pinref part="GND15" gate="1" pin="GND"/>
+<pinref part="U6" gate="G$1" pin="LATCH_EN"/>
+<wire x1="-97.79" y1="190.5" x2="-92.71" y2="190.5" width="0.1524" layer="91"/>
+<junction x="-92.71" y="190.5"/>
 </segment>
 <segment>
 <pinref part="U6" gate="G$1" pin="GND"/>
@@ -14479,8 +14559,8 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <wire x1="25.4" y1="69.85" x2="25.4" y2="59.69" width="0.1524" layer="91"/>
 <wire x1="25.4" y1="59.69" x2="40.64" y2="59.69" width="0.1524" layer="91"/>
 <pinref part="C27" gate="G$1" pin="1"/>
-<wire x1="7.62" y1="102.87" x2="7.62" y2="59.69" width="0.1524" layer="91"/>
-<wire x1="7.62" y1="59.69" x2="25.4" y2="59.69" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="102.87" x2="7.62" y2="72.39" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="72.39" x2="25.4" y2="59.69" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="-173.99" y1="154.94" x2="-163.83" y2="154.94" width="0.1524" layer="91"/>
@@ -14505,35 +14585,14 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <wire x1="24.13" y1="264.16" x2="15.24" y2="264.16" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="TP2" gate="A" pin="2"/>
-<pinref part="GND12" gate="1" pin="GND"/>
-<wire x1="-118.11" y1="223.52" x2="-118.11" y2="213.36" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="I2C" gate="A" pin="3"/>
 <wire x1="-27.94" y1="228.6" x2="-27.94" y2="233.68" width="0.1524" layer="91"/>
 <pinref part="GND9" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="NEOPIXEL" gate="A" pin="2"/>
-<wire x1="-35.56" y1="297.18" x2="-41.91" y2="297.18" width="0.1524" layer="91"/>
-<wire x1="-41.91" y1="297.18" x2="-41.91" y2="294.64" width="0.1524" layer="91"/>
-<pinref part="GND2" gate="1" pin="GND"/>
-</segment>
-<segment>
 <pinref part="TP3" gate="A" pin="5"/>
 <pinref part="GND5" gate="1" pin="GND"/>
 <wire x1="-74.93" y1="289.56" x2="-67.31" y2="289.56" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="U2" gate="G$1" pin="VCC"/>
-<wire x1="-35.56" y1="270.51" x2="-35.56" y2="265.43" width="0.1524" layer="91"/>
-<pinref part="GND7" gate="1" pin="GND"/>
-</segment>
-<segment>
-<pinref part="CNTRL" gate="A" pin="1"/>
-<wire x1="35.56" y1="287.02" x2="43.18" y2="287.02" width="0.1524" layer="91"/>
-<pinref part="GND3" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="LED1" gate="G$1" pin="C"/>
@@ -14545,6 +14604,20 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
 <pinref part="GND35" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="GND7" gate="1" pin="GND"/>
+<pinref part="U2" gate="G$1" pin="GND"/>
+<wire x1="-35.56" y1="283.21" x2="-35.56" y2="280.67" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="TP2" gate="A" pin="1"/>
+<pinref part="GND12" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="GND2" gate="1" pin="GND"/>
+<pinref part="NEOPIXEL" gate="A" pin="3"/>
+<wire x1="-41.91" y1="294.64" x2="-35.56" y2="294.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -14591,10 +14664,11 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <segment>
 <pinref part="P+13" gate="VCC" pin="VCC"/>
 <pinref part="C12" gate="G$1" pin="1"/>
-<pinref part="U6" gate="G$1" pin="LATCH_EN"/>
-<wire x1="-100.33" y1="190.5" x2="-100.33" y2="195.58" width="0.1524" layer="91"/>
 <pinref part="R13" gate="G$1" pin="2"/>
 <wire x1="-100.33" y1="195.58" x2="-107.95" y2="195.58" width="0.1524" layer="91"/>
+<pinref part="U6" gate="G$1" pin="VCC+"/>
+<wire x1="-100.33" y1="195.58" x2="-100.33" y2="190.5" width="0.1524" layer="91"/>
+<junction x="-100.33" y="195.58"/>
 </segment>
 <segment>
 <pinref part="R9" gate="G$1" pin="2"/>
@@ -14697,15 +14771,27 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 </segment>
 <segment>
 <pinref part="C1" gate="G$1" pin="1"/>
-<pinref part="U2" gate="G$1" pin="GND"/>
-<wire x1="-35.56" y1="285.75" x2="-35.56" y2="280.67" width="0.1524" layer="91"/>
 <pinref part="P+3" gate="VCC" pin="VCC"/>
+<wire x1="-34.29" y1="264.16" x2="-35.56" y2="262.89" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="VCC"/>
+<wire x1="-35.56" y1="262.89" x2="-35.56" y2="270.51" width="0.1524" layer="91"/>
+<junction x="-35.56" y="262.89"/>
 </segment>
 <segment>
-<wire x1="35.56" y1="271.78" x2="35.56" y2="274.32" width="0.1524" layer="91"/>
-<pinref part="CNTRL" gate="A" pin="6"/>
-<wire x1="35.56" y1="274.32" x2="43.18" y2="274.32" width="0.1524" layer="91"/>
+<pinref part="TRIG" gate="G$1" pin="2"/>
 <pinref part="P+6" gate="VCC" pin="VCC"/>
+</segment>
+<segment>
+<pinref part="TEST" gate="G$1" pin="2"/>
+<pinref part="P+25" gate="VCC" pin="VCC"/>
+</segment>
+<segment>
+<pinref part="MODE" gate="G$1" pin="2"/>
+<pinref part="P+26" gate="VCC" pin="VCC"/>
+</segment>
+<segment>
+<pinref part="MSTR" gate="G$1" pin="2"/>
+<pinref part="P+27" gate="VCC" pin="VCC"/>
 </segment>
 </net>
 <net name="N$7" class="0">
@@ -14931,6 +15017,11 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <wire x1="-59.69" y1="208.28" x2="-59.69" y2="218.44" width="0.1524" layer="91"/>
 <pinref part="U8" gate="G$5" pin="I0"/>
 <wire x1="-59.69" y1="218.44" x2="-46.99" y2="218.44" width="0.1524" layer="91"/>
+<pinref part="TP2" gate="A" pin="6"/>
+<wire x1="-107.95" y1="223.52" x2="-107.95" y2="222.25" width="0.1524" layer="91"/>
+<wire x1="-107.95" y1="222.25" x2="-7.62" y2="222.25" width="0.1524" layer="91"/>
+<wire x1="-7.62" y1="222.25" x2="-7.62" y2="180.34" width="0.1524" layer="91"/>
+<junction x="-7.62" y="180.34"/>
 </segment>
 </net>
 <net name="PRIMARY" class="0">
@@ -15001,7 +15092,7 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <wire x1="-138.43" y1="190.5" x2="-138.43" y2="204.47" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$26" class="0">
+<net name="FB_IN" class="0">
 <segment>
 <pinref part="D4" gate="G$1" pin="C"/>
 <wire x1="-138.43" y1="185.42" x2="-138.43" y2="180.34" width="0.1524" layer="91"/>
@@ -15009,11 +15100,14 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <pinref part="D5" gate="G$1" pin="A"/>
 <wire x1="-133.35" y1="180.34" x2="-133.35" y2="185.42" width="0.1524" layer="91"/>
 <pinref part="U6" gate="G$1" pin="-IN"/>
-<wire x1="-105.41" y1="180.34" x2="-120.65" y2="180.34" width="0.1524" layer="91"/>
+<wire x1="-105.41" y1="180.34" x2="-118.11" y2="180.34" width="0.1524" layer="91"/>
+<wire x1="-118.11" y1="180.34" x2="-120.65" y2="180.34" width="0.1524" layer="91"/>
 <wire x1="-133.35" y1="180.34" x2="-120.65" y2="180.34" width="0.1524" layer="91"/>
 <pinref part="R14" gate="G$1" pin="1"/>
-<pinref part="TP2" gate="A" pin="1"/>
-<wire x1="-120.65" y1="223.52" x2="-120.65" y2="180.34" width="0.1524" layer="91"/>
+<pinref part="TP2" gate="A" pin="2"/>
+<wire x1="-118.11" y1="223.52" x2="-118.11" y2="180.34" width="0.1524" layer="91"/>
+<junction x="-118.11" y="180.34"/>
+<label x="-115.57" y="180.34" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$27" class="0">
@@ -15143,6 +15237,13 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <wire x1="8.89" y1="209.55" x2="25.4" y2="209.55" width="0.1524" layer="91"/>
 <wire x1="8.89" y1="171.45" x2="8.89" y2="209.55" width="0.1524" layer="91"/>
 <junction x="8.89" y="209.55"/>
+<wire x1="-5.08" y1="209.55" x2="-13.97" y2="209.55" width="0.1524" layer="91"/>
+<junction x="-13.97" y="209.55"/>
+<pinref part="TP2" gate="A" pin="5"/>
+<wire x1="-110.49" y1="223.52" x2="-110.49" y2="219.71" width="0.1524" layer="91"/>
+<wire x1="-110.49" y1="219.71" x2="-15.24" y2="219.71" width="0.1524" layer="91"/>
+<wire x1="-15.24" y1="219.71" x2="-13.97" y2="219.71" width="0.1524" layer="91"/>
+<wire x1="-13.97" y1="219.71" x2="-13.97" y2="209.55" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="INB" class="0">
@@ -15578,13 +15679,15 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 </segment>
 <segment>
 <pinref part="JP5" gate="G$1" pin="A0"/>
-<pinref part="CNTRL" gate="A" pin="5"/>
 <wire x1="2.54" y1="276.86" x2="30.48" y2="276.86" width="0.1524" layer="91"/>
 <pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="30.48" y1="276.86" x2="43.18" y2="276.86" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="274.32" x2="30.48" y2="276.86" width="0.1524" layer="91"/>
+<label x="5.08" y="276.86" size="1.778" layer="95"/>
+<wire x1="30.48" y1="276.86" x2="35.56" y2="276.86" width="0.1524" layer="91"/>
 <junction x="30.48" y="276.86"/>
-<label x="33.02" y="276.86" size="1.778" layer="95"/>
+<pinref part="MSTR" gate="G$1" pin="1"/>
+<wire x1="35.56" y1="276.86" x2="35.56" y2="267.97" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="267.97" x2="41.91" y2="267.97" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$11" class="0">
@@ -15593,40 +15696,48 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 <pinref part="U8" gate="G$2" pin="O"/>
 </segment>
 </net>
-<net name="MODE1" class="0">
+<net name="TEST" class="0">
 <segment>
 <pinref part="JP5" gate="G$1" pin="A2"/>
-<pinref part="CNTRL" gate="A" pin="3"/>
 <wire x1="2.54" y1="281.94" x2="17.78" y2="281.94" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="1"/>
-<wire x1="17.78" y1="281.94" x2="43.18" y2="281.94" width="0.1524" layer="91"/>
 <wire x1="17.78" y1="274.32" x2="17.78" y2="281.94" width="0.1524" layer="91"/>
+<label x="5.08" y="281.94" size="1.778" layer="95"/>
+<wire x1="17.78" y1="281.94" x2="35.56" y2="281.94" width="0.1524" layer="91"/>
 <junction x="17.78" y="281.94"/>
-<label x="25.4" y="281.94" size="1.778" layer="95"/>
+<wire x1="35.56" y1="281.94" x2="36.83" y2="281.94" width="0.1524" layer="91"/>
+<wire x1="36.83" y1="281.94" x2="36.83" y2="285.75" width="0.1524" layer="91"/>
+<pinref part="TEST" gate="G$1" pin="1"/>
+<wire x1="36.83" y1="285.75" x2="41.91" y2="285.75" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="MODE2" class="0">
+<net name="MODE" class="0">
 <segment>
 <pinref part="JP5" gate="G$1" pin="A1"/>
-<pinref part="CNTRL" gate="A" pin="4"/>
 <wire x1="2.54" y1="279.4" x2="24.13" y2="279.4" width="0.1524" layer="91"/>
 <pinref part="R3" gate="G$1" pin="1"/>
-<wire x1="24.13" y1="279.4" x2="43.18" y2="279.4" width="0.1524" layer="91"/>
 <wire x1="24.13" y1="274.32" x2="24.13" y2="279.4" width="0.1524" layer="91"/>
+<label x="5.08" y="279.4" size="1.778" layer="95"/>
+<wire x1="24.13" y1="279.4" x2="35.56" y2="279.4" width="0.1524" layer="91"/>
 <junction x="24.13" y="279.4"/>
-<label x="29.21" y="279.4" size="1.778" layer="95"/>
+<wire x1="35.56" y1="279.4" x2="36.83" y2="279.4" width="0.1524" layer="91"/>
+<pinref part="MODE" gate="G$1" pin="1"/>
+<wire x1="36.83" y1="279.4" x2="36.83" y2="276.86" width="0.1524" layer="91"/>
+<wire x1="36.83" y1="276.86" x2="41.91" y2="276.86" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="POT" class="0">
+<net name="TRIG" class="0">
 <segment>
 <pinref part="JP5" gate="G$1" pin="A3"/>
-<pinref part="CNTRL" gate="A" pin="2"/>
 <wire x1="2.54" y1="284.48" x2="10.16" y2="284.48" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="10.16" y1="284.48" x2="43.18" y2="284.48" width="0.1524" layer="91"/>
 <wire x1="10.16" y1="274.32" x2="10.16" y2="284.48" width="0.1524" layer="91"/>
+<label x="5.08" y="284.48" size="1.778" layer="95"/>
+<wire x1="10.16" y1="284.48" x2="35.56" y2="284.48" width="0.1524" layer="91"/>
 <junction x="10.16" y="284.48"/>
-<label x="20.32" y="284.48" size="1.778" layer="95"/>
+<wire x1="35.56" y1="284.48" x2="35.56" y2="294.64" width="0.1524" layer="91"/>
+<pinref part="TRIG" gate="G$1" pin="1"/>
+<wire x1="35.56" y1="294.64" x2="41.91" y2="294.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$19" class="0">
@@ -15685,11 +15796,12 @@ Source: http://www.osram.convergy.de/ ... LG_LY N971.pdf</description>
 </net>
 <net name="N$13" class="0">
 <segment>
-<pinref part="NEOPIXEL" gate="A" pin="3"/>
-<wire x1="-35.56" y1="294.64" x2="-27.94" y2="294.64" width="0.1524" layer="91"/>
 <wire x1="-27.94" y1="294.64" x2="-27.94" y2="284.48" width="0.1524" layer="91"/>
 <pinref part="JP5" gate="G$1" pin="2"/>
 <wire x1="-27.94" y1="284.48" x2="-20.32" y2="284.48" width="0.1524" layer="91"/>
+<pinref part="NEOPIXEL" gate="A" pin="2"/>
+<wire x1="-35.56" y1="297.18" x2="-27.94" y2="297.18" width="0.1524" layer="91"/>
+<wire x1="-27.94" y1="297.18" x2="-27.94" y2="294.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$38" class="0">
