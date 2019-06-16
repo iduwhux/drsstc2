@@ -8,8 +8,8 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="10.2in"
-   height="11.2in"
+   width="10.25877in"
+   height="11.109265in"
    version="1.1"
    id="svg1052"
    sodipodi:docname="control_box.svg"
@@ -27,17 +27,17 @@
      inkscape:window-height="1017"
      id="namedview1054"
      showgrid="false"
-     inkscape:zoom="0.79055061"
-     inkscape:cx="489.59999"
-     inkscape:cy="537.59999"
+     inkscape:zoom="0.5590037"
+     inkscape:cx="-20.756646"
+     inkscape:cy="355.44676"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="g1050"
      fit-margin-top="0"
      fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0"
+     fit-margin-right="0.1"
+     fit-margin-bottom="0.1"
      units="in" />
   <metadata
      id="metadata1056">
@@ -58,16 +58,17 @@
     <marker
        inkscape:stockid="Arrow1Lstart"
        orient="auto"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        id="Arrow1Lstart"
        style="overflow:visible"
        inkscape:isstock="true">
       <path
          id="path9555"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
-         transform="scale(0.8) translate(12.5,0)" />
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt"
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         inkscape:connector-curvature="0" />
     </marker>
     <marker
        id="DistanceX"
@@ -281,14 +282,15 @@
        id="*PAPER_SPACE-4" />
     <marker
        style="overflow:visible"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        orient="auto"
        id="DistanceX-54">
       <path
          id="path9439"
-         style="stroke:#000000; stroke-width:0.5"
-         d="M 3,-3 L -3,3 M 0,-5 L  0,5" />
+         style="stroke:#000000;stroke-width:0.5"
+         d="M 3,-3 -3,3 M 0,-5 V 5"
+         inkscape:connector-curvature="0" />
     </marker>
     <pattern
        y="0"
@@ -322,14 +324,15 @@
        id="*PAPER_SPACE-52" />
     <marker
        style="overflow:visible"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        orient="auto"
        id="DistanceX-1">
       <path
          id="path9821"
-         style="stroke:#000000; stroke-width:0.5"
-         d="M 3,-3 L -3,3 M 0,-5 L  0,5" />
+         style="stroke:#000000;stroke-width:0.5"
+         d="M 3,-3 -3,3 M 0,-5 V 5"
+         inkscape:connector-curvature="0" />
     </marker>
     <pattern
        y="0"
@@ -366,21 +369,22 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Background"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(0,-8.3105655)">
     <rect
-       style="display:inline;fill:#ffff00;fill-opacity:1;stroke:#ffff00;stroke-width:0.84739083;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="display:inline;fill:#ffff00;fill-opacity:1;stroke:#ffff00;stroke-width:0.84566468;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect9233"
-       width="978.3526"
-       height="1074.3527"
-       x="0.4236908"
-       y="0.42366028" />
+       width="983.15436"
+       height="1064.7544"
+       x="0.42283234"
+       y="8.7333975" />
   </g>
   <g
      inkscape:groupmode="layer"
      inkscape:label="Vector"
      id="g1050"
      style="display:inline"
-     transform="translate(-3.6227512e-6,27.999542)">
+     transform="translate(-3.6227512e-6,19.688976)">
     <g
        id="g9435">
       <path
@@ -1189,7 +1193,7 @@
     <g
        id="g8238"
        inkscape:label="0"
-       transform="translate(775.03357,-448.32831)"
+       transform="translate(775.03357,-446.32831)"
        style="display:inline;stroke:#0000ff;stroke-width:0.37795275;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
       <path
          id="path8164"
@@ -1380,7 +1384,7 @@
     <g
        id="g8238-9"
        inkscape:label="0"
-       transform="translate(775.03357,-205.98819)"
+       transform="translate(775.03357,-201.98819)"
        style="display:inline;stroke:#0000ff;stroke-width:0.37795275;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
       <path
          id="path8164-3"
@@ -1923,7 +1927,7 @@
      id="layer1"
      inkscape:label="Raster"
      style="display:inline"
-     transform="translate(-3.6227512e-6,27.999542)">
+     transform="translate(-3.6227512e-6,19.688976)">
     <g
        id="g9164"
        transform="translate(0,-19.999999)">
@@ -2047,80 +2051,44 @@
          id="text8999"
          y="44.503788"
          x="605.78162"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.5px;line-height:1.25;font-family:Cambria;-inkscape-font-specification:'Cambria, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5625"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22.50074033px;line-height:1.25;font-family:Cambria;-inkscape-font-specification:'Cambria, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5625;"
          xml:space="preserve"><tspan
-           y="44.503788"
-           x="605.78162"
-           id="tspan9103"
-           sodipodi:role="line">INSTRUCTIONS:</tspan><tspan
-           y="72.628784"
-           x="605.78162"
-           id="tspan9105"
-           sodipodi:role="line">1. Make sure both switches are off </tspan><tspan
-           y="100.75378"
-           x="605.78162"
-           id="tspan9107"
-           sodipodi:role="line">     before plugging in</tspan><tspan
-           y="128.87878"
-           x="605.78162"
-           id="tspan9109"
-           sodipodi:role="line">2. Turn on Main Power first</tspan><tspan
-           y="157.00378"
-           x="605.78162"
-           id="tspan9111"
-           sodipodi:role="line">3. Set Mode on front panel</tspan><tspan
-           y="185.12878"
-           x="605.78162"
-           id="tspan9113"
-           sodipodi:role="line">4. Set master switch to      position</tspan><tspan
-           y="213.25378"
-           x="605.78162"
-           id="tspan9115"
-           sodipodi:role="line">    to run coil</tspan><tspan
-           y="241.37878"
-           x="605.78162"
-           id="tspan9117"
-           sodipodi:role="line">5. Turn off master switch first, then</tspan><tspan
-           y="269.50378"
-           x="605.78162"
-           id="tspan9119"
-           sodipodi:role="line">    Main Power when finished</tspan><tspan
-           y="297.62878"
-           x="605.78162"
-           id="tspan9121"
-           sodipodi:role="line">6. Wait 5 minutes, and check Main</tspan><tspan
-           y="325.75378"
-           x="605.78162"
-           id="tspan9123"
-           sodipodi:role="line">    Bus voltage on front panel before</tspan><tspan
-           y="353.87878"
-           x="605.78162"
-           id="tspan9125"
-           sodipodi:role="line">    stowing</tspan><tspan
-           y="382.00378"
-           x="605.78162"
-           id="tspan9127"
-           sodipodi:role="line"></tspan><tspan
-           y="410.12878"
-           x="605.78162"
-           id="tspan9129"
-           sodipodi:role="line">NEVER ADJUST THE FRONT PANEL</tspan><tspan
-           y="438.25378"
-           x="605.78162"
-           id="tspan9131"
-           sodipodi:role="line">SWITCHES WHEN THE COIL IS IN</tspan><tspan
-           y="466.37878"
-           x="605.78162"
-           id="tspan9133"
-           sodipodi:role="line">OPERATION</tspan><tspan
-           y="494.50378"
-           x="605.78162"
-           id="tspan9135"
-           sodipodi:role="line"></tspan><tspan
-           y="522.62878"
-           x="605.78162"
-           id="tspan9137"
-           sodipodi:role="line">KEEP ONE HAND IN POCKET</tspan></text>
+           sodipodi:role="line"
+           id="tspan1322">INSTRUCTIONS:</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1324">1. Make sure both switches are off </tspan><tspan
+           sodipodi:role="line"
+           id="tspan1326">     before plugging in</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1328">2. Turn on Main Power first</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1330">3. Set Mode on front panel</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1332">4. Set master switch to      position</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1334">    to run coil</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1336">5. Turn off master switch first, then</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1338">    Main Power when finished</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1340">6. After unplugging, wait 5 minutes,</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1342">    and check Main Bus voltage on </tspan><tspan
+           sodipodi:role="line"
+           id="tspan1344">    front panel before stowing</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1346"></tspan><tspan
+           sodipodi:role="line"
+           id="tspan1348">NEVER ADJUST THE FRONT PANEL</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1350">SWITCHES WHEN THE COIL IS IN</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1352">OPERATION</tspan><tspan
+           sodipodi:role="line"
+           id="tspan1354"></tspan><tspan
+           sodipodi:role="line"
+           id="tspan1356">KEEP ONE HAND IN POCKET</tspan></text>
       <image
          inkscape:transform-center-y="144.07381"
          inkscape:transform-center-x="-319.53803"
