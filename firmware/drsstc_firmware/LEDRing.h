@@ -95,6 +95,9 @@ public:
   // Cycle through the wheel of standard colors
   void light_show();
 
+  // Display a varying number of LEDs
+  void bar_graph(unsigned int count, byte r, byte b, byte g);
+
   // Read binary instruction data from MIDI stream
   const byte* read_midi_data(const byte* pointer, size_t n_instructions);
   

@@ -309,3 +309,16 @@ void LEDRing::light_show() {
   
   update();
 }
+
+void LEDRing::bar_graph(unsigned int count, byte r, byte b, byte g) {
+  reset();
+  all.main.red = 0;
+  all.main.blue = 0;
+  all.main.green = 0;
+  for (unsigned int i = 0; i < count; i++) {
+    individual[i].main.red = r;
+    individual[i].main.blue = b;
+    individual[i].main.green = g;
+  }
+  update();
+}

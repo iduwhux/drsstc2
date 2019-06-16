@@ -4,6 +4,7 @@
 #include "LEDRing.h"
 #include "MIDIPlayer.h"
 
+#define MAX_TEST_MODE_INDEX 10
 namespace {
   int current_state = STARTUP;
   unsigned long last_state_change = 0;
@@ -12,6 +13,7 @@ namespace {
   bool status_leds[2] = {false, false};
   unsigned long test_mode_pulse_start = 0;
   bool test_mode_pulse = false;
+  int test_mode_index = 0;
 }
 
 void change_state(int new_state) {
@@ -31,16 +33,24 @@ int get_current_state() {
 #define MUSIC_TIMEOUT       (10 * MINUTE)
 #define MUSIC_PAUSE_TIMEOUT  (5 * MINUTE)
 #define MUSIC_INT_PERIOD     10000  // 10s between songs
+#define TEST_MODE_DEBOUNCE 250 // 0.25s delay for software debouncing
+
+void reset_state() {
+  test_mode_index = 0;
+  led_ring.reset();
+  change_state(STARTUP);
+}
 
 void update_state_machine() {
   // Update state machine
   switch (current_state) {
     case STARTUP:
-      // Run switch must be off to initialize
-      if (digitalRead(MSTR_EN) == LOW) {
-        change_state(LIGHT_SHOW);
-      } else if (digitalRead(TEST_IN) == HIGH) {
+      if (digitalRead(TEST_IN) == HIGH) {
+        test_mode_index = 0;
         change_state(TEST_MODE);
+      } else if (digitalRead(MSTR_EN) == LOW) {
+        // Run switch must be off to initialize
+        change_state(LIGHT_SHOW);
       }
       break;
     case LIGHT_SHOW:
@@ -97,10 +107,26 @@ void update_state_machine() {
       }
       break;
     case TEST_MODE:
-      if (digitalRead(TEST_IN) == LOW) {
-        led_ring.reset();
-        change_state(STARTUP);
+      if (digitalRead(TEST_IN) == LOW 
+          && millis() - last_state_change > TEST_MODE_DEBOUNCE) {
+        if (digitalRead(MSTR_EN) == HIGH) {
+          change_state(TEST_MODE_INC);
+        } else {
+          reset_state();
+        }
       }
+      break;
+    case TEST_MODE_INC:
+      if (digitalRead(MSTR_EN) == LOW) {
+        reset_state();
+      } else if (digitalRead(TEST_IN) == HIGH
+                 && millis() - last_state_change > TEST_MODE_DEBOUNCE) {
+        test_mode_index++;
+        if (test_mode_index > MAX_TEST_MODE_INDEX)
+          test_mode_index = MAX_TEST_MODE_INDEX;
+        change_state(TEST_MODE);            
+      }
+      break;
   }
   flash_status();
 }
@@ -134,7 +160,8 @@ void flash_status() {
       status_leds[0] = false;
       status_leds[1] = true;
       break;
-    case TEST_MODE:
+    case TEST_MODE: 
+    case TEST_MODE_INC:
       // In test mode, only the first LED flashes
       if (flash_change) status_leds[0] = !status_leds[0];
       // The second LED pulses when a test pulse is sent
@@ -152,34 +179,49 @@ void flash_status() {
   digitalWrite(LED2, status_leds[1] ? HIGH : LOW);
 }
 
-#define SLOW_PULSE_LENGTH    40 // microseconds
-#define SLOW_PULSE_DELAY   2000 // milliseconds
+#define SLOW_PULSE_LENGTH    20 // microseconds
+#define SLOW_PULSE_DELAY    500 // milliseconds
 void slow_pulse() {
   led_ring.reset();
   set_pwm_off();
   unsigned long timestamp = millis();
-  if (last_slow_pulse == 0 || timestamp >= last_slow_pulse + SLOW_PULSE_DELAY) {
+  if (last_slow_pulse == 0 || timestamp < last_slow_pulse) 
+    last_slow_pulse = timestamp;
+  if (timestamp >= last_slow_pulse + SLOW_PULSE_DELAY) {
     send_single_pulse(SLOW_PULSE_LENGTH);
     last_slow_pulse = timestamp;
   }
 }
 
-#define TEST_MODE_PULSE_LENGTH   10 // microseconds
-#define TEST_MODE_PULSE_DELAY  1000 // milliseconds
+#define TEST_MODE_START_PULSE       2 // microseconds
+#define TEST_MODE_PULSE_PER_STEP    4 // microseconds
+#define TEST_MODE_PULSE_SPACING  2000 // milliseconds
+#define TEST_MODE_PULSE_DELAY     500 // milliseconds
+
 void test_mode() {
-  led_ring.light_show();
+  // Red bar graph indicating the test mode index
+  led_ring.bar_graph(test_mode_index + 1, 255, 0, 0);
   set_pwm_off();
+  
   if (test_mode_pulse) {
-    if (test_mode_pulse_start + TEST_MODE_PULSE_DELAY >= millis()
+    // Force an interval between pulses
+    if (test_mode_pulse_start + TEST_MODE_PULSE_SPACING >= millis()
         && digitalRead(TRIG_IN) == LOW) {
       test_mode_pulse = false;
       test_mode_pulse_start = 0;
     }
   } else {
     if (digitalRead(MSTR_EN) == HIGH && digitalRead(TRIG_IN) == HIGH) {
-      send_single_pulse(TEST_MODE_PULSE_LENGTH);
-      test_mode_pulse = true;
-      test_mode_pulse_start = millis();
+      delay(TEST_MODE_DEBOUNCE);
+      if (digitalRead(MSTR_EN) == HIGH && digitalRead(TRIG_IN) == HIGH) {
+        delay(TEST_MODE_PULSE_DELAY - TEST_MODE_DEBOUNCE);
+        if (digitalRead(MSTR_EN) == HIGH) {
+          send_single_pulse(TEST_MODE_START_PULSE 
+              + test_mode_index * TEST_MODE_PULSE_PER_STEP);        
+          test_mode_pulse = true;
+          test_mode_pulse_start = millis();
+        }
+      }      
     }
   }
 }
