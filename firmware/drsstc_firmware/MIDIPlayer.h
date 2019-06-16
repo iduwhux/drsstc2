@@ -14,6 +14,9 @@ void pause_midi();
 void resume_midi();
 
 extern const byte MARIO[] PROGMEM;
+extern const byte WILLIAM_TELL[] PROGMEM;
+extern const byte ODE_TO_JOY[] PROGMEM;
+extern const byte TETRIS[] PROGMEM;
 void load_next_song();
 
 

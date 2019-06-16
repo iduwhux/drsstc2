@@ -222,8 +222,24 @@ void start_midi(const byte* midi_pointer, unsigned long ticks_per_beat) {
   prev_mark_us = micros();
 }
 
+namespace {
+  #define NUM_SONGS 4
+  int song_index = 0;
+}
+
 void load_next_song() { 
-  start_midi(MARIO, 1024);
+  switch (song_index) {
+    case 0:
+      start_midi(MARIO, 1024); break;
+    case 1:
+      start_midi(WILLIAM_TELL, 960); break;
+    case 2:
+      start_midi(ODE_TO_JOY, 960); break;
+    case 3:
+      start_midi(TETRIS, 1024); break;
+  }
+  song_index++;
+  if (song_index >= NUM_SONGS) song_index = 0;
 }
 
 void send_single_pulse(unsigned long us) {
