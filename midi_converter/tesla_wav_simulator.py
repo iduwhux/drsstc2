@@ -107,7 +107,7 @@ def generate_logic_signal(mid: mido.MidiFile) -> List[Tuple[float, float]]:
                 update_state(next_timer_change)
             else:
                 update_state(cmd_t)
-        if cmd.type == 'set_tempo':
+        if cmd.type in ['begin_program', 'set_tempo']:
             current_tempo = cmd.tempo
         elif cmd.type == 'note_off':
             ArduinoTimers[cmd.timer - 1].set_off()

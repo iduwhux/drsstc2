@@ -216,28 +216,21 @@ void resume_midi() {
   prev_mark_us = micros();
 }
 
-void start_midi(const byte* midi_pointer, unsigned long ticks_per_beat) {
+void start_midi(const byte* midi_pointer) {
   current_midi_pointer = midi_pointer;
-  current_ticks_per_beat = 0;
+  current_midi_pointer = read_varint(current_midi_pointer, current_ticks_per_beat);
+  current_midi_pointer = read_varint(current_midi_pointer, current_tempo);
   prev_mark_us = micros();
 }
 
 namespace {
   #define NUM_SONGS 4
+  const byte* songs[] = {MARRIAGE_OF_FIGARO, ODE_TO_JOY, BACH_INVENTION, WILLIAM_TELL};
   int song_index = 0;
 }
 
 void load_next_song() { 
-  switch (song_index) {
-    case 0:
-      start_midi(MARIO, 1024); break;
-    case 1:
-      start_midi(WILLIAM_TELL, 960); break;
-    case 2:
-      start_midi(ODE_TO_JOY, 960); break;
-    case 3:
-      start_midi(TETRIS, 1024); break;
-  }
+  start_midi(songs[song_index]);
   song_index++;
   if (song_index >= NUM_SONGS) song_index = 0;
 }

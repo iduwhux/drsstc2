@@ -1,10 +1,18 @@
 import mido
 
 from collections import namedtuple
-from typing import List
+from typing import NamedTuple, List
 
-MIDINote = namedtuple('MIDINote', ['note', 'volume'])
-MIDIState = namedtuple('MIDIState', ['time', 'notes', 'tempo'])
+
+class MIDINote(NamedTuple):
+    note: int
+    volume: int
+
+
+class MIDIState(NamedTuple):
+    time: int
+    notes: List[MIDINote]
+    tempo: int
 
 
 def byte_enc(byte):
@@ -53,6 +61,11 @@ class MIDICommand:
         elif type == 'end_program':
             self.cmd_bytes.append(0x05)
             self.cmd_str = 'END PROGRAM'
+        elif type == 'begin_program':
+            self.ticks_per_beat = kwargs['ticks_per_beat']
+            self.tempo = kwargs['tempo']
+            self.cmd_bytes = varint_encode(self.ticks_per_beat) + varint_encode(self.tempo)
+            self.cmd_str = 'BEGIN PROGRAM (%d ticks/beat, tempo = %d us/beat)' % (self.ticks_per_beat, self.tempo)
         else:
             print('UNKNOWN COMMAND TYPE')
 
@@ -105,6 +118,15 @@ def get_midi_commands(mid: mido.MidiFile) -> List[MIDICommand]:
     cmds = list()
     timer_notes = [None] * 2
     i = 0
+    init_tempo = 0
+    while mid.tracks[0][i].time == 0:
+        msg_type = mid.tracks[0][i].type
+        if msg_type == 'set_tempo':
+            init_tempo = mid.tracks[0][i].tempo
+        elif msg_type.startswith('note_'):
+            break
+        i += 1
+    cmds.append(MIDICommand(0, 'begin_program', ticks_per_beat=mid.ticks_per_beat, tempo=init_tempo))
     mark = 0
     while i < len(mid.tracks[0]):
         msg = mid.tracks[0][i]

@@ -5,7 +5,7 @@ from tesla_wav_simulator import generate_wav
 from arduino_midi import *
 
 from copy import deepcopy
-from typing import List
+from typing import List, Set
 from os import path
 
 NOTE_SEQ = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
@@ -17,14 +17,16 @@ def midi_note_name(note):
     return '%s%d' % (note_letter, octave_number)
 
 
-def assemble_midi_states(mid: mido.MidiFile):
-    state_array = []
-    state = MIDIState(0, set(), 0)
+def assemble_midi_states(mid: mido.MidiFile, channel_lock: bool):
+    state_array: List[MIDIState] = []
+    state: MIDIState = MIDIState(0, set(), 0)
 
     trk_indexes = [0] * len(mid.tracks)
     trk_offset_times = [0] * len(mid.tracks)
+    if channel_lock:
+        channel_notes = dict()
     while True:
-        prev_state = deepcopy(state)
+        prev_state: MIDIState = deepcopy(state)
         # First, consume all messages up to the current time
         for i, trk in enumerate(mid.tracks):
             cmd_cnt = 0
@@ -38,8 +40,15 @@ def assemble_midi_states(mid: mido.MidiFile):
                         state = MIDIState(state.time, state.notes, msg.tempo)
                     elif msg.type == 'note_on':
                         cmd_cnt += 1
-                        state = MIDIState(state.time, state.notes.union({MIDINote(msg.note, msg.velocity)}),
-                                          state.tempo)
+                        new_notes: Set[MIDINote] = state.notes.copy()
+                        note_on_note = MIDINote(msg.note, msg.velocity)
+                        if channel_lock:
+                            channel = msg.channel
+                            if channel in channel_notes:
+                                new_notes.remove(channel_notes[channel])
+                            channel_notes[channel] = note_on_note
+                        new_notes.add(note_on_note)
+                        state = MIDIState(state.time, new_notes, state.tempo)
                     elif msg.type == 'note_off':
                         cmd_cnt += 1
                         state = MIDIState(state.time, set(filter(lambda n: n.note != msg.note, state.notes)),
@@ -64,7 +73,12 @@ def assemble_midi_states(mid: mido.MidiFile):
         state = MIDIState(state.time + next_time, state.notes, state.tempo)
 
     for i, s in enumerate(state_array):
-        sorted_notes = list(sorted(s.notes, key=lambda n: n.note))
+        sorted_notes = list(reversed(sorted(s.notes, key=lambda n: n.note)))
+        for j in range(len(sorted_notes)):
+            for k in range(j + 1, len(sorted_notes)):
+                if (sorted_notes[j].note - sorted_notes[k].note) % 12 == 0:
+                    sorted_notes.append(sorted_notes.pop(k))
+
         state_array[i] = MIDIState(s.time, sorted_notes, s.tempo)
     return state_array
 
@@ -125,7 +139,7 @@ def get_simple_midi(ticks_per_beat, state_array: List[MIDIState],
             if n not in s.notes:
                 msgs.append(write_msg('note_off', note=n.note, velocity=n.volume, channel=0))
 
-        for n in reversed(s.notes):
+        for n in s.notes:
             if n not in prev_state.notes:
                 msgs.append(write_msg('note_on', note=n.note, velocity=n.volume, channel=0))
         print_time_msg(s.time, '%7s > %s' % (note_str, ', '.join(msgs)))
@@ -146,6 +160,8 @@ if __name__ == '__main__':
                         help='Play final MIDI output')
     parser.add_argument('--wav', action='store_true',
                         help='Generate simulated WAV output')
+    parser.add_argument('--channel_lock', action='store_true',
+                        help='Assume note_off for subsequent note_on messages on the same channel')
     parser.add_argument('--midi_port', metavar='PORT', type=str,
                         nargs='?', required=False,
                         default=mido.get_output_names()[0],
@@ -165,13 +181,14 @@ if __name__ == '__main__':
                     for i, trk in enumerate(input_midi.tracks)))
     print('%d ticks per beat' % input_midi.ticks_per_beat)
 
-    state_array = assemble_midi_states(input_midi)
+    state_array = assemble_midi_states(input_midi, channel_lock=args.channel_lock)
     total_notes = sum(len(s.notes) for s in state_array)
     print('Found %d states with %d notes over %d total ticks' %
           (len(state_array), total_notes, state_array[-1].time))
+    print('\n'.join('%s' % str(s) for s in state_array))
 
     state_array = list(map(
-        lambda s: MIDIState(s.time, s.notes[-2:], s.tempo), state_array))
+        lambda s: MIDIState(s.time, s.notes[:2], s.tempo), state_array))
     rem_notes = sum(len(s.notes) for s in state_array)
     print('Removed %d lower notes' % (total_notes - rem_notes))
 
@@ -181,15 +198,16 @@ if __name__ == '__main__':
     mid.save(input_mod_path)
 
     cmds = get_midi_commands(mid)
+    total_bytes = sum(map(lambda cmd: len(cmd.cmd_bytes), cmds))
+    print('%d bytes total' % total_bytes)
 
     output_path = args.output or path.splitext(args.input)[0] + '.cpp'
     with open(output_path, 'w') as outf:
         outf.write('#include "MIDIPlayer.h"\n\n' +
+                   '// converted from %s - %d bytes total\n' % (args.input, total_bytes) +
                    'extern const byte %s[] PROGMEM = \n{\n' % args.name +
                    '\n'.join(map(str, cmds)) +
-                   '\n};\n\n' +
-                   'extern const unsigned long %s_tpb = %d;\n' % (args.name, input_midi.ticks_per_beat))
-    print('%d bytes total' % sum(map(lambda cmd: len(cmd.cmd_bytes), cmds)))
+                   '\n};\n')
 
     if args.wav:
         wav_path = path.splitext(args.input)[0] + '_tesla.wav'
