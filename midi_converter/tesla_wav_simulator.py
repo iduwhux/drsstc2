@@ -35,19 +35,22 @@ class ArduinoTimerSim:
         self.prescale_values: List[int] = prescale_values
         self.prescale: int = 1
         self.top: int = max
+        self.min_freq: float = float(ARDUINO_FREQ) / (self.prescale_values[-1] * self.top)
         self.duty: int = 0
         self.current: int = 0
         self.current_t: float = 0
 
     def set_note(self, note, volume):
         tgt_freq = get_midi_freq(note)
+        if tgt_freq < self.min_freq:
+            return
         self.prescale = next(v for v in self.prescale_values if
                              ARDUINO_FREQ / (self.max * v) < tgt_freq)
         self.top = int(round(ARDUINO_FREQ / (self.prescale * tgt_freq)))
         tgt_pulse = min(volume, MAX_CYCLES) * CYCLE_LENGTH
         self.duty = int(round(tgt_pulse * ARDUINO_FREQ / self.prescale))
         self.duty = 1 if self.duty == 0 else self.duty
-        #print('MIDI note %3d, volume %2d > PRESCALE = %5d, TOP = %5d, DUTY = %5d' % (
+        # print('MIDI note %3d, volume %2d > PRESCALE = %5d, TOP = %5d, DUTY = %5d' % (
         #    note, volume, self.prescale, self.top, self.duty))
 
     def set_off(self):

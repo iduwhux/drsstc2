@@ -1,6 +1,6 @@
 #include "MIDIPlayer.h"
 
-// converted from mfig.mid - 6636 bytes total
+// converted from mfig.mid - 6540 bytes total
 extern const byte MARRIAGE_OF_FIGARO[] PROGMEM = 
 {
            0xb0,0x0e,0x27,0x87, //      0 BEGIN PROGRAM (48 ticks/beat, tempo = 234375 us/beat)
@@ -9,7 +9,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0xb0,0xb2,0x00, //     48 T1 ON, NOTE  50 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xb2,0x09, //     48 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
@@ -23,7 +23,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb8,0x09, //     24 T1 ON, NOTE  56 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0xb0,0xb9,0x00, //     48 T1 ON, NOTE  57 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xb9,0x09, //     48 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb8,0x09, //     24 T1 ON, NOTE  56 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
@@ -64,7 +64,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xc9,0x05, //     24 T1 ON, NOTE  73 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xc5,0x00, //     24 T1 ON, NOTE  69 VOLUME  0
+                0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
@@ -96,7 +96,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xca,0x00, //     24 T1 ON, NOTE  74 VOLUME  0
+                0x98,0xcc,0x05, //     24 T1 ON, NOTE  76 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
@@ -128,12 +128,12 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0xe0,0xc7,0x09, //     96 T1 ON, NOTE  71 VOLUME  9
                 0xe0,0xc5,0x09, //     96 T1 ON, NOTE  69 VOLUME  9
                 0xe0,0xc3,0x09, //     96 T1 ON, NOTE  67 VOLUME  9
-                0xe0,0xc3,0x00, //     96 T1 ON, NOTE  67 VOLUME  0
-                0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
-                0x98,0xc2,0x00, //     24 T1 ON, NOTE  66 VOLUME  0
+                0xe0,0xc2,0x05, //     96 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0xb0,0xb2,0x00, //     48 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
+                0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xce,0x05, //     48 T1 ON, NOTE  78 VOLUME  5
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
@@ -147,7 +147,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb8,0x09, //     24 T1 ON, NOTE  56 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0xb0,0xb9,0x00, //     48 T1 ON, NOTE  57 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
                 0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
                 0x98,0xb8,0x09, //     24 T1 ON, NOTE  56 VOLUME  9
@@ -175,7 +175,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xca,0x05, //     24 T1 ON, NOTE  74 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xca,0x00, //     24 T1 ON, NOTE  74 VOLUME  0
+                0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
@@ -189,7 +189,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xc9,0x05, //     24 T1 ON, NOTE  73 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xc5,0x00, //     24 T1 ON, NOTE  69 VOLUME  0
+                0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
@@ -221,7 +221,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xca,0x00, //     24 T1 ON, NOTE  74 VOLUME  0
+                0x98,0xcc,0x05, //     24 T1 ON, NOTE  76 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
@@ -254,61 +254,61 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0xe0,0xc5,0x09, //     96 T1 ON, NOTE  69 VOLUME  9
                 0xe0,0xc3,0x09, //     96 T1 ON, NOTE  67 VOLUME  9
                 0xe0,0xb2,0x09, //     96 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
@@ -317,56 +317,49 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xbc,0x09, //     24 T1 ON, NOTE  60 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xca,0x00, //     24 T1 ON, NOTE  74 VOLUME  0
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
                 0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
+                0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0xb0,0xb2,0x00, //     48 T1 ON, NOTE  50 VOLUME  0
+                0xf8,0xad,0x09, //    120 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0xc8,0xad,0x09, //     72 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0xc8,0xad,0x09, //     72 T1 ON, NOTE  45 VOLUME  9
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
+                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
-                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
-                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
-                0x98,0xaa,0x00, //     24 T1 ON, NOTE  42 VOLUME  0
+                0x98,0xd5,0x09, //     24 T1 ON, NOTE  85 VOLUME  9
+                0x98,0xd3,0x09, //     24 T1 ON, NOTE  83 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
@@ -384,7 +377,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xc9,0x00, //     24 T1 ON, NOTE  73 VOLUME  0
+                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xcf,0x09, //     24 T1 ON, NOTE  79 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
@@ -392,7 +385,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xca,0x05, //     24 T1 ON, NOTE  74 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
@@ -400,7 +393,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xc9,0x00, //     24 T1 ON, NOTE  73 VOLUME  0
+                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xcf,0x09, //     24 T1 ON, NOTE  79 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
@@ -408,7 +401,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xca,0x05, //     24 T1 ON, NOTE  74 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
@@ -429,7 +422,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-           0x02,0xa0,0xad,0x00, //    288 T1 ON, NOTE  45 VOLUME  0
+                0x02,0xa0,0x01, //    288 BOTH OFF
                 0xe0,0xc5,0x05, //     96 T1 ON, NOTE  69 VOLUME  5
                 0x98,0xc9,0x05, //     24 T1 ON, NOTE  73 VOLUME  5
                 0x98,0xc5,0x05, //     24 T1 ON, NOTE  69 VOLUME  5
@@ -488,7 +481,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
-                0x98,0xc2,0x00, //     24 T1 ON, NOTE  66 VOLUME  0
+                0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
                 0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
@@ -498,7 +491,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
                 0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xc5,0x05, //     24 T1 ON, NOTE  69 VOLUME  5
                 0x98,0xc9,0x05, //     24 T1 ON, NOTE  73 VOLUME  5
                 0x98,0xc5,0x05, //     24 T1 ON, NOTE  69 VOLUME  5
                 0x98,0xc9,0x05, //     24 T1 ON, NOTE  73 VOLUME  5
@@ -556,7 +549,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
-                0x98,0xc2,0x00, //     24 T1 ON, NOTE  66 VOLUME  0
+                0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
                 0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
@@ -566,13 +559,13 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
                 0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
-                0x98,0xc9,0x00, //     24 T1 ON, NOTE  73 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xbc,0x09, //     24 T1 ON, NOTE  60 VOLUME  9
@@ -588,7 +581,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
                 0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
-                0x98,0xc7,0x00, //     24 T1 ON, NOTE  71 VOLUME  0
+                0x98,0xb7,0x09, //     24 T1 ON, NOTE  55 VOLUME  9
                 0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xb7,0x09, //     24 T1 ON, NOTE  55 VOLUME  9
                 0x98,0xba,0x09, //     24 T1 ON, NOTE  58 VOLUME  9
@@ -604,8 +597,6 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xc5,0x00, //     24 T1 ON, NOTE  69 VOLUME  0
-                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb5,0x09, //     24 T1 ON, NOTE  53 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb5,0x09, //     24 T1 ON, NOTE  53 VOLUME  9
@@ -614,120 +605,122 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb5,0x09, //     24 T1 ON, NOTE  53 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
+                0x98,0xb5,0x09, //     24 T1 ON, NOTE  53 VOLUME  9
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
+                0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xd1,0x05, //     24 T1 ON, NOTE  81 VOLUME  5
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
-                0x98,0xad,0x00, //     24 T1 ON, NOTE  45 VOLUME  0
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
+                0x98,0xd1,0x05, //     24 T1 ON, NOTE  81 VOLUME  5
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xaf,0x09, //     24 T1 ON, NOTE  47 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb3,0x09, //     24 T1 ON, NOTE  51 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
+                0x98,0xd1,0x05, //     24 T1 ON, NOTE  81 VOLUME  5
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xaf,0x09, //     24 T1 ON, NOTE  47 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb3,0x09, //     24 T1 ON, NOTE  51 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
-                0x98,0xb4,0x00, //     24 T1 ON, NOTE  52 VOLUME  0
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
+                0x98,0xd1,0x05, //     24 T1 ON, NOTE  81 VOLUME  5
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xaf,0x09, //     24 T1 ON, NOTE  47 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb5,0x09, //     24 T1 ON, NOTE  53 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc8,0x09, //     24 T1 ON, NOTE  72 VOLUME  9
                 0x98,0xd1,0x05, //     24 T1 ON, NOTE  81 VOLUME  5
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc8,0x09, //     24 T1 ON, NOTE  72 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc8,0x09, //     24 T1 ON, NOTE  72 VOLUME  9
                 0x98,0xd1,0x05, //     24 T1 ON, NOTE  81 VOLUME  5
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xc8,0x09, //     24 T1 ON, NOTE  72 VOLUME  9
                 0x98,0xb3,0x09, //     24 T1 ON, NOTE  51 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
                 0x98,0xd1,0x05, //     24 T1 ON, NOTE  81 VOLUME  5
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xd0,0x00, //     24 T1 ON, NOTE  80 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xd0,0x05, //     24 T1 ON, NOTE  80 VOLUME  5
-                0x98,0xd0,0x00, //     24 T1 ON, NOTE  80 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xa8,0x09, //     24 T1 ON, NOTE  40 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
                 0x98,0xa8,0x09, //     24 T1 ON, NOTE  40 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0xb0,0xad,0x00, //     48 T1 ON, NOTE  45 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xe0,0xb9,0x05, //     96 T1 ON, NOTE  57 VOLUME  5
                 0xb0,0xbb,0x05, //     48 T1 ON, NOTE  59 VOLUME  5
                 0xb0,0xbd,0x05, //     48 T1 ON, NOTE  61 VOLUME  5
@@ -736,7 +729,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0xb0,0xc2,0x05, //     48 T1 ON, NOTE  66 VOLUME  5
                 0xb0,0xbb,0x09, //     48 T1 ON, NOTE  59 VOLUME  9
                 0xb0,0xb9,0x09, //     48 T1 ON, NOTE  57 VOLUME  9
-                0xb0,0xb9,0x00, //     48 T1 ON, NOTE  57 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xbb,0x05, //     48 T1 ON, NOTE  59 VOLUME  5
                 0xb0,0xbd,0x05, //     48 T1 ON, NOTE  61 VOLUME  5
                 0xb0,0xbe,0x05, //     48 T1 ON, NOTE  62 VOLUME  5
@@ -744,7 +737,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0xb0,0xc2,0x05, //     48 T1 ON, NOTE  66 VOLUME  5
                 0xb0,0xbb,0x09, //     48 T1 ON, NOTE  59 VOLUME  9
                 0xb0,0xb9,0x09, //     48 T1 ON, NOTE  57 VOLUME  9
-                0xb0,0xb9,0x00, //     48 T1 ON, NOTE  57 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xbb,0x05, //     48 T1 ON, NOTE  59 VOLUME  5
                 0xb0,0xbc,0x05, //     48 T1 ON, NOTE  60 VOLUME  5
                 0xb0,0xbe,0x05, //     48 T1 ON, NOTE  62 VOLUME  5
@@ -757,13 +750,13 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0xb0,0xc4,0x09, //     48 T1 ON, NOTE  68 VOLUME  9
                 0xb0,0xc3,0x09, //     48 T1 ON, NOTE  67 VOLUME  9
                 0xb0,0xc7,0x05, //     48 T1 ON, NOTE  71 VOLUME  5
-                0xb0,0xc3,0x00, //     48 T1 ON, NOTE  67 VOLUME  0
+                0xb0,0xc8,0x05, //     48 T1 ON, NOTE  72 VOLUME  5
                 0xb0,0xc0,0x05, //     48 T1 ON, NOTE  64 VOLUME  5
                 0xb0,0xb2,0x09, //     48 T1 ON, NOTE  50 VOLUME  9
                 0xb0,0xc1,0x05, //     48 T1 ON, NOTE  65 VOLUME  5
                 0xb0,0xc6,0x05, //     48 T1 ON, NOTE  70 VOLUME  5
                 0xb0,0xbe,0x05, //     48 T1 ON, NOTE  62 VOLUME  5
-                0xb0,0xb2,0x00, //     48 T1 ON, NOTE  50 VOLUME  0
+                0xb0,0xc4,0x05, //     48 T1 ON, NOTE  68 VOLUME  5
                 0xb0,0xc7,0x05, //     48 T1 ON, NOTE  71 VOLUME  5
                 0xb0,0xb5,0x09, //     48 T1 ON, NOTE  53 VOLUME  9
                 0xb0,0xc1,0x05, //     48 T1 ON, NOTE  65 VOLUME  5
@@ -851,7 +844,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xbd,0x00, //     24 T1 ON, NOTE  61 VOLUME  0
+                0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
@@ -866,7 +859,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
-                0x98,0xc7,0x00, //     24 T1 ON, NOTE  71 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
@@ -883,7 +876,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x88,0xd8,0x09, //      8 T1 ON, NOTE  88 VOLUME  9
                 0x88,0xd6,0x09, //      8 T1 ON, NOTE  86 VOLUME  9
                 0x88,0xbd,0x09, //      8 T1 ON, NOTE  61 VOLUME  9
@@ -896,7 +889,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xc5,0x00, //     24 T1 ON, NOTE  69 VOLUME  0
+                0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
@@ -915,42 +908,42 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xbe,0x00, //     24 T1 ON, NOTE  62 VOLUME  0
+                0x98,0xc4,0x05, //     24 T1 ON, NOTE  68 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xbe,0x00, //     24 T1 ON, NOTE  62 VOLUME  0
+                0x98,0xc4,0x05, //     24 T1 ON, NOTE  68 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xbe,0x00, //     24 T1 ON, NOTE  62 VOLUME  0
+                0x98,0xc4,0x05, //     24 T1 ON, NOTE  68 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xbe,0x00, //     24 T1 ON, NOTE  62 VOLUME  0
+                0x98,0xc4,0x05, //     24 T1 ON, NOTE  68 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xbe,0x00, //     24 T1 ON, NOTE  62 VOLUME  0
+                0x98,0xc4,0x05, //     24 T1 ON, NOTE  68 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xbe,0x00, //     24 T1 ON, NOTE  62 VOLUME  0
+                0x98,0xc4,0x05, //     24 T1 ON, NOTE  68 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xbe,0x00, //     24 T1 ON, NOTE  62 VOLUME  0
+                0x98,0xc4,0x05, //     24 T1 ON, NOTE  68 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xbe,0x00, //     24 T1 ON, NOTE  62 VOLUME  0
+                0x98,0xc4,0x05, //     24 T1 ON, NOTE  68 VOLUME  5
                 0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
                 0x98,0xc0,0x05, //     24 T1 ON, NOTE  64 VOLUME  5
                 0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
-                0x98,0xc5,0x00, //     24 T1 ON, NOTE  69 VOLUME  0
+                0x98,0xc0,0x05, //     24 T1 ON, NOTE  64 VOLUME  5
                 0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
                 0x98,0xc0,0x05, //     24 T1 ON, NOTE  64 VOLUME  5
                 0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
@@ -966,7 +959,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
-                0x98,0xc5,0x00, //     24 T1 ON, NOTE  69 VOLUME  0
+                0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
@@ -1011,7 +1004,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xaf,0x09, //     24 T1 ON, NOTE  47 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0xb0,0xc5,0x00, //     48 T1 ON, NOTE  69 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0x98,0xcb,0x05, //     24 T1 ON, NOTE  75 VOLUME  5
                 0x98,0xcc,0x05, //     24 T1 ON, NOTE  76 VOLUME  5
                 0x98,0xcb,0x05, //     24 T1 ON, NOTE  75 VOLUME  5
@@ -1041,12 +1034,12 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xc0,0x05, //     24 T1 ON, NOTE  64 VOLUME  5
                 0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xbd,0x05, //     24 T1 ON, NOTE  61 VOLUME  5
-                0x98,0xbd,0x00, //     24 T1 ON, NOTE  61 VOLUME  0
-                0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0xb0,0xb2,0x00, //     48 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
+                0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xb2,0x09, //     48 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
@@ -1060,7 +1053,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb8,0x09, //     24 T1 ON, NOTE  56 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0xb0,0xb9,0x00, //     48 T1 ON, NOTE  57 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xb9,0x09, //     48 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb8,0x09, //     24 T1 ON, NOTE  56 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
@@ -1101,7 +1094,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xc9,0x05, //     24 T1 ON, NOTE  73 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xc5,0x00, //     24 T1 ON, NOTE  69 VOLUME  0
+                0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
@@ -1133,7 +1126,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xca,0x00, //     24 T1 ON, NOTE  74 VOLUME  0
+                0x98,0xcc,0x05, //     24 T1 ON, NOTE  76 VOLUME  5
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
@@ -1165,12 +1158,12 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0xe0,0xc7,0x09, //     96 T1 ON, NOTE  71 VOLUME  9
                 0xe0,0xc5,0x09, //     96 T1 ON, NOTE  69 VOLUME  9
                 0xe0,0xc3,0x09, //     96 T1 ON, NOTE  67 VOLUME  9
-                0xe0,0xc3,0x00, //     96 T1 ON, NOTE  67 VOLUME  0
-                0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
-                0x98,0xc2,0x00, //     24 T1 ON, NOTE  66 VOLUME  0
+                0xe0,0xc2,0x05, //     96 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0xb0,0xb2,0x00, //     48 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
+                0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xce,0x05, //     48 T1 ON, NOTE  78 VOLUME  5
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
@@ -1184,7 +1177,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb8,0x09, //     24 T1 ON, NOTE  56 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0xb0,0xb9,0x00, //     48 T1 ON, NOTE  57 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xce,0x05, //     48 T1 ON, NOTE  78 VOLUME  5
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
@@ -1198,8 +1191,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb7,0x09, //     24 T1 ON, NOTE  55 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
                 0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
-                0xb0,0xb7,0x00, //     48 T1 ON, NOTE  55 VOLUME  0
-                0xb0,0xaf,0x09, //     48 T1 ON, NOTE  47 VOLUME  9
+                0xe0,0xaf,0x09, //     96 T1 ON, NOTE  47 VOLUME  9
                 0x98,0xae,0x09, //     24 T1 ON, NOTE  46 VOLUME  9
                 0x98,0xaf,0x09, //     24 T1 ON, NOTE  47 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
@@ -1235,15 +1227,15 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xc5,0x00, //     24 T1 ON, NOTE  69 VOLUME  0
+                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xca,0x05, //     24 T1 ON, NOTE  74 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
@@ -1251,15 +1243,15 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xc9,0x00, //     24 T1 ON, NOTE  73 VOLUME  0
+                0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
                 0x98,0xb1,0x09, //     24 T1 ON, NOTE  49 VOLUME  9
                 0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xca,0x05, //     24 T1 ON, NOTE  74 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
@@ -1280,7 +1272,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-           0x02,0xa0,0xad,0x00, //    288 T1 ON, NOTE  45 VOLUME  0
+                0x02,0xa0,0x01, //    288 BOTH OFF
                 0xe0,0xca,0x05, //     96 T1 ON, NOTE  74 VOLUME  5
                 0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
                 0x98,0xca,0x05, //     24 T1 ON, NOTE  74 VOLUME  5
@@ -1339,7 +1331,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xcf,0x09, //     24 T1 ON, NOTE  79 VOLUME  9
                 0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
-                0x98,0xc0,0x00, //     24 T1 ON, NOTE  64 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xd6,0x09, //     24 T1 ON, NOTE  86 VOLUME  9
@@ -1349,7 +1341,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xd3,0x09, //     24 T1 ON, NOTE  83 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xcf,0x09, //     24 T1 ON, NOTE  79 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xca,0x05, //     24 T1 ON, NOTE  74 VOLUME  5
                 0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
                 0x98,0xca,0x05, //     24 T1 ON, NOTE  74 VOLUME  5
                 0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
@@ -1417,13 +1409,13 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xd3,0x09, //     24 T1 ON, NOTE  83 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xcf,0x09, //     24 T1 ON, NOTE  79 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
                 0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xc1,0x05, //     24 T1 ON, NOTE  65 VOLUME  5
@@ -1439,7 +1431,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xc0,0x05, //     24 T1 ON, NOTE  64 VOLUME  5
                 0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xc0,0x05, //     24 T1 ON, NOTE  64 VOLUME  5
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xbc,0x05, //     24 T1 ON, NOTE  60 VOLUME  5
                 0x98,0xc0,0x05, //     24 T1 ON, NOTE  64 VOLUME  5
                 0x98,0xbc,0x05, //     24 T1 ON, NOTE  60 VOLUME  5
                 0x98,0xbf,0x05, //     24 T1 ON, NOTE  63 VOLUME  5
@@ -1455,8 +1447,6 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
-                0x98,0xca,0x00, //     24 T1 ON, NOTE  74 VOLUME  0
-                0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xba,0x05, //     24 T1 ON, NOTE  58 VOLUME  5
                 0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xba,0x05, //     24 T1 ON, NOTE  58 VOLUME  5
@@ -1465,120 +1455,122 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xba,0x05, //     24 T1 ON, NOTE  58 VOLUME  5
                 0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
+                0x98,0xba,0x05, //     24 T1 ON, NOTE  58 VOLUME  5
+                0x98,0xbe,0x05, //     24 T1 ON, NOTE  62 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc3,0x05, //     24 T1 ON, NOTE  67 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc0,0x05, //     24 T1 ON, NOTE  64 VOLUME  5
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb9,0x00, //     24 T1 ON, NOTE  57 VOLUME  0
+                0x98,0xc0,0x05, //     24 T1 ON, NOTE  64 VOLUME  5
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xa8,0x09, //     24 T1 ON, NOTE  40 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xac,0x09, //     24 T1 ON, NOTE  44 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaf,0x09, //     24 T1 ON, NOTE  47 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
-                0x98,0xad,0x00, //     24 T1 ON, NOTE  45 VOLUME  0
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xa8,0x09, //     24 T1 ON, NOTE  40 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xac,0x09, //     24 T1 ON, NOTE  44 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaf,0x09, //     24 T1 ON, NOTE  47 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
-                0x98,0xad,0x00, //     24 T1 ON, NOTE  45 VOLUME  0
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xa8,0x09, //     24 T1 ON, NOTE  40 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xae,0x09, //     24 T1 ON, NOTE  46 VOLUME  9
-                0x98,0xcd,0x00, //     24 T1 ON, NOTE  77 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xcd,0x05, //     24 T1 ON, NOTE  77 VOLUME  5
-                0x98,0xcd,0x00, //     24 T1 ON, NOTE  77 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcd,0x00, //     24 T1 ON, NOTE  77 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xcd,0x05, //     24 T1 ON, NOTE  77 VOLUME  5
-                0x98,0xcd,0x00, //     24 T1 ON, NOTE  77 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xac,0x09, //     24 T1 ON, NOTE  44 VOLUME  9
-                0x98,0xd3,0x00, //     24 T1 ON, NOTE  83 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xd3,0x05, //     24 T1 ON, NOTE  83 VOLUME  5
-                0x98,0xd3,0x00, //     24 T1 ON, NOTE  83 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xd1,0x05, //     24 T1 ON, NOTE  81 VOLUME  5
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xca,0x00, //     24 T1 ON, NOTE  74 VOLUME  0
+                0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xca,0x00, //     24 T1 ON, NOTE  74 VOLUME  0
+                0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xa1,0x09, //     24 T1 ON, NOTE  33 VOLUME  9
-                0x98,0xc9,0x00, //     24 T1 ON, NOTE  73 VOLUME  0
+                0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xa1,0x09, //     24 T1 ON, NOTE  33 VOLUME  9
-                0x98,0xc9,0x00, //     24 T1 ON, NOTE  73 VOLUME  0
+                0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0xb0,0xa6,0x00, //     48 T1 ON, NOTE  38 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xe0,0xbe,0x05, //     96 T1 ON, NOTE  62 VOLUME  5
                 0xb0,0xc0,0x05, //     48 T1 ON, NOTE  64 VOLUME  5
                 0xb0,0xc2,0x05, //     48 T1 ON, NOTE  66 VOLUME  5
@@ -1586,16 +1578,16 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0xb0,0xc4,0x05, //     48 T1 ON, NOTE  68 VOLUME  5
                 0xb0,0xc7,0x05, //     48 T1 ON, NOTE  71 VOLUME  5
                 0xb0,0xbd,0x09, //     48 T1 ON, NOTE  61 VOLUME  9
-                0xb0,0xbd,0x00, //     48 T1 ON, NOTE  61 VOLUME  0
-                0xb0,0xc2,0x00, //     48 T1 ON, NOTE  66 VOLUME  0
+                0xb0,0xc2,0x09, //     48 T1 ON, NOTE  66 VOLUME  9
+                0xb0,0xbe,0x05, //     48 T1 ON, NOTE  62 VOLUME  5
                 0xb0,0xc0,0x05, //     48 T1 ON, NOTE  64 VOLUME  5
                 0xb0,0xc2,0x05, //     48 T1 ON, NOTE  66 VOLUME  5
                 0xb0,0xc3,0x05, //     48 T1 ON, NOTE  67 VOLUME  5
                 0xb0,0xc4,0x05, //     48 T1 ON, NOTE  68 VOLUME  5
                 0xb0,0xc7,0x05, //     48 T1 ON, NOTE  71 VOLUME  5
                 0xb0,0xbd,0x09, //     48 T1 ON, NOTE  61 VOLUME  9
-                0xb0,0xbd,0x00, //     48 T1 ON, NOTE  61 VOLUME  0
-                0xb0,0xc2,0x00, //     48 T1 ON, NOTE  66 VOLUME  0
+                0xb0,0xc2,0x09, //     48 T1 ON, NOTE  66 VOLUME  9
+                0xb0,0xbe,0x05, //     48 T1 ON, NOTE  62 VOLUME  5
                 0xb0,0xc0,0x05, //     48 T1 ON, NOTE  64 VOLUME  5
                 0xb0,0xc1,0x05, //     48 T1 ON, NOTE  65 VOLUME  5
                 0xb0,0xc3,0x05, //     48 T1 ON, NOTE  67 VOLUME  5
@@ -1608,13 +1600,13 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0xb0,0xc9,0x09, //     48 T1 ON, NOTE  73 VOLUME  9
                 0xb0,0xc8,0x09, //     48 T1 ON, NOTE  72 VOLUME  9
                 0xb0,0xcc,0x05, //     48 T1 ON, NOTE  76 VOLUME  5
-                0xb0,0xc8,0x00, //     48 T1 ON, NOTE  72 VOLUME  0
+                0xb0,0xcd,0x05, //     48 T1 ON, NOTE  77 VOLUME  5
                 0xb0,0xc5,0x05, //     48 T1 ON, NOTE  69 VOLUME  5
                 0xb0,0xb7,0x09, //     48 T1 ON, NOTE  55 VOLUME  9
                 0xb0,0xc6,0x05, //     48 T1 ON, NOTE  70 VOLUME  5
                 0xb0,0xcb,0x05, //     48 T1 ON, NOTE  75 VOLUME  5
                 0xb0,0xc3,0x05, //     48 T1 ON, NOTE  67 VOLUME  5
-                0xb0,0xb7,0x00, //     48 T1 ON, NOTE  55 VOLUME  0
+                0xb0,0xc9,0x05, //     48 T1 ON, NOTE  73 VOLUME  5
                 0xb0,0xcc,0x05, //     48 T1 ON, NOTE  76 VOLUME  5
                 0xb0,0xba,0x09, //     48 T1 ON, NOTE  58 VOLUME  9
                 0xb0,0xc6,0x05, //     48 T1 ON, NOTE  70 VOLUME  5
@@ -1702,7 +1694,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xc3,0x09, //     24 T1 ON, NOTE  67 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xc2,0x00, //     24 T1 ON, NOTE  66 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
@@ -1718,7 +1710,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xc0,0x00, //     24 T1 ON, NOTE  64 VOLUME  0
+                0x98,0xb7,0x09, //     24 T1 ON, NOTE  55 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb4,0x09, //     24 T1 ON, NOTE  52 VOLUME  9
                 0x98,0xb7,0x09, //     24 T1 ON, NOTE  55 VOLUME  9
@@ -1735,7 +1727,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xc5,0x00, //     24 T1 ON, NOTE  69 VOLUME  0
+                0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x88,0xd1,0x09, //      8 T1 ON, NOTE  81 VOLUME  9
                 0x88,0xcf,0x09, //      8 T1 ON, NOTE  79 VOLUME  9
                 0x88,0xb6,0x09, //      8 T1 ON, NOTE  54 VOLUME  9
@@ -1768,99 +1760,99 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xb7,0x09, //     24 T1 ON, NOTE  55 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xb9,0x09, //     24 T1 ON, NOTE  57 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xc2,0x09, //     24 T1 ON, NOTE  66 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xc3,0x09, //     24 T1 ON, NOTE  67 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xc2,0x09, //     24 T1 ON, NOTE  66 VOLUME  9
                 0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc2,0x09, //     24 T1 ON, NOTE  66 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xc3,0x09, //     24 T1 ON, NOTE  67 VOLUME  9
                 0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc3,0x09, //     24 T1 ON, NOTE  67 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xc2,0x09, //     24 T1 ON, NOTE  66 VOLUME  9
                 0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc0,0x09, //     24 T1 ON, NOTE  64 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xc2,0x09, //     24 T1 ON, NOTE  66 VOLUME  9
                 0x98,0xc3,0x09, //     24 T1 ON, NOTE  67 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc3,0x09, //     24 T1 ON, NOTE  67 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xc2,0x09, //     24 T1 ON, NOTE  66 VOLUME  9
                 0x98,0xc3,0x09, //     24 T1 ON, NOTE  67 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xc8,0x09, //     24 T1 ON, NOTE  72 VOLUME  9
                 0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xc3,0x09, //     24 T1 ON, NOTE  67 VOLUME  9
                 0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc8,0x09, //     24 T1 ON, NOTE  72 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
                 0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc5,0x09, //     24 T1 ON, NOTE  69 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
                 0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xcf,0x09, //     24 T1 ON, NOTE  79 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xcf,0x09, //     24 T1 ON, NOTE  79 VOLUME  9
                 0x98,0xd3,0x09, //     24 T1 ON, NOTE  83 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
                 0x98,0xcf,0x09, //     24 T1 ON, NOTE  79 VOLUME  9
@@ -1878,93 +1870,87 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x98,0xd3,0x09, //     24 T1 ON, NOTE  83 VOLUME  9
                 0x98,0xbc,0x09, //     24 T1 ON, NOTE  60 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
                 0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
+                0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xcf,0x05, //     24 T1 ON, NOTE  79 VOLUME  5
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb2,0x09, //     24 T1 ON, NOTE  50 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xd6,0x09, //     24 T1 ON, NOTE  86 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
-                0x98,0xb2,0x00, //     24 T1 ON, NOTE  50 VOLUME  0
+                0x98,0xd6,0x09, //     24 T1 ON, NOTE  86 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xd3,0x00, //     24 T1 ON, NOTE  83 VOLUME  0
-                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
-                0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
-                0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xd3,0x00, //     24 T1 ON, NOTE  83 VOLUME  0
-                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
-                0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
-                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
-                0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xd3,0x00, //     24 T1 ON, NOTE  83 VOLUME  0
-                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
-                0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xd6,0x09, //     24 T1 ON, NOTE  86 VOLUME  9
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xd3,0x00, //     24 T1 ON, NOTE  83 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xca,0x00, //     24 T1 ON, NOTE  74 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xd6,0x09, //     24 T1 ON, NOTE  86 VOLUME  9
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
+                     0x98,0x01, //     24 BOTH OFF
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0xc8,0xad,0x09, //     72 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0xc8,0xad,0x09, //     72 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0xc8,0xad,0x09, //     72 T1 ON, NOTE  45 VOLUME  9
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
+                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcf,0x00, //     24 T1 ON, NOTE  79 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
-                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
-                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xd5,0x09, //     24 T1 ON, NOTE  85 VOLUME  9
                 0x98,0xd3,0x09, //     24 T1 ON, NOTE  83 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xcf,0x09, //     24 T1 ON, NOTE  79 VOLUME  9
                 0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
@@ -1999,84 +1985,78 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x8c,0xc0,0x05, //     12 T1 ON, NOTE  64 VOLUME  5
                 0x8c,0xb1,0x09, //     12 T1 ON, NOTE  49 VOLUME  9
                 0x8c,0xbe,0x05, //     12 T1 ON, NOTE  62 VOLUME  5
-                0xb0,0xbe,0x00, //     48 T1 ON, NOTE  62 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xb2,0x09, //     48 T1 ON, NOTE  50 VOLUME  9
-                0xb0,0xb2,0x00, //     48 T1 ON, NOTE  50 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xab,0x09, //     48 T1 ON, NOTE  43 VOLUME  9
-                0xb0,0xab,0x00, //     48 T1 ON, NOTE  43 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xad,0x09, //     48 T1 ON, NOTE  45 VOLUME  9
-                0xb0,0xad,0x00, //     48 T1 ON, NOTE  45 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xa6,0x09, //     48 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xd6,0x09, //     24 T1 ON, NOTE  86 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0x98,0xd6,0x09, //     24 T1 ON, NOTE  86 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xd3,0x00, //     24 T1 ON, NOTE  83 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xd6,0x09, //     24 T1 ON, NOTE  86 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xd3,0x00, //     24 T1 ON, NOTE  83 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
+                0x98,0xd6,0x09, //     24 T1 ON, NOTE  86 VOLUME  9
                 0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xd3,0x00, //     24 T1 ON, NOTE  83 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xd1,0x00, //     24 T1 ON, NOTE  81 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xab,0x09, //     24 T1 ON, NOTE  43 VOLUME  9
-                0x98,0xd3,0x00, //     24 T1 ON, NOTE  83 VOLUME  0
+                0x98,0xca,0x09, //     24 T1 ON, NOTE  74 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xca,0x00, //     24 T1 ON, NOTE  74 VOLUME  0
+                     0x98,0x01, //     24 BOTH OFF
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0xc8,0xad,0x09, //     72 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0xc8,0xad,0x09, //     72 T1 ON, NOTE  45 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0xc8,0xad,0x09, //     72 T1 ON, NOTE  45 VOLUME  9
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
+                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
-                0x98,0xaa,0x09, //     24 T1 ON, NOTE  42 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
-                0x98,0xad,0x09, //     24 T1 ON, NOTE  45 VOLUME  9
-                0x98,0xcc,0x00, //     24 T1 ON, NOTE  76 VOLUME  0
+                0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xa6,0x09, //     24 T1 ON, NOTE  38 VOLUME  9
-                0x98,0xce,0x00, //     24 T1 ON, NOTE  78 VOLUME  0
+                0x98,0xd5,0x09, //     24 T1 ON, NOTE  85 VOLUME  9
                 0x98,0xd3,0x09, //     24 T1 ON, NOTE  83 VOLUME  9
                 0x98,0xd1,0x09, //     24 T1 ON, NOTE  81 VOLUME  9
                 0x98,0xcf,0x09, //     24 T1 ON, NOTE  79 VOLUME  9
                 0x98,0xce,0x09, //     24 T1 ON, NOTE  78 VOLUME  9
-                0x98,0xa6,0x00, //     24 T1 ON, NOTE  38 VOLUME  0
+                0x98,0xcc,0x09, //     24 T1 ON, NOTE  76 VOLUME  9
                 0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xbd,0x09, //     24 T1 ON, NOTE  61 VOLUME  9
                 0x98,0xbb,0x09, //     24 T1 ON, NOTE  59 VOLUME  9
@@ -2111,13 +2091,13 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x8c,0xc0,0x05, //     12 T1 ON, NOTE  64 VOLUME  5
                 0x8c,0xb1,0x09, //     12 T1 ON, NOTE  49 VOLUME  9
                 0x8c,0xbe,0x05, //     12 T1 ON, NOTE  62 VOLUME  5
-                0xb0,0xbe,0x00, //     48 T1 ON, NOTE  62 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xb2,0x09, //     48 T1 ON, NOTE  50 VOLUME  9
-                0xb0,0xb2,0x00, //     48 T1 ON, NOTE  50 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xab,0x09, //     48 T1 ON, NOTE  43 VOLUME  9
-                0xb0,0xab,0x00, //     48 T1 ON, NOTE  43 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xad,0x09, //     48 T1 ON, NOTE  45 VOLUME  9
-                0xb0,0xad,0x00, //     48 T1 ON, NOTE  45 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xaf,0x09, //     48 T1 ON, NOTE  47 VOLUME  9
                 0x98,0xc9,0x09, //     24 T1 ON, NOTE  73 VOLUME  9
                 0x98,0xc7,0x09, //     24 T1 ON, NOTE  71 VOLUME  9
@@ -2143,74 +2123,74 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM =
                 0x8c,0xc0,0x05, //     12 T1 ON, NOTE  64 VOLUME  5
                 0x8c,0xb1,0x09, //     12 T1 ON, NOTE  49 VOLUME  9
                 0x8c,0xbe,0x05, //     12 T1 ON, NOTE  62 VOLUME  5
-                0xb0,0xbe,0x00, //     48 T1 ON, NOTE  62 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xb2,0x09, //     48 T1 ON, NOTE  50 VOLUME  9
-                0xb0,0xb2,0x00, //     48 T1 ON, NOTE  50 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xab,0x09, //     48 T1 ON, NOTE  43 VOLUME  9
-                0xb0,0xab,0x00, //     48 T1 ON, NOTE  43 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xad,0x09, //     48 T1 ON, NOTE  45 VOLUME  9
-                0xb0,0xad,0x00, //     48 T1 ON, NOTE  45 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xb6,0x09, //     48 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xca,0x05, //     24 T1 ON, NOTE  74 VOLUME  5
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xce,0x05, //     24 T1 ON, NOTE  78 VOLUME  5
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xbe,0x09, //     24 T1 ON, NOTE  62 VOLUME  9
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0x98,0xb6,0x00, //     24 T1 ON, NOTE  54 VOLUME  0
+                0x98,0xc2,0x05, //     24 T1 ON, NOTE  66 VOLUME  5
                 0x98,0xb6,0x09, //     24 T1 ON, NOTE  54 VOLUME  9
-                0xb0,0xb6,0x00, //     48 T1 ON, NOTE  54 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xaa,0x09, //     48 T1 ON, NOTE  42 VOLUME  9
-                0xb0,0xaa,0x00, //     48 T1 ON, NOTE  42 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xad,0x09, //     48 T1 ON, NOTE  45 VOLUME  9
-                0xb0,0xad,0x00, //     48 T1 ON, NOTE  45 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xaa,0x09, //     48 T1 ON, NOTE  42 VOLUME  9
-                0xb0,0xaa,0x00, //     48 T1 ON, NOTE  42 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
                 0xb0,0xa6,0x09, //     48 T1 ON, NOTE  38 VOLUME  9
-                0xb0,0xa6,0x00, //     48 T1 ON, NOTE  38 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
            0x01,0x90,0xa6,0x09, //    144 T1 ON, NOTE  38 VOLUME  9
-                0xb0,0xa6,0x00, //     48 T1 ON, NOTE  38 VOLUME  0
+                     0xb0,0x01, //     48 BOTH OFF
            0x01,0x90,0xa6,0x09, //    144 T1 ON, NOTE  38 VOLUME  9
-                0xe0,0xa6,0x00, //     96 T1 ON, NOTE  38 VOLUME  0
+                     0xe0,0x01, //     96 BOTH OFF
                      0x80,0x05  //      0 END PROGRAM
 };

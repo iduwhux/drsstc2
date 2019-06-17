@@ -38,21 +38,21 @@ def assemble_midi_states(mid: mido.MidiFile, channel_lock: bool):
                     if msg.type == 'set_tempo':
                         cmd_cnt += 1
                         state = MIDIState(state.time, state.notes, msg.tempo)
+                    elif msg.type == 'note_off' or (msg.type == 'note_on' and msg.velocity == 0):
+                        cmd_cnt += 1
+                        state = MIDIState(state.time, set(filter(lambda n: n.note != msg.note, state.notes)),
+                                          state.tempo)
                     elif msg.type == 'note_on':
                         cmd_cnt += 1
                         new_notes: Set[MIDINote] = state.notes.copy()
                         note_on_note = MIDINote(msg.note, msg.velocity)
                         if channel_lock:
                             channel = msg.channel
-                            if channel in channel_notes:
+                            if channel in channel_notes and channel_notes[channel] in new_notes:
                                 new_notes.remove(channel_notes[channel])
                             channel_notes[channel] = note_on_note
                         new_notes.add(note_on_note)
                         state = MIDIState(state.time, new_notes, state.tempo)
-                    elif msg.type == 'note_off':
-                        cmd_cnt += 1
-                        state = MIDIState(state.time, set(filter(lambda n: n.note != msg.note, state.notes)),
-                                          state.tempo)
                 else:
                     break
             # if cmd_cnt > 0:
