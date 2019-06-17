@@ -17,6 +17,7 @@ extern const byte MARRIAGE_OF_FIGARO[] PROGMEM;
 extern const byte BACH_INVENTION[] PROGMEM;
 extern const byte ODE_TO_JOY[] PROGMEM;
 extern const byte WILLIAM_TELL[] PROGMEM;
+extern const byte SUGAR_PLUM_FAIRY[] PROGMEM;
 void load_next_song();
 
 

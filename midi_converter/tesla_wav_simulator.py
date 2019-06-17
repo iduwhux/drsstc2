@@ -47,6 +47,8 @@ class ArduinoTimerSim:
         self.prescale = next(v for v in self.prescale_values if
                              ARDUINO_FREQ / (self.max * v) < tgt_freq)
         self.top = int(round(ARDUINO_FREQ / (self.prescale * tgt_freq)))
+        if self.current >= self.top:
+            self.current = 0
         tgt_pulse = min(volume, MAX_CYCLES) * CYCLE_LENGTH
         self.duty = int(round(tgt_pulse * ARDUINO_FREQ / self.prescale))
         self.duty = 1 if self.duty == 0 else self.duty
@@ -77,7 +79,7 @@ Timer2 = ArduinoTimerSim(1 << 8, [1, 8, 32, 64, 128, 256, 1024])
 ArduinoTimers = [Timer1, Timer2]
 
 
-def generate_logic_signal(mid: mido.MidiFile) -> List[Tuple[float, float]]:
+def generate_logic_signal(mid: mido.MidiFile, vol_scale: float) -> List[Tuple[float, float]]:
     current_state = True
     current_pulse_start = 0.0
     pulses = list()
@@ -100,7 +102,7 @@ def generate_logic_signal(mid: mido.MidiFile) -> List[Tuple[float, float]]:
             current_state = new_state
 
     last_cmd_t = 0.0
-    cmds = get_midi_commands(mid)
+    cmds = get_midi_commands(mid, vol_scale)
     for cmd in cmds:
         cmd_t = last_cmd_t + float(cmd.time * current_tempo) / (1e6 * mid.ticks_per_beat)
         last_cmd_t = cmd_t
@@ -124,14 +126,14 @@ def generate_logic_signal(mid: mido.MidiFile) -> List[Tuple[float, float]]:
     return pulses
 
 
-def generate_wav(mid: mido.MidiFile, path: str):
+def generate_wav(mid: mido.MidiFile, vol_scale: float, path: str):
     wav = wave.open(path, 'w')
     wav.setnchannels(1)  # mono
     wav.setsampwidth(2)  # 2 bytes per frame
     wav.setframerate(SAMPLE_RATE)
 
     # Generate a list of (start, stop) tuples for the interrupter logic signal
-    logic_pulses = generate_logic_signal(mid)
+    logic_pulses = generate_logic_signal(mid, vol_scale)
     print('Found %d pulses - up to t = %5.2f' % (len(logic_pulses), logic_pulses[-1][-1]))
 
     # Generate volumes from pulses

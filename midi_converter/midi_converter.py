@@ -172,6 +172,9 @@ if __name__ == '__main__':
     parser.add_argument('--tempo_factor', metavar='F', type=float,
                         nargs='?', required=False, default=1.0,
                         help='Scale factor to speed up/down')
+    parser.add_argument('--vol_scale', metavar='N', type=float,
+                        nargs='?', required=False, default=10.0,
+                        help='Scale factor for volume (lower=more amplification)')
     args = parser.parse_args()
 
     print('Reading MIDI file %s ...' % args.input)
@@ -197,7 +200,7 @@ if __name__ == '__main__':
     print('Saving modified MIDI data to %s' % input_mod_path)
     mid.save(input_mod_path)
 
-    cmds = get_midi_commands(mid)
+    cmds = get_midi_commands(mid, args.vol_scale)
     total_bytes = sum(map(lambda cmd: len(cmd.cmd_bytes), cmds))
     print('%d bytes total' % total_bytes)
 
@@ -212,7 +215,7 @@ if __name__ == '__main__':
     if args.wav:
         wav_path = path.splitext(args.input)[0] + '_tesla.wav'
         print('Generating simulated WAV file at %s' % wav_path)
-        generate_wav(mid, wav_path)
+        generate_wav(mid, args.vol_scale, wav_path)
 
     if args.play:
         print('Opening MIDI port %s' % args.midi_port)

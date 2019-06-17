@@ -114,7 +114,7 @@ def encode_midi_end_program(time):
         get_byte_str(bytes), time)
 
 
-def get_midi_commands(mid: mido.MidiFile) -> List[MIDICommand]:
+def get_midi_commands(mid: mido.MidiFile, vol_scale: float) -> List[MIDICommand]:
     cmds = list()
     timer_notes = [None] * 2
     i = 0
@@ -161,14 +161,14 @@ def get_midi_commands(mid: mido.MidiFile) -> List[MIDICommand]:
             if msg.type == 'note_on':
                 # Find destination index; prefer timer1
                 dest_idx = new_timer_notes.index(None) if None in new_timer_notes else 0
-                new_timer_notes[dest_idx] = MIDINote(msg.note, int(msg.velocity / 10))
+                new_timer_notes[dest_idx] = MIDINote(msg.note, int(msg.velocity / vol_scale))
                 # Advance to consume remaining note_on messages
                 if i + 1 < len(mid.tracks[0]) and \
                         mid.tracks[0][i + 1].time == 0 and \
                         mid.tracks[0][i + 1].type == 'note_on':
                     i += 1
                     msg = mid.tracks[0][i]
-                    new_timer_notes[1 - dest_idx] = MIDINote(msg.note, int(msg.velocity / 10))
+                    new_timer_notes[1 - dest_idx] = MIDINote(msg.note, int(msg.velocity / vol_scale))
 
             # Calculate messages
             if new_timer_notes == [None] * 2 and len([n for n in timer_notes if n]) > 0:

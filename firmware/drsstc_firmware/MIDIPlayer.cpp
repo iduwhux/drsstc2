@@ -224,15 +224,17 @@ void start_midi(const byte* midi_pointer) {
 }
 
 namespace {
-  #define NUM_SONGS 4
-  const byte* songs[] = {MARRIAGE_OF_FIGARO, ODE_TO_JOY, BACH_INVENTION, WILLIAM_TELL};
-  int song_index = 0;
+  #define NUM_SONGS 5
+  const byte* songs[] = {MARRIAGE_OF_FIGARO, ODE_TO_JOY, BACH_INVENTION, WILLIAM_TELL, SUGAR_PLUM_FAIRY};
+  int prev_song_index = -1;
 }
 
 void load_next_song() { 
+  int song_index = random(NUM_SONGS);
+  while (song_index == prev_song_index) 
+    song_index = random(NUM_SONGS);  
   start_midi(songs[song_index]);
-  song_index++;
-  if (song_index >= NUM_SONGS) song_index = 0;
+  prev_song_index = song_index;
 }
 
 void send_single_pulse(unsigned long us) {
