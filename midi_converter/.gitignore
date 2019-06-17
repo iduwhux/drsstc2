@@ -3,3 +3,5 @@
 *.wav
 *.cpp
 __pycache__/
+*.mptm
+*.mp3
