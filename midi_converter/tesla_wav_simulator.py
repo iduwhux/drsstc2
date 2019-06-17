@@ -1,9 +1,9 @@
-import mido
 import wave
 import struct
 
-from typing import List, Tuple
-from collections import namedtuple
+from typing import Tuple
+
+from arduino_midi import *
 
 COIL_FREQ = 250e3  # 250 kHz coil frequency
 CYCLE_LENGTH = 1.0 / COIL_FREQ
@@ -13,10 +13,10 @@ PULSE_DECAY_CYCLES = 5  # Number of cycles to runoff pulse
 PULSE_DECAY = PULSE_DECAY_CYCLES * CYCLE_LENGTH
 
 SAMPLE_RATE = 44100  # Hz
-PULSE_INIT = 20000  # Initial 'attack' value of pulse
-PULSE_STEP = 5000  # Additional volume per cycle
+PULSE_INIT = 10000.0  # Initial 'attack' value of pulse
+PULSE_STEP = 5000.0  # Additional volume per cycle
 PULSE_SLOPE = PULSE_STEP / CYCLE_LENGTH
-PULSE_MAX = 32767  # Maximum pulse volume (16-bit)
+PULSE_MAX = 32767.0  # Maximum pulse volume (16-bit)
 
 MIDI_BASE_FREQ = 440.0  # A note = 440 Hz
 MIDI_BASE_NOTE = 69  # A4
@@ -47,8 +47,8 @@ class ArduinoTimerSim:
         tgt_pulse = min(volume, MAX_CYCLES) * CYCLE_LENGTH
         self.duty = int(round(tgt_pulse * ARDUINO_FREQ / self.prescale))
         self.duty = 1 if self.duty == 0 else self.duty
-        print('MIDI note %3d, volume %2d > PRESCALE = %5d, TOP = %5d, DUTY = %5d' % (
-            note, volume, self.prescale, self.top, self.duty))
+        #print('MIDI note %3d, volume %2d > PRESCALE = %5d, TOP = %5d, DUTY = %5d' % (
+        #    note, volume, self.prescale, self.top, self.duty))
 
     def set_off(self):
         self.duty = 0
@@ -71,6 +71,7 @@ class ArduinoTimerSim:
 
 Timer1 = ArduinoTimerSim(1 << 16, [1, 8, 64, 256, 1024])
 Timer2 = ArduinoTimerSim(1 << 8, [1, 8, 32, 64, 128, 256, 1024])
+ArduinoTimers = [Timer1, Timer2]
 
 
 def generate_logic_signal(mid: mido.MidiFile) -> List[Tuple[float, float]]:
@@ -80,7 +81,6 @@ def generate_logic_signal(mid: mido.MidiFile) -> List[Tuple[float, float]]:
 
     current_t = 0.0
     current_tempo = 0
-    MIDINote = namedtuple('MIDINote', ['note', 'volume'])
 
     def update_state(t):
         nonlocal current_t, current_pulse_start, current_state
@@ -96,62 +96,28 @@ def generate_logic_signal(mid: mido.MidiFile) -> List[Tuple[float, float]]:
                 pulses.append((current_pulse_start, pulse_end))
             current_state = new_state
 
-    timer_notes = [None] * 2
-    i = 0
-    last_note_t = 0.0
-    while i < len(mid.tracks[0]):
-        msg = mid.tracks[0][i]
-        msg_t = last_note_t + float(msg.time * current_tempo) / (1e6 * mid.ticks_per_beat)
-        last_note_t = msg_t
-        while current_t < msg_t:
+    last_cmd_t = 0.0
+    cmds = get_midi_commands(mid)
+    for cmd in cmds:
+        cmd_t = last_cmd_t + float(cmd.time * current_tempo) / (1e6 * mid.ticks_per_beat)
+        last_cmd_t = cmd_t
+        while current_t < cmd_t:
             next_timer_change = min(Timer1.next_change(), Timer2.next_change())
-            if next_timer_change < msg_t:
+            if next_timer_change < cmd_t:
                 update_state(next_timer_change)
             else:
-                update_state(msg_t)
+                update_state(cmd_t)
+        if cmd.type == 'set_tempo':
+            current_tempo = cmd.tempo
+        elif cmd.type == 'note_off':
+            ArduinoTimers[cmd.timer - 1].set_off()
+        elif cmd.type == 'both_off':
+            Timer1.set_off()
+            Timer2.set_off()
+        elif cmd.type == 'note_on':
+            ArduinoTimers[cmd.timer - 1].set_note(cmd.note, cmd.volume)
+        update_state(cmd_t)
 
-        if msg.type == 'set_tempo':
-            # Simply consume change tempo messages
-            current_tempo = msg.tempo
-        else:
-            new_timer_notes = timer_notes.copy()
-            if msg.type == 'note_off':
-                # Advance to consume additional note_off messages
-                if i + 1 < len(mid.tracks[0]) and \
-                        mid.tracks[0][i + 1].type == 'note_off' and \
-                        mid.tracks[0][i + 1].time == 0:
-                    i += 1
-                    new_timer_notes = [None] * 2
-                else:
-                    timer_idx = next(t for t in range(2) if timer_notes[t] and timer_notes[t].note == msg.note)
-                    new_timer_notes[timer_idx] = None
-
-                # Advance to consume any note_on messages
-                if i + 1 < len(mid.tracks[0]) and mid.tracks[0][i + 1].time == 0:
-                    i += 1
-                    msg = mid.tracks[0][i]
-            if msg.type == 'note_on':
-                # Find destination index; prefer timer1
-                dest_idx = new_timer_notes.index(None) if None in new_timer_notes else 0
-                new_timer_notes[dest_idx] = MIDINote(msg.note, int(msg.velocity / 10))
-                # Advance to consume remaining note_on messages
-                if i + 1 < len(mid.tracks[0]) and mid.tracks[0][i + 1].time == 0 \
-                        and mid.tracks[0][i + 1].type == 'note_on':
-                    i += 1
-                    msg = mid.tracks[0][i]
-                    new_timer_notes[1 - dest_idx] = MIDINote(msg.note, int(msg.velocity / 10))
-            timer_notes = new_timer_notes
-
-            if timer_notes[0]:
-                Timer1.set_note(timer_notes[0].note, timer_notes[0].volume)
-            else:
-                Timer1.set_off()
-
-            if timer_notes[1]:
-                Timer2.set_note(timer_notes[1].note, timer_notes[1].volume)
-            else:
-                Timer2.set_off()
-        i += 1
     return pulses
 
 
@@ -166,7 +132,7 @@ def generate_wav(mid: mido.MidiFile, path: str):
     print('Found %d pulses - up to t = %5.2f' % (len(logic_pulses), logic_pulses[-1][-1]))
 
     # Generate volumes from pulses
-    sample_t = 0.0
+    sample_t = -1.0
     last_t = logic_pulses[-1][-1] + PULSE_DECAY
     pulse_idx = 0
     while sample_t <= last_t:

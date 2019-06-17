@@ -2,14 +2,11 @@ import argparse
 import mido
 
 from tesla_wav_simulator import generate_wav
+from arduino_midi import *
 
-from collections import namedtuple
 from copy import deepcopy
 from typing import List
 from os import path
-
-MIDINote = namedtuple('MIDINote', ['note', 'volume'])
-MIDIState = namedtuple('MIDIState', ['time', 'notes', 'tempo'])
 
 NOTE_SEQ = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
 
@@ -70,124 +67,6 @@ def assemble_midi_states(mid: mido.MidiFile):
         sorted_notes = list(sorted(s.notes, key=lambda n: n.note))
         state_array[i] = MIDIState(s.time, sorted_notes, s.tempo)
     return state_array
-
-
-def byte_enc(byte):
-    return '{0:#04x}'.format(byte)
-
-
-def get_byte_str(bytes):
-    return ','.join(map(byte_enc, bytes))
-
-
-def varint_encode(value):
-    bytes = [value & 0x7f]
-    while (value > 0):
-        value = value >> 7
-        if (value > 0):
-            bytes.append(value & 0x7f)
-    bytes.reverse()
-    bytes[-1] = bytes[-1] + 0x80
-    return bytes
-
-
-def encode_midi_note_on(time, note, volume, timer1):
-    bytes = varint_encode(time)
-    bytes.append((0x80 if timer1 else 0) + note)
-    bytes.append(volume)
-    return '%30s, //%6d %s ON, NOTE %d VOLUME %d' % (
-        get_byte_str(bytes), time, 'T1' if timer1 else 'T2', note, volume)
-
-
-def encode_midi_note_off(time, timer1):
-    bytes = varint_encode(time)
-    bytes.append(0x80 if timer1 else 0x00)
-    return '%30s, //%6d %s OFF' % (
-        get_byte_str(bytes), time, 'T1' if timer1 else 'T2')
-
-
-def encode_midi_both_off(time):
-    bytes = varint_encode(time)
-    bytes.append(0x01)
-    return '%30s, //%6d BOTH OFF' % (
-        get_byte_str(bytes), time)
-
-
-def encode_midi_change_tempo(time, tempo):
-    bytes = varint_encode(time)
-    bytes.append(0x02)
-    bytes += varint_encode(tempo)
-    return '%30s, //%6d TEMPO > %d' % (
-        get_byte_str(bytes), time, tempo)
-
-
-def encode_midi_end_program(time):
-    bytes = varint_encode(time)
-    bytes.append(0x04)
-    return '%30s  //%6d END OF FILE' % (
-        get_byte_str(bytes), time)
-
-
-def encode_simple_midi(mid: mido.MidiFile):
-    cpp_lines = list()
-    timer_notes = [None] * 2
-    i = 0
-    while i < len(mid.tracks[0]):
-        msg = mid.tracks[0][i]
-        mark = msg.time
-        new_lines = list()
-
-        if msg.type == 'set_tempo':
-            # Simply consume change tempo messages
-            new_lines.append(encode_midi_change_tempo(mark, msg.tempo))
-        else:
-            new_timer_notes = timer_notes.copy()
-            if msg.type == 'note_off':
-                # Advance to consume additional note_off messages
-                if i + 1 < len(mid.tracks[0]) and \
-                        mid.tracks[0][i + 1].type == 'note_off' and \
-                        mid.tracks[0][i + 1].time == 0:
-                    i += 1
-                    new_timer_notes = [None] * 2
-                else:
-                    timer_idx = next(t for t in range(2) if timer_notes[t] and timer_notes[t].note == msg.note)
-                    new_timer_notes[timer_idx] = None
-
-                # Advance to consume any note_on messages
-                if i + 1 < len(mid.tracks[0]) and mid.tracks[0][i + 1].time == 0:
-                    i += 1
-                    msg = mid.tracks[0][i]
-            if msg.type == 'note_on':
-                # Find destination index; prefer timer1
-                dest_idx = new_timer_notes.index(None) if None in new_timer_notes else 0
-                new_timer_notes[dest_idx] = MIDINote(msg.note, int(msg.velocity / 10))
-                # Advance to consume remaining note_on messages
-                if i + 1 < len(mid.tracks[0]) and \
-                        mid.tracks[0][i + 1].time == 0 and \
-                        mid.tracks[0][i + 1].type == 'note_on':
-                    i += 1
-                    msg = mid.tracks[0][i]
-                    new_timer_notes[1 - dest_idx] = MIDINote(msg.note, int(msg.velocity / 10))
-
-            # Calculate messages
-            if new_timer_notes == [None] * 2 and len([n for n in timer_notes if n]) > 0:
-                new_lines.append(encode_midi_both_off(mark))
-            else:
-                for t in range(2):
-                    if new_timer_notes[t]:
-                        if not timer_notes[t] or timer_notes[t] != new_timer_notes[t]:
-                            new_lines.append(
-                                encode_midi_note_on(mark, new_timer_notes[t].note, new_timer_notes[t].volume, t == 0))
-                            mark = 0
-                    else:
-                        if timer_notes[t]:
-                            new_lines.append(encode_midi_note_off(mark, t == 0))
-                            mark = 0
-            timer_notes = new_timer_notes
-        cpp_lines += new_lines
-        i += 1
-    cpp_lines.append(encode_midi_end_program(0))
-    return cpp_lines
 
 
 def get_simple_midi(ticks_per_beat, state_array: List[MIDIState],
@@ -301,19 +180,20 @@ if __name__ == '__main__':
     print('Saving modified MIDI data to %s' % input_mod_path)
     mid.save(input_mod_path)
 
-    cpp_lines = encode_simple_midi(mid)
-    print('\n'.join(cpp_lines))
+    cmds = get_midi_commands(mid)
 
     output_path = args.output or path.splitext(args.input)[0] + '.cpp'
     with open(output_path, 'w') as outf:
         outf.write('#include "MIDIPlayer.h"\n\n' +
                    'extern const byte %s[] PROGMEM = \n{\n' % args.name +
-                   '\n'.join(cpp_lines) +
+                   '\n'.join(map(str, cmds)) +
                    '\n};\n\n' +
                    'extern const unsigned long %s_tpb = %d;\n' % (args.name, input_midi.ticks_per_beat))
+    print('%d bytes total' % sum(map(lambda cmd: len(cmd.cmd_bytes), cmds)))
 
     if args.wav:
         wav_path = path.splitext(args.input)[0] + '_tesla.wav'
+        print('Generating simulated WAV file at %s' % wav_path)
         generate_wav(mid, wav_path)
 
     if args.play:
