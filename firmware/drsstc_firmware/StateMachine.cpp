@@ -16,8 +16,15 @@ namespace {
   int test_mode_index = 0;
 }
 
+const String STATE_NAMES[] PROGMEM = {"STARTUP", "LIGHT_SHOW", "SLOW_PULSE", "MUSIC_PLAY", "MUSIC_PAUSE", "MUSIC_INT", "TEST_MODE", "TEST_MODE_INC", "SHUTDOWN"};
+
 void change_state(int new_state) {
   last_state_change = millis();
+  #ifdef SERIAL_LOGGING
+    Serial.print(STATE_NAMES[current_state]);
+    Serial.print(" > ");
+    Serial.println(STATE_NAMES[new_state]);
+  #endif
   current_state = new_state;
 }
 
@@ -47,9 +54,15 @@ void update_state_machine() {
     case STARTUP:
       if (digitalRead(TEST_IN) == HIGH) {
         test_mode_index = 0;
+        #ifdef SERIAL_LOGGING
+        Serial.println(F("Startup in test mode"));
+        #endif
         change_state(TEST_MODE);
       } else if (digitalRead(MSTR_EN) == LOW) {
         // Run switch must be off to initialize
+        #ifdef SERIAL_LOGGING
+        Serial.println(F("Startup in normal mode"));
+        #endif
         change_state(LIGHT_SHOW);
       }
       break;
@@ -60,15 +73,24 @@ void update_state_machine() {
         // When the run switch is first engaged, determine the mode
         led_ring.reset();
         switch (digitalRead(MODE_IN)) {
-          case LOW:  
+          case LOW:
+            #ifdef SERIAL_LOGGING
+            Serial.println(F("Pulse mode selected"));
+            #endif
             change_state(SLOW_PULSE); 
             break;
           case HIGH: 
+            #ifdef SERIAL_LOGGING
+            Serial.println(F("Music mode selected"));
+            #endif
             load_next_song();
             change_state(MUSIC_PLAY); 
             break;
         }
       } else if (millis() - last_state_change > LIGHT_SHOW_TIMEOUT) {
+        #ifdef SERIAL_LOGGING
+        Serial.println(F("Light show timeout"));
+        #endif
         change_state(SHUTDOWN);
       }
       break;
@@ -76,14 +98,23 @@ void update_state_machine() {
       if (digitalRead(MSTR_EN) == LOW) {
         change_state(LIGHT_SHOW);
       } else if (millis() - last_state_change > SLOW_PULSE_TIMEOUT) {
+        #ifdef SERIAL_LOGGING
+        Serial.println(F("Pulse mode timeout"));
+        #endif
         change_state(SHUTDOWN);
       }
       break;
     case MUSIC_PLAY:
       if (digitalRead(MSTR_EN) == LOW) {
+        #ifdef SERIAL_LOGGING
+        Serial.println(F("Pausing music"));
+        #endif
         pause_midi();
         change_state(MUSIC_PAUSE);
       } else if (millis() - last_state_change > MUSIC_TIMEOUT) {
+        #ifdef SERIAL_LOGGING
+        Serial.println(F("Music mode timeout"));
+        #endif
         change_state(SHUTDOWN);
       }
       break;
@@ -92,8 +123,14 @@ void update_state_machine() {
         change_state(LIGHT_SHOW);
       } else if (digitalRead(MSTR_EN) == HIGH) {
         resume_midi();
+        #ifdef SERIAL_LOGGING
+        Serial.println(F("Resuming music"));
+        #endif
         change_state(MUSIC_PLAY);
       } else if (millis() - last_state_change > MUSIC_PAUSE_TIMEOUT) {
+        #ifdef SERIAL_LOGGING
+        Serial.println(F("Music pause timeout"));
+        #endif
         change_state(LIGHT_SHOW);
       }
       break;
@@ -101,8 +138,10 @@ void update_state_machine() {
       if (millis() - last_state_change > MUSIC_INT_PERIOD) {
         load_next_song();
         switch (digitalRead(MSTR_EN)) {
-          case LOW: change_state(MUSIC_PAUSE);
-          case HIGH: change_state(MUSIC_PLAY);
+          case LOW: 
+            change_state(MUSIC_PAUSE);
+          case HIGH: 
+            change_state(MUSIC_PLAY);
         }
       }
       break;
@@ -216,10 +255,16 @@ void test_mode() {
       if (digitalRead(MSTR_EN) == HIGH && digitalRead(TRIG_IN) == HIGH) {
         delay(TEST_MODE_PULSE_DELAY - TEST_MODE_DEBOUNCE);
         if (digitalRead(MSTR_EN) == HIGH) {
-          send_single_pulse(TEST_MODE_START_PULSE 
-              + test_mode_index * TEST_MODE_PULSE_PER_STEP);        
+          const unsigned long pulse_length = TEST_MODE_START_PULSE 
+              + test_mode_index * TEST_MODE_PULSE_PER_STEP;
+          send_single_pulse(pulse_length);        
           test_mode_pulse = true;
           test_mode_pulse_start = millis();
+          #ifdef SERIAL_LOGGING
+          Serial.print(F("Sent test pulse of "));
+          Serial.print(pulse_length);
+          Serial.println(F(" us"));
+          #endif
         }
       }      
     }

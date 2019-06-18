@@ -1,3 +1,4 @@
+#include "StateMachine.h" // SERIAL_LOGGING flag
 #include "MIDIPlayer.h"
 #include "pin_definitions.h"
 #include "LEDRing.h"
@@ -71,12 +72,57 @@ namespace {
 
   unsigned long peek_midi_time(const byte* pointer) {
     unsigned long midi_time = 0;
-    pointer = read_varint(pointer, midi_time);
+    read_varint(pointer, midi_time);
     return midi_time;
   }
 
-  unsigned long current_tempo = 500000; // us per beat (500000 = 120 bpm)
-  const byte* play_midi_pointer(const byte* pointer) {
+  unsigned long current_tempo = 500000;        // us per beat (500000 = 120 bpm)
+  unsigned long current_ticks_per_beat = 1024; // resolution
+
+  #ifdef SERIAL_LOGGING
+    // Metronome output to serial
+    unsigned long metronome_mark_us = 0;
+    unsigned long metronome_ticks = 0;
+    unsigned long metronome_beat = 0;
+  
+    void reset_metronome(unsigned long timestamp) {
+      metronome_mark_us = timestamp;
+      metronome_ticks = 0;
+      metronome_beat = 0;
+    }
+  
+    void update_metronome(unsigned long timestamp, bool force_mark) {
+      if (metronome_mark_us == 0 || metronome_mark_us > timestamp)
+        metronome_mark_us = timestamp;
+  
+      unsigned long new_ticks = metronome_ticks + ((timestamp - metronome_mark_us) * current_ticks_per_beat) / current_tempo;
+      if (force_mark || new_ticks > current_ticks_per_beat) {
+        metronome_ticks = new_ticks;
+        while (metronome_ticks > current_ticks_per_beat) {
+          metronome_ticks -= current_ticks_per_beat;
+          unsigned long bar = (metronome_beat >> 2) + 1;
+          unsigned long beat = (metronome_beat & 0x03) + 1;
+          Serial.print(F("BAR "));
+          Serial.print(bar);
+          Serial.print(F(" BEAT "));
+          Serial.println(beat);
+          metronome_beat++;
+        }
+      }
+    }
+  
+    void pause_metronome(unsigned long timestamp) {
+      update_metronome(timestamp, true);
+      metronome_mark_us = 0;
+    }
+  
+    void resume_metronome(unsigned long timestamp) {
+      metronome_mark_us = timestamp;
+      update_metronome(timestamp, false);
+    }
+  #endif
+  
+  const byte* play_midi_pointer(const byte* pointer, unsigned long timestamp) {
     if (!pointer) return nullptr;
     unsigned long beats = 0;
     pointer = read_varint(pointer, beats);
@@ -88,6 +134,9 @@ namespace {
     } else if (note == 1) {   // Silence both
       set_pwm_off();
     } else if (note == 2) {   // Change tempo
+      #ifdef SERIAL_LOGGING
+      update_metronome(timestamp, true);
+      #endif
       pointer = read_varint(pointer, current_tempo);
     } else if (note == 3) {   // LED instructions (multiple)
       byte n_instructions = *(pointer++);
@@ -102,12 +151,6 @@ namespace {
     }
     return pointer;
   }
-
-  const byte* current_midi_pointer = nullptr;
-  unsigned long current_ticks_per_beat = 256;
-
-  bool is_paused = false;
-  unsigned long prev_mark_us = 0;
 
   inline void set_timer1_prescale(uint8_t CS_bits = 1) {
     CS_bits = (CS_bits == 0) ? 1 : (CS_bits > 5 ? 5 : CS_bits);
@@ -187,33 +230,59 @@ void play_midi_note(uint8_t note, uint8_t volume, bool timer1) {
   }
 }
 
+namespace {
+  const byte* current_midi_pointer = nullptr;
+
+  bool is_paused = false;
+  unsigned long prev_mark_us = 0;
+}
+
 bool play_midi() {
   if (is_paused || !current_midi_pointer) return false;
   unsigned long timestamp = micros();
-  if (prev_mark_us == 0 || prev_mark_us > timestamp) prev_mark_us = timestamp; // catch micros wraparound
+  
+  // catch micros wraparound
+  if (prev_mark_us == 0 || prev_mark_us > timestamp) 
+    prev_mark_us = timestamp;
+    
   unsigned long next_ticks = peek_midi_time(current_midi_pointer);
   unsigned long rem_us = next_ticks * current_tempo / current_ticks_per_beat;
   while (timestamp >= prev_mark_us + rem_us) {
     prev_mark_us += rem_us;
-    current_midi_pointer = play_midi_pointer(current_midi_pointer);
+    current_midi_pointer = play_midi_pointer(current_midi_pointer, timestamp);
+    
     if (current_midi_pointer) {
       next_ticks = peek_midi_time(current_midi_pointer);
       rem_us = next_ticks * current_tempo / current_ticks_per_beat;      
     } else {
       prev_mark_us = 0;
+      #ifdef SERIAL_LOGGING
+        Serial.println(F("End of song"));
+      #endif
       return false;
     }
   }
+  
+  #ifdef SERIAL_LOGGING
+    update_metronome(timestamp, false);
+  #endif
+
   return true;
 }
 
 void pause_midi() {
   is_paused = true;
+  #ifdef SERIAL_LOGGING
+  pause_metronome(micros());
+  #endif
 }
 
 void resume_midi() {
   is_paused = false;
   prev_mark_us = micros();
+  #ifdef SERIAL_LOGGING
+  resume_metronome(prev_mark_us);
+  #endif
 }
 
 void start_midi(const byte* midi_pointer) {
@@ -221,12 +290,19 @@ void start_midi(const byte* midi_pointer) {
   current_midi_pointer = read_varint(current_midi_pointer, current_ticks_per_beat);
   current_midi_pointer = read_varint(current_midi_pointer, current_tempo);
   prev_mark_us = micros();
+  #ifdef SERIAL_LOGGING
+  reset_metronome(prev_mark_us);
+  #endif
 }
 
 namespace {
   #define NUM_SONGS 5
   const byte* songs[] = {MARRIAGE_OF_FIGARO, ODE_TO_JOY, BACH_INVENTION, WILLIAM_TELL, SUGAR_PLUM_FAIRY};
   int prev_song_index = -1;
+
+  #ifdef SERIAL_LOGGING
+  const String song_names[] PROGMEM = {"Marriage of Figaro", "Ode to Joy", "Bach Invention", "William Tell", "Dance of the Sugar Plum Fairy"};
+  #endif
 }
 
 void load_next_song() { 
@@ -235,6 +311,10 @@ void load_next_song() {
     song_index = random(NUM_SONGS);  
   start_midi(songs[song_index]);
   prev_song_index = song_index;
+  #ifdef SERIAL_LOGGING
+  Serial.print(F("Playing song: "));
+  Serial.println(song_names[song_index]);
+  #endif
 }
 
 void send_single_pulse(unsigned long us) {

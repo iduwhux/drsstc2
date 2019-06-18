@@ -1,4 +1,5 @@
 #pragma once
+#define SERIAL_LOGGING
 
 // State machine
 #define STARTUP       0  // Initial state

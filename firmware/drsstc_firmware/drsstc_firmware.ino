@@ -9,6 +9,11 @@ const uint8_t INITIAL_DAC_VALUE = 0x80;
 MCP47X6 DAC = MCP47X6(DAC_ADDRESS);
 
 void setup() {
+  #ifdef SERIAL_LOGGING
+  Serial.begin(9600);
+  Serial.println(F("DRSSTC Firmware v1.0 - written by Brian Boucher, June 2019"));
+  #endif
+  
   // Set pin directions
   pinMode(NEOPIXEL, OUTPUT);
   pinMode(PWM_1, OUTPUT);
@@ -38,6 +43,10 @@ void setup() {
   DAC.setGain(MCP47X6_GAIN_1X);
   DAC.saveSettings();
   DAC.setOutputLevel(INITIAL_DAC_VALUE);
+  #ifdef SERIAL_LOGGING
+  Serial.print(F("Initialized DAC at "));
+  Serial.println(INITIAL_DAC_VALUE);
+  #endif
 
   // Initialize timer1/timer2 outputs for interrupter
   setup_timers();
