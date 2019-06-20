@@ -1,19 +1,14 @@
 #include "drsstc_firmware.h"
 
 // Setup neopixel ring
-LEDRing led_ring(NEOPIXEL);
+//LEDRing led_ring(NEOPIXEL);
 
 // Setup DAC
 #define DAC_ADDRESS       0x60
 const uint8_t INITIAL_DAC_VALUE = 0x80;
 MCP47X6 DAC = MCP47X6(DAC_ADDRESS);
 
-void setup() {
-  #ifdef SERIAL_LOGGING
-  Serial.begin(9600);
-  Serial.println(F("DRSSTC Firmware v1.0 - written by Brian Boucher, June 2019"));
-  #endif
-  
+void setup() {  
   // Set pin directions
   pinMode(NEOPIXEL, OUTPUT);
   pinMode(PWM_1, OUTPUT);
@@ -31,6 +26,11 @@ void setup() {
   digitalWrite(PWM_2, LOW);
   digitalWrite(LED1, LOW);
   digitalWrite(LED2, LOW);
+
+  #ifdef SERIAL_LOGGING
+  Serial.begin(9600);
+  Serial.println(F("DRSSTC Firmware v1.0 - written by Brian Boucher, June 2019"));
+  #endif
 
   // Initialize I2C bus
   Wire.begin();
@@ -57,7 +57,7 @@ void loop() {
   switch (get_current_state()) {
     case LIGHT_SHOW: 
     case MUSIC_INT:
-      led_ring.light_show(); 
+      //led_ring.light_show(); 
       break;
     case SLOW_PULSE: 
       slow_pulse(); 

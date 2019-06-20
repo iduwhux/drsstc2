@@ -140,9 +140,9 @@ namespace {
       pointer = read_varint(pointer, current_tempo);
     } else if (note == 3) {   // LED instructions (multiple)
       byte n_instructions = *(pointer++);
-      pointer = led_ring.read_midi_data(pointer, n_instructions);
+      //pointer = led_ring.read_midi_data(pointer, n_instructions);
     } else if (note == 4) {   // LED instruction (single)
-      pointer = led_ring.read_midi_data(pointer, 1);
+      //pointer = led_ring.read_midi_data(pointer, 1);
     } else if (note == 5) {   // End of file
       pointer = nullptr;
     } else {
@@ -170,35 +170,33 @@ namespace {
 
 void setup_timers() {
   // Initialize PWM_1 timer
-  // COM1A1 (0x80) = non-inverted PWM output to timer 1 channel A (pin 9)
   // WGM11  (0x02) = fast PWM mode, ICR1 as TOP
-  TCCR1A = _BV(COM1A1) | _BV(WGM11);
+  TCCR1A = _BV(WGM11);
   // Sets TCCR1B register
   set_timer1_prescale();
-  OCR1A = 0;    // 0% duty cycle
+  OCR1A = 0;
   ICR1 = 65535; // Lowest frequency at 1x prescale = 244 Hz
 
   // Initialize PWM_2 timer
-  // COM2B1 (0x20) = non-inverted PWM output to timer 2 channel B (pin 3)
   // WGM21 + WGM20 (0x03) = fast PWM mode, OCR2A as TOP
-  TCCR2A = _BV(COM2B1) | _BV(WGM21) | _BV(WGM20);
+  TCCR2A = _BV(WGM21) | _BV(WGM20);
   // Sets TCCR2B register
   set_timer2_prescale();
-  OCR2B = 0;   // 0% duty cycle
+  OCR2B = 0;
   OCR2A = 255; // Lowest frequency at 128x prescale = 488 Hz
 }
 
 void silence_midi(bool timer1) {
   if (timer1) {
-    OCR1A = 0;
+    TCCR1A = _BV(WGM11);
   } else {
-    OCR2B = 0;
+    TCCR2A = _BV(WGM21) | _BV(WGM20);
   }
 }
 
 void set_pwm_off() {
-  OCR1A = 0;
-  OCR2B = 0;
+  silence_midi(true);
+  silence_midi(false);
 }
 
 // Number of 16MHz clock cycles in one 250 kHz cycle (16e6/250e3 = 64)
@@ -213,20 +211,32 @@ void play_midi_note(uint8_t note, uint8_t volume, bool timer1) {
     uint8_t cs_bits = timer1_prescale_cs_bits(note);
     uint16_t prescale_value = PRESCALE1_VALUES[cs_bits - 1];
     // Logic on the board forces switching on the full cycle only; so a volume level of 1 targets a 0.5 cycle ON time
-    uint16_t tgt_duty = (volume * COIL_FREQ_CYCLES - COIL_FREQ_CYCLES_HALF) / prescale_value;
+    uint16_t tgt_duty = (volume * COIL_FREQ_CYCLES - COIL_FREQ_CYCLES_HALF) / prescale_value + 1;
     uint16_t freq = timer1_frequencies[note - TIMER1_MIDI_OFFSET];
     set_timer1_prescale(cs_bits);
+    
     OCR1A = tgt_duty == 0 ? 1 : (tgt_duty >= freq ? freq - 1 : (uint8_t)tgt_duty);
     ICR1 = freq;
+
+    // Initialize PWM_1 timer
+    // COM1A1 (0x80) = non-inverted PWM output to timer 1 channel A (pin 9)
+    // WGM11  (0x02) = fast PWM mode, ICR1 as TOP
+    TCCR1A = _BV(COM1A1) | _BV(WGM11);
   } else {
     if (note < TIMER2_MIDI_OFFSET) return;    
     uint8_t cs_bits = timer2_prescale_cs_bits(note);
     uint16_t prescale_value = PRESCALE2_VALUES[cs_bits - 1];
-    uint16_t tgt_duty = (volume * COIL_FREQ_CYCLES - COIL_FREQ_CYCLES_HALF) / prescale_value;
+    uint16_t tgt_duty = (volume * COIL_FREQ_CYCLES - COIL_FREQ_CYCLES_HALF) / prescale_value + 1;
     uint8_t freq = timer2_frequencies[note - TIMER2_MIDI_OFFSET];
     set_timer2_prescale(cs_bits);
+    
     OCR2B = tgt_duty == 0 ? 1 : (tgt_duty >= freq ? freq - 1 : (uint8_t)tgt_duty);
     OCR2A = freq;
+
+    // Initialize PWM_2 timer
+    // COM2B1 (0x20) = non-inverted PWM output to timer 2 channel B (pin 3)
+    // WGM21 + WGM20 (0x03) = fast PWM mode, OCR2A as TOP
+    TCCR2A = _BV(COM2B1) | _BV(WGM21) | _BV(WGM20);
   }
 }
 
@@ -296,8 +306,8 @@ void start_midi(const byte* midi_pointer) {
 }
 
 namespace {
-  #define NUM_SONGS 5
-  const byte* songs[] = {MARRIAGE_OF_FIGARO, ODE_TO_JOY, BACH_INVENTION, WILLIAM_TELL, SUGAR_PLUM_FAIRY};
+  #define NUM_SONGS 4
+  const byte* songs[] = {MARRIAGE_OF_FIGARO, SUGAR_PLUM_FAIRY, WILLIAM_TELL};
   int prev_song_index = -1;
 
   #ifdef SERIAL_LOGGING

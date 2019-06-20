@@ -1,0 +1,3 @@
+[submodule "firmware/MCP47X6"]
+	path = firmware/MCP47X6
+	url = https://github.com/uChip/MCP47X6.git

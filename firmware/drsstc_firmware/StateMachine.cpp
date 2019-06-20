@@ -44,7 +44,7 @@ int get_current_state() {
 
 void reset_state() {
   test_mode_index = 0;
-  led_ring.reset();
+  //led_ring.reset();
   change_state(STARTUP);
 }
 
@@ -52,11 +52,13 @@ void update_state_machine() {
   // Update state machine
   switch (current_state) {
     case STARTUP:
+      set_pwm_off();
       if (digitalRead(TEST_IN) == HIGH) {
         test_mode_index = 0;
         #ifdef SERIAL_LOGGING
         Serial.println(F("Startup in test mode"));
         #endif
+        test_mode_index = 0;
         change_state(TEST_MODE);
       } else if (digitalRead(MSTR_EN) == LOW) {
         // Run switch must be off to initialize
@@ -71,7 +73,8 @@ void update_state_machine() {
         change_state(TEST_MODE);
       } else if (digitalRead(MSTR_EN) == HIGH) {
         // When the run switch is first engaged, determine the mode
-        led_ring.reset();
+        
+        //led_ring.reset();
         switch (digitalRead(MODE_IN)) {
           case LOW:
             #ifdef SERIAL_LOGGING
@@ -221,7 +224,7 @@ void flash_status() {
 #define SLOW_PULSE_LENGTH    20 // microseconds
 #define SLOW_PULSE_DELAY    500 // milliseconds
 void slow_pulse() {
-  led_ring.reset();
+  //led_ring.reset();
   set_pwm_off();
   unsigned long timestamp = millis();
   if (last_slow_pulse == 0 || timestamp < last_slow_pulse) 
@@ -239,12 +242,12 @@ void slow_pulse() {
 
 void test_mode() {
   // Red bar graph indicating the test mode index
-  led_ring.bar_graph(test_mode_index + 1, 255, 0, 0);
+  //led_ring.bar_graph(test_mode_index + 1, 255, 0, 0);
   set_pwm_off();
   
   if (test_mode_pulse) {
     // Force an interval between pulses
-    if (test_mode_pulse_start + TEST_MODE_PULSE_SPACING >= millis()
+    if (test_mode_pulse_start + TEST_MODE_PULSE_SPACING < millis()
         && digitalRead(TRIG_IN) == LOW) {
       test_mode_pulse = false;
       test_mode_pulse_start = 0;

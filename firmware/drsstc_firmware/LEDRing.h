@@ -106,4 +106,4 @@ private:
 };
 
 // Single main instance for LEDRing
-extern LEDRing led_ring;
+//extern LEDRing led_ring;
