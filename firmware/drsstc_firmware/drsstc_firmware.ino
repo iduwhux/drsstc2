@@ -1,8 +1,5 @@
 #include "drsstc_firmware.h"
 
-// Setup neopixel ring
-//LEDRing led_ring(NEOPIXEL);
-
 // Setup DAC
 #define DAC_ADDRESS       0x60
 const uint8_t INITIAL_DAC_VALUE = 0x80;
@@ -50,17 +47,22 @@ void setup() {
 
   // Initialize timer1/timer2 outputs for interrupter
   setup_timers();
+
+  init_led_strip();
 }
 
 void loop() {
   update_state_machine();
   switch (get_current_state()) {
+    case STARTUP:
+      led_strip_flash();
+      break;
     case LIGHT_SHOW: 
     case MUSIC_INT:
-      //led_ring.light_show(); 
+      led_strip_cycle();
       break;
     case SLOW_PULSE: 
-      slow_pulse(); 
+      slow_pulse();
       break;
     case MUSIC_PLAY:
       if (!play_midi()) change_state(MUSIC_INT);

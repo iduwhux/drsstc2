@@ -26,6 +26,27 @@ void change_state(int new_state) {
     Serial.println(STATE_NAMES[new_state]);
   #endif
   current_state = new_state;
+  const uint16_t ORANGE = 5000;
+  const uint16_t GREEN = 21000;
+  switch (new_state) {
+    case STARTUP:
+    case MUSIC_INT:
+      init_led_strip_flash(ORANGE, 500);
+      break;
+    case SLOW_PULSE:
+      led_strip_solid(GREEN);
+      break;
+    case MUSIC_PLAY:
+    case MUSIC_PAUSE:
+      init_led_metronome();
+      break;
+    case LIGHT_SHOW:
+      init_led_strip_cycle();
+      break;
+    default:
+      reset_led_strip();
+      break;    
+  }
 }
 
 int get_current_state() {
