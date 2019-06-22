@@ -2,21 +2,20 @@ import wave
 import struct
 
 from typing import Tuple
+from math import cos, pi
 
 from arduino_midi import *
 
 COIL_FREQ = 250e3  # 250 kHz coil frequency
-CYCLE_LENGTH = 1.0 / (2 * COIL_FREQ)
-MAX_CYCLES = 10  # Maximum number of cycles in a pulse
-MAX_PULSE_LENGTH = MAX_CYCLES * CYCLE_LENGTH
-PULSE_DECAY_CYCLES = 10  # Number of cycles to runoff pulse
-PULSE_DECAY = PULSE_DECAY_CYCLES * CYCLE_LENGTH
+HALF_CYCLE_LENGTH = 1.0 / (2 * COIL_FREQ)
+MAX_HALF_CYCLES = 10  # Maximum number of cycles in a pulse
+MAX_PULSE_LENGTH = MAX_HALF_CYCLES * HALF_CYCLE_LENGTH
 
 SAMPLE_RATE = 44100  # Hz
 PULSE_INIT = 0.0  # Initial 'attack' value of pulse
 PULSE_MAX = 32767.0  # Maximum pulse volume (16-bit)
-PULSE_STEP = PULSE_MAX/MAX_CYCLES  # Additional volume per cycle
-PULSE_SLOPE = PULSE_STEP / CYCLE_LENGTH
+PULSE_STEP = PULSE_MAX / MAX_HALF_CYCLES  # Additional volume per half cycle
+PULSE_SLOPE = PULSE_STEP / HALF_CYCLE_LENGTH
 
 MIDI_BASE_FREQ = 440.0  # A note = 440 Hz
 MIDI_BASE_NOTE = 69  # A4
@@ -49,7 +48,7 @@ class ArduinoTimerSim:
         self.top = int(round(ARDUINO_FREQ / (self.prescale * tgt_freq)))
         if self.current >= self.top:
             self.current = 0
-        tgt_pulse = min(volume, MAX_CYCLES) * CYCLE_LENGTH
+        tgt_pulse = min(volume, MAX_HALF_CYCLES) * HALF_CYCLE_LENGTH
         self.duty = int(round(tgt_pulse * ARDUINO_FREQ / self.prescale))
         self.duty = 1 if self.duty == 0 else self.duty
         # print('MIDI note %3d, volume %2d > PRESCALE = %5d, TOP = %5d, DUTY = %5d' % (
@@ -126,6 +125,29 @@ def generate_logic_signal(mid: mido.MidiFile, vol_scale: float) -> List[Tuple[fl
     return pulses
 
 
+ENERGY_TRANSFER_HALF_CYCLES = 8
+ENERGY_TRANSFER_TIME = ENERGY_TRANSFER_HALF_CYCLES * HALF_CYCLE_LENGTH
+ENERGY_TRANSFER_SPARK_DECAY = 0.5
+ENERGY_TRANSFER_EXPONENTIAL_DECAY_START = 0.1
+
+
+def envelope(current_t: float, pulse_start: float, pulse_end: float) -> int:
+    if pulse_end < current_t:
+        # Decay from ending attack volume
+        pulse_volume = envelope(pulse_end, pulse_start, pulse_end)
+        transfer_cycles = (current_t - pulse_end) / ENERGY_TRANSFER_TIME
+        decay_factor = ENERGY_TRANSFER_SPARK_DECAY ** transfer_cycles
+        if decay_factor < ENERGY_TRANSFER_EXPONENTIAL_DECAY_START:
+            cos_factor = abs(cos(pi * transfer_cycles / 2))
+        else:
+            cos_factor = 1.0
+        return int(pulse_volume * cos_factor * decay_factor)
+    elif pulse_start < current_t:
+        return int(min(PULSE_INIT + PULSE_SLOPE * (current_t - pulse_start), PULSE_MAX))
+
+FIRST_PULSE_ON_TIME = 1.0
+LAST_PULSE_OFF_TIME = 1.0
+
 def generate_wav(mid: mido.MidiFile, vol_scale: float, path: str):
     wav = wave.open(path, 'w')
     wav.setnchannels(1)  # mono
@@ -137,26 +159,24 @@ def generate_wav(mid: mido.MidiFile, vol_scale: float, path: str):
     print('Found %d pulses - up to t = %5.2f' % (len(logic_pulses), logic_pulses[-1][-1]))
 
     # Generate volumes from pulses
-    sample_t = -1.0
-    last_t = logic_pulses[-1][-1] + PULSE_DECAY
+    sample_t = -FIRST_PULSE_ON_TIME
+    last_t = logic_pulses[-1][-1] + LAST_PULSE_OFF_TIME
     pulse_idx = 0
     while sample_t <= last_t:
-        volume = 0.0
+        volume = 0
         while pulse_idx + 1 < len(logic_pulses) \
                 and logic_pulses[pulse_idx][1] < sample_t:
             pulse_idx += 1
-        curr_pulse_start = logic_pulses[pulse_idx][0]
-        if curr_pulse_start > sample_t:
+        curr_pulse = logic_pulses[pulse_idx]
+        if curr_pulse[0] > sample_t:
             if pulse_idx > 0:
                 # If the current pulse is not active, check for decay from a previous pulse
                 last_pulse = logic_pulses[pulse_idx - 1]
-                if last_pulse[1] + PULSE_DECAY > sample_t:
-                    last_pulse_length = last_pulse[1] - last_pulse[0]
-                    last_pulse_max = min(PULSE_MAX, PULSE_INIT + PULSE_SLOPE * last_pulse_length)
-                    volume = last_pulse_max * (1.0 - (sample_t - last_pulse[1]) / PULSE_DECAY)
+                volume = envelope(sample_t, last_pulse[0], last_pulse[1])
         else:
-            volume = min(PULSE_MAX, PULSE_INIT + PULSE_SLOPE * (sample_t - curr_pulse_start))
-        wav.writeframesraw(struct.pack('<h', int(volume)))
+            # Attach on current pulse
+            volume = envelope(sample_t, curr_pulse[0], curr_pulse[1])
+        wav.writeframesraw(struct.pack('<h', volume))
         sample_t += 1.0 / SAMPLE_RATE
         # print(sample_t)
     wav.close()

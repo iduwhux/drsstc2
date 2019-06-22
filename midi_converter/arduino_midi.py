@@ -1,5 +1,6 @@
 import mido
 
+from math import ceil
 from collections import namedtuple
 from typing import NamedTuple, List
 
@@ -128,6 +129,10 @@ def get_midi_commands(mid: mido.MidiFile, vol_scale: float) -> List[MIDICommand]
         i += 1
     cmds.append(MIDICommand(0, 'begin_program', ticks_per_beat=mid.ticks_per_beat, tempo=init_tempo))
     mark = 0
+
+    def scale_volume(midi_volume: int) -> int:
+        return int(ceil(midi_volume * vol_scale / 128))
+
     while i < len(mid.tracks[0]):
         msg = mid.tracks[0][i]
         mark += msg.time
@@ -161,14 +166,14 @@ def get_midi_commands(mid: mido.MidiFile, vol_scale: float) -> List[MIDICommand]
             if msg.type == 'note_on':
                 # Find destination index; prefer timer1
                 dest_idx = new_timer_notes.index(None) if None in new_timer_notes else 0
-                new_timer_notes[dest_idx] = MIDINote(msg.note, int(msg.velocity / vol_scale))
+                new_timer_notes[dest_idx] = MIDINote(msg.note, scale_volume(msg.velocity))
                 # Advance to consume remaining note_on messages
                 if i + 1 < len(mid.tracks[0]) and \
                         mid.tracks[0][i + 1].time == 0 and \
                         mid.tracks[0][i + 1].type == 'note_on':
                     i += 1
                     msg = mid.tracks[0][i]
-                    new_timer_notes[1 - dest_idx] = MIDINote(msg.note, int(msg.velocity / vol_scale))
+                    new_timer_notes[1 - dest_idx] = MIDINote(msg.note, scale_volume(msg.velocity))
 
             # Calculate messages
             if new_timer_notes == [None] * 2 and len([n for n in timer_notes if n]) > 0:
