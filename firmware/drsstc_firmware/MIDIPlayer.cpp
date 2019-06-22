@@ -143,11 +143,6 @@ namespace {
       update_metronome(timestamp, true);
       #endif
       pointer = read_varint(pointer, current_tempo);
-    } else if (note == 3) {   // LED instructions (multiple)
-      byte n_instructions = *(pointer++);
-      //pointer = led_ring.read_midi_data(pointer, n_instructions);
-    } else if (note == 4) {   // LED instruction (single)
-      //pointer = led_ring.read_midi_data(pointer, 1);
     } else if (note == 5) {   // End of file
       pointer = nullptr;
     } else {
