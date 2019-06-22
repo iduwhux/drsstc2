@@ -6,17 +6,17 @@ from typing import Tuple
 from arduino_midi import *
 
 COIL_FREQ = 250e3  # 250 kHz coil frequency
-CYCLE_LENGTH = 1.0 / COIL_FREQ
+CYCLE_LENGTH = 1.0 / (2 * COIL_FREQ)
 MAX_CYCLES = 10  # Maximum number of cycles in a pulse
 MAX_PULSE_LENGTH = MAX_CYCLES * CYCLE_LENGTH
-PULSE_DECAY_CYCLES = 5  # Number of cycles to runoff pulse
+PULSE_DECAY_CYCLES = 10  # Number of cycles to runoff pulse
 PULSE_DECAY = PULSE_DECAY_CYCLES * CYCLE_LENGTH
 
 SAMPLE_RATE = 44100  # Hz
-PULSE_INIT = 10000.0  # Initial 'attack' value of pulse
-PULSE_STEP = 5000.0  # Additional volume per cycle
-PULSE_SLOPE = PULSE_STEP / CYCLE_LENGTH
+PULSE_INIT = 0.0  # Initial 'attack' value of pulse
 PULSE_MAX = 32767.0  # Maximum pulse volume (16-bit)
+PULSE_STEP = PULSE_MAX/MAX_CYCLES  # Additional volume per cycle
+PULSE_SLOPE = PULSE_STEP / CYCLE_LENGTH
 
 MIDI_BASE_FREQ = 440.0  # A note = 440 Hz
 MIDI_BASE_NOTE = 69  # A4
