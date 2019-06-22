@@ -211,11 +211,12 @@ void play_midi_note(uint8_t note, uint8_t volume, bool timer1) {
     uint8_t cs_bits = timer1_prescale_cs_bits(note);
     uint16_t prescale_value = PRESCALE1_VALUES[cs_bits - 1];
     // Logic on the board forces switching on the full cycle only; so a volume level of 1 targets a 0.5 cycle ON time
-    uint16_t tgt_duty = (volume * COIL_FREQ_CYCLES - COIL_FREQ_CYCLES_HALF) / prescale_value + 1;
+    uint16_t tgt_duty = (volume * COIL_FREQ_CYCLES - COIL_FREQ_CYCLES_HALF) / prescale_value;
+    tgt_duty = (tgt_duty > 0) ? tgt_duty - 1 : 0;
     uint16_t freq = timer1_frequencies[note - TIMER1_MIDI_OFFSET];
     set_timer1_prescale(cs_bits);
     
-    OCR1A = tgt_duty == 0 ? 1 : (tgt_duty >= freq ? freq - 1 : (uint8_t)tgt_duty);
+    OCR1A = tgt_duty >= freq ? freq - 1 : (uint8_t)tgt_duty;
     ICR1 = freq;
 
     // Initialize PWM_1 timer
@@ -226,11 +227,12 @@ void play_midi_note(uint8_t note, uint8_t volume, bool timer1) {
     if (note < TIMER2_MIDI_OFFSET) return;    
     uint8_t cs_bits = timer2_prescale_cs_bits(note);
     uint16_t prescale_value = PRESCALE2_VALUES[cs_bits - 1];
-    uint16_t tgt_duty = (volume * COIL_FREQ_CYCLES - COIL_FREQ_CYCLES_HALF) / prescale_value + 1;
+    uint16_t tgt_duty = (volume * COIL_FREQ_CYCLES - COIL_FREQ_CYCLES_HALF) / prescale_value;
+    tgt_duty = (tgt_duty > 0) ? tgt_duty - 1 : 0;
     uint8_t freq = timer2_frequencies[note - TIMER2_MIDI_OFFSET];
     set_timer2_prescale(cs_bits);
     
-    OCR2B = tgt_duty == 0 ? 1 : (tgt_duty >= freq ? freq - 1 : (uint8_t)tgt_duty);
+    OCR2B = tgt_duty >= freq ? freq - 1 : (uint8_t)tgt_duty;
     OCR2A = freq;
 
     // Initialize PWM_2 timer
