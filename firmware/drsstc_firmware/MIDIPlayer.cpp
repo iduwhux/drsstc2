@@ -306,12 +306,12 @@ void start_midi(const byte* midi_pointer) {
 }
 
 namespace {
-  #define NUM_SONGS 4
-  const byte* songs[] = {MARRIAGE_OF_FIGARO, SUGAR_PLUM_FAIRY, WILLIAM_TELL};
+  #define NUM_SONGS 5
+  const byte* songs[] = {MARRIAGE_OF_FIGARO, SUGAR_PLUM_FAIRY, WILLIAM_TELL, ODE_TO_JOY, BACH_INVENTION};
   int prev_song_index = -1;
 
   #ifdef SERIAL_LOGGING
-  const String song_names[] PROGMEM = {"Marriage of Figaro", "Ode to Joy", "Bach Invention", "William Tell", "Dance of the Sugar Plum Fairy"};
+  const String song_names[] PROGMEM = {"Marriage of Figaro", "Dance of the Sugar Plum Fairy", "William Tell Overture", "Ode to Joy"};
   #endif
 }
 
