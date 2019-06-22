@@ -2,6 +2,8 @@
 
 #include <arduino.h>
 
+#define METRONOME
+
 void setup_timers();
 
 void play_midi_note(uint8_t note, uint8_t volume = 1, bool timer1 = true);

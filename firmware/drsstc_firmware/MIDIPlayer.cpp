@@ -79,7 +79,7 @@ namespace {
   unsigned long current_tempo = 500000;        // us per beat (500000 = 120 bpm)
   unsigned long current_ticks_per_beat = 1024; // resolution
 
-  #ifdef SERIAL_LOGGING
+  #ifdef METRONOME
     // Metronome output to serial
     unsigned long metronome_mark_us = 0;
     unsigned long metronome_ticks = 0;
@@ -89,6 +89,8 @@ namespace {
       metronome_mark_us = timestamp;
       metronome_ticks = 0;
       metronome_beat = 0;
+      init_led_metronome();
+      led_metronome_beat(0);
     }
   
     void update_metronome(unsigned long timestamp, bool force_mark) {
@@ -102,11 +104,14 @@ namespace {
           metronome_ticks -= current_ticks_per_beat;
           unsigned long bar = (metronome_beat >> 2) + 1;
           unsigned long beat = (metronome_beat & 0x03) + 1;
-          Serial.print(F("BAR "));
-          Serial.print(bar);
-          Serial.print(F(" BEAT "));
-          Serial.println(beat);
+          #ifdef SERIAL_LOGGING
+            Serial.print(F("BAR "));
+            Serial.print(bar);
+            Serial.print(F(" BEAT "));
+            Serial.println(beat);
+          #endif
           metronome_beat++;
+          led_metronome_beat(metronome_beat);
         }
       }
     }
@@ -134,7 +139,7 @@ namespace {
     } else if (note == 1) {   // Silence both
       set_pwm_off();
     } else if (note == 2) {   // Change tempo
-      #ifdef SERIAL_LOGGING
+      #ifdef METRONOME
       update_metronome(timestamp, true);
       #endif
       pointer = read_varint(pointer, current_tempo);
@@ -273,7 +278,7 @@ bool play_midi() {
     }
   }
   
-  #ifdef SERIAL_LOGGING
+  #ifdef METRONOME
     update_metronome(timestamp, false);
   #endif
 
@@ -282,7 +287,7 @@ bool play_midi() {
 
 void pause_midi() {
   is_paused = true;
-  #ifdef SERIAL_LOGGING
+  #ifdef METRONOME
   pause_metronome(micros());
   #endif
 }
@@ -290,7 +295,7 @@ void pause_midi() {
 void resume_midi() {
   is_paused = false;
   prev_mark_us = micros();
-  #ifdef SERIAL_LOGGING
+  #ifdef METRONOME
   resume_metronome(prev_mark_us);
   #endif
 }
@@ -300,7 +305,7 @@ void start_midi(const byte* midi_pointer) {
   current_midi_pointer = read_varint(current_midi_pointer, current_ticks_per_beat);
   current_midi_pointer = read_varint(current_midi_pointer, current_tempo);
   prev_mark_us = micros();
-  #ifdef SERIAL_LOGGING
+  #ifdef METRONOME
   reset_metronome(prev_mark_us);
   #endif
 }
