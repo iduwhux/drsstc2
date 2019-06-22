@@ -311,7 +311,7 @@ namespace {
   int prev_song_index = -1;
 
   #ifdef SERIAL_LOGGING
-  const String song_names[] PROGMEM = {"Marriage of Figaro", "Dance of the Sugar Plum Fairy", "William Tell Overture", "Ode to Joy"};
+  const String song_names[] PROGMEM = {"Marriage of Figaro", "Dance of the Sugar Plum Fairy", "William Tell Overture", "Ode to Joy", "Bach Invention #1"};
   #endif
 }
 
