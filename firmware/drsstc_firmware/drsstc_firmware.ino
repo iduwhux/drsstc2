@@ -58,7 +58,7 @@ void setup() {
 }
 
 #ifdef SERIAL_LOGGING
-  #define SERIAL_HEARTBEAT_TIME 2000
+  #define SERIAL_HEARTBEAT_TIME 5000
   unsigned long last_serial_heartbeat = 0;
 #endif
 
