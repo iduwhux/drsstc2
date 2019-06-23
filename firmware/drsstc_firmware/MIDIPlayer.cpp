@@ -102,13 +102,10 @@ namespace {
         metronome_ticks = new_ticks;
         while (metronome_ticks > current_ticks_per_beat) {
           metronome_ticks -= current_ticks_per_beat;
-          unsigned long bar = (metronome_beat >> 2) + 1;
-          unsigned long beat = (metronome_beat & 0x03) + 1;
           #ifdef SERIAL_LOGGING
-            Serial.print(F("BAR "));
-            Serial.print(bar);
-            Serial.print(F(" BEAT "));
-            Serial.println(beat);
+            Serial.print((metronome_beat >> 2) + 1);
+            Serial.print(":");
+            Serial.println((metronome_beat & 0x03) + 1);
           #endif
           metronome_beat++;
           led_metronome_beat(metronome_beat);

@@ -23,12 +23,13 @@ void reset_led_strip() {
 void metronome_background(unsigned int pixel) {
   unsigned int seq = (pixel + NUM_LEDS - METRONOME_OFFSET) & NUM_LED_MASK;
   if (seq & 0x03 == 0) {
-    // bar = white
+    // bar-beat = white
     led_strip.setPixelColor(pixel, 255, 255, 255);
   } else if (seq & 0x01 == 0) {
     // off-beat = green
     led_strip.setPixelColor(pixel, 0, 255, 0);
   } else {
+    // all others off
     led_strip.setPixelColor(pixel, 0, 0, 0);
   }
 }
@@ -44,11 +45,11 @@ void led_metronome_beat(unsigned int beat_num) {
   const unsigned int on_pixel = (beat_num + METRONOME_OFFSET) & NUM_LED_MASK;
   const unsigned int off_pixel = (on_pixel + NUM_LEDS - 1) & NUM_LED_MASK;
 
-  // Active beat is red
-  led_strip.setPixelColor(on_pixel, 255, 0, 0);
   // Reset previous beat
   metronome_background(off_pixel);
-  
+  // Active beat is red
+  led_strip.setPixelColor(on_pixel, 255, 0, 0);
+    
   led_strip.show();
 }
 
