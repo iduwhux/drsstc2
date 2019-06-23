@@ -8,15 +8,20 @@
 namespace {
   int current_state = STARTUP;
   unsigned long last_state_change = 0;
+  
   unsigned long last_slow_pulse = 0;
+  
   unsigned long last_flash_ms = 0;
   bool status_leds[2] = {false, false};
+  
   unsigned long test_mode_pulse_start = 0;
   bool test_mode_pulse = false;
   int test_mode_index = 0;
 }
 
+#ifdef SERIAL_LOGGING
 const String STATE_NAMES[] PROGMEM = {"STARTUP", "LIGHT_SHOW", "SLOW_PULSE", "MUSIC_PLAY", "MUSIC_PAUSE", "MUSIC_INT", "TEST_MODE", "TEST_MODE_INC", "SHUTDOWN"};
+#endif
 
 void change_state(int new_state) {
   last_state_change = millis();
@@ -26,27 +31,7 @@ void change_state(int new_state) {
     Serial.println(STATE_NAMES[new_state]);
   #endif
   current_state = new_state;
-  const uint16_t ORANGE = 5000;
-  const uint16_t GREEN = 21000;
-  switch (new_state) {
-    case STARTUP:
-    case MUSIC_INT:
-      init_led_strip_flash(ORANGE, 500);
-      break;
-    case SLOW_PULSE:
-      led_strip_solid(GREEN);
-      break;
-    case MUSIC_PLAY:
-    case MUSIC_PAUSE:
-      init_led_metronome();
-      break;
-    case LIGHT_SHOW:
-      init_led_strip_cycle();
-      break;
-    default:
-      reset_led_strip();
-      break;    
-  }
+  led_on_state_change(new_state);
 }
 
 int get_current_state() {

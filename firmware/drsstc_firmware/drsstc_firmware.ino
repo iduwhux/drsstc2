@@ -53,14 +53,8 @@ void setup() {
 
 void loop() {
   update_state_machine();
+  led_update();
   switch (get_current_state()) {
-    case STARTUP:
-      led_strip_flash();
-      break;
-    case LIGHT_SHOW: 
-    case MUSIC_INT:
-      led_strip_cycle();
-      break;
     case SLOW_PULSE: 
       slow_pulse();
       break;

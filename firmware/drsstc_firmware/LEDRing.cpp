@@ -2,6 +2,7 @@
 
 #include "pin_definitions.h"
 #include "LEDRing.h"
+#include "StateMachine.h"
 
 #define DEFAULT_BRIGHTNESS 50
 
@@ -115,5 +116,41 @@ void led_strip_flash() {
     led_strip.show();
   } else {
     reset_led_strip();
+  }
+}
+
+void led_on_state_change(int new_state) {
+  const uint16_t ORANGE = 5000;
+  const uint16_t GREEN = 21000;
+  switch (new_state) {
+    case STARTUP:
+    case MUSIC_INT:
+      init_led_strip_flash(ORANGE, 500);
+      break;
+    case SLOW_PULSE:
+      led_strip_solid(GREEN);
+      break;
+    case MUSIC_PLAY:
+    case MUSIC_PAUSE:
+      init_led_metronome();
+      break;
+    case LIGHT_SHOW:
+      init_led_strip_cycle();
+      break;
+    default:
+      reset_led_strip();
+      break;    
+  }
+}
+
+void led_update() {
+  switch (get_current_state()) {
+    case STARTUP:
+      led_strip_flash();
+      break;
+    case LIGHT_SHOW: 
+    case MUSIC_INT:
+      led_strip_cycle();
+      break;
   }
 }

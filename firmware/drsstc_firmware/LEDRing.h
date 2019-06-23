@@ -25,3 +25,7 @@ void led_strip_flash();
 void init_led_metronome();
 
 void led_metronome_beat(unsigned int beat_num);
+
+void led_on_state_change(int new_state);
+
+void led_update();

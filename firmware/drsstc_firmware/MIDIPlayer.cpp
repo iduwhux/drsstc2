@@ -3,10 +3,10 @@
 #include "pin_definitions.h"
 #include "LEDRing.h"
 
-const uint16_t PRESCALE1_VALUES[] = {1, 8, 64, 256, 1024};
-const uint16_t PRESCALE2_VALUES[] = {1, 8, 32, 64, 128, 256, 1024};
-
 namespace {
+  const uint16_t PRESCALE1_VALUES[] = {1, 8, 64, 256, 1024};
+  const uint16_t PRESCALE2_VALUES[] = {1, 8, 32, 64, 128, 256, 1024};
+
   #define TIMER1_MIDI_OFFSET 21
   // Lookup table in Flash memory for 107 MIDI notes
   const uint16_t timer1_frequencies[] PROGMEM = 
@@ -70,17 +70,16 @@ namespace {
     return pointer;
   }
 
-  unsigned long peek_midi_time(const byte* pointer) {
-    unsigned long midi_time = 0;
-    read_varint(pointer, midi_time);
-    return midi_time;
+  unsigned long peek_varint(const byte* pointer) {
+    unsigned long value = 0;
+    read_varint(pointer, value);
+    return value;
   }
 
   unsigned long current_tempo = 500000;        // us per beat (500000 = 120 bpm)
   unsigned long current_ticks_per_beat = 1024; // resolution
 
   #ifdef METRONOME
-    // Metronome output to serial
     unsigned long metronome_mark_us = 0;
     unsigned long metronome_ticks = 0;
     unsigned long metronome_beat = 0;
@@ -89,11 +88,14 @@ namespace {
       metronome_mark_us = timestamp;
       metronome_ticks = 0;
       metronome_beat = 0;
+
+      // Initalize LED metronome with red beat indicator in 0 position
       init_led_metronome();
       led_metronome_beat(0);
     }
   
     void update_metronome(unsigned long timestamp, bool force_mark) {
+      // Catch micros wraparound
       if (metronome_mark_us == 0 || metronome_mark_us > timestamp)
         metronome_mark_us = timestamp;
   
@@ -101,8 +103,10 @@ namespace {
       if (force_mark || new_ticks > current_ticks_per_beat) {
         metronome_ticks = new_ticks;
         while (metronome_ticks > current_ticks_per_beat) {
+          // Rollover
           metronome_ticks -= current_ticks_per_beat;
           #ifdef SERIAL_LOGGING
+            // Serial message bar:beat
             Serial.print((metronome_beat >> 2) + 1);
             Serial.print(":");
             Serial.println((metronome_beat & 0x03) + 1);
@@ -113,14 +117,13 @@ namespace {
       }
     }
   
-    void pause_metronome(unsigned long timestamp) {
-      update_metronome(timestamp, true);
+    void pause_metronome() {
+      update_metronome(micros(), true);
       metronome_mark_us = 0;
     }
   
-    void resume_metronome(unsigned long timestamp) {
-      metronome_mark_us = timestamp;
-      update_metronome(timestamp, false);
+    void resume_metronome() {
+      metronome_mark_us = micros();
     }
   #endif
   
@@ -137,7 +140,7 @@ namespace {
       set_pwm_off();
     } else if (note == 2) {   // Change tempo
       #ifdef METRONOME
-      update_metronome(timestamp, true);
+        update_metronome(timestamp, true);
       #endif
       pointer = read_varint(pointer, current_tempo);
     } else if (note == 5) {   // End of file
@@ -186,8 +189,10 @@ void setup_timers() {
 void silence_midi(bool timer1) {
   if (timer1) {
     TCCR1A = _BV(WGM11);
+    digitalWrite(PWM_1, LOW);
   } else {
     TCCR2A = _BV(WGM21) | _BV(WGM20);
+    digitalWrite(PWM_2, LOW);
   }
 }
 
@@ -196,8 +201,9 @@ void set_pwm_off() {
   silence_midi(false);
 }
 
-// Number of 16MHz clock cycles in one 250 kHz cycle (16e6/250e3 = 64)
-#define COIL_FREQ_CYCLES 64
+// Coil frequency = 250 kHz
+// Arduino frequency = 16 MHz = 64 * (250 kHz)
+// Coil half-cycle = 32 Arduino clock cycles
 #define COIL_FREQ_CYCLES_HALF 32
 #define MAX_VOLUME 10
 
@@ -255,14 +261,14 @@ bool play_midi() {
   if (prev_mark_us == 0 || prev_mark_us > timestamp) 
     prev_mark_us = timestamp;
     
-  unsigned long next_ticks = peek_midi_time(current_midi_pointer);
+  unsigned long next_ticks = peek_varint(current_midi_pointer);
   unsigned long rem_us = next_ticks * current_tempo / current_ticks_per_beat;
   while (timestamp >= prev_mark_us + rem_us) {
     prev_mark_us += rem_us;
     current_midi_pointer = play_midi_pointer(current_midi_pointer, timestamp);
     
     if (current_midi_pointer) {
-      next_ticks = peek_midi_time(current_midi_pointer);
+      next_ticks = peek_varint(current_midi_pointer);
       rem_us = next_ticks * current_tempo / current_ticks_per_beat;      
     } else {
       prev_mark_us = 0;
@@ -274,7 +280,7 @@ bool play_midi() {
   }
   
   #ifdef METRONOME
-    update_metronome(timestamp, false);
+   update_metronome(timestamp, false);
   #endif
 
   return true;
@@ -283,57 +289,70 @@ bool play_midi() {
 void pause_midi() {
   is_paused = true;
   #ifdef METRONOME
-  pause_metronome(micros());
+    pause_metronome();
   #endif
 }
 
 void resume_midi() {
   is_paused = false;
-  prev_mark_us = micros();
   #ifdef METRONOME
-  resume_metronome(prev_mark_us);
+    resume_metronome();
   #endif
 }
 
 void start_midi(const byte* midi_pointer) {
   current_midi_pointer = midi_pointer;
+
+  // Read initial resolution and tempo from song file
   current_midi_pointer = read_varint(current_midi_pointer, current_ticks_per_beat);
   current_midi_pointer = read_varint(current_midi_pointer, current_tempo);
+  
   prev_mark_us = micros();
   #ifdef METRONOME
-  reset_metronome(prev_mark_us);
+    reset_metronome(prev_mark_us);
   #endif
 }
 
 namespace {
   #define NUM_SONGS 5
-  const byte* songs[] = {MARRIAGE_OF_FIGARO, SUGAR_PLUM_FAIRY, WILLIAM_TELL, ODE_TO_JOY, BACH_INVENTION};
+  const byte* songs[] = {
+    MARRIAGE_OF_FIGARO, 
+    SUGAR_PLUM_FAIRY, 
+    WILLIAM_TELL, 
+    ODE_TO_JOY, 
+    BACH_INVENTION};
   int prev_song_index = -1;
 
   #ifdef SERIAL_LOGGING
-  const String song_names[] PROGMEM = {"Marriage of Figaro", "Dance of the Sugar Plum Fairy", "William Tell Overture", "Ode to Joy", "Bach Invention #1"};
+    const String song_names[] PROGMEM = {
+      "Marriage of Figaro", 
+      "Dance of the Sugar Plum Fairy", 
+      "William Tell Overture", 
+      "Ode to Joy", 
+      "Bach Invention #1"};
   #endif
 }
 
 void load_next_song() { 
+  // Select a new song different from the last played
   int song_index = random(NUM_SONGS);
   while (song_index == prev_song_index) 
     song_index = random(NUM_SONGS);  
+    
+  #ifdef SERIAL_LOGGING
+    Serial.print(F("Playing song: "));
+    Serial.println(song_names[song_index]);
+  #endif
+
   start_midi(songs[song_index]);
   prev_song_index = song_index;
-  #ifdef SERIAL_LOGGING
-  Serial.print(F("Playing song: "));
-  Serial.println(song_names[song_index]);
-  #endif
 }
 
 void send_single_pulse(unsigned long us) {
-    // Set timer 1 pin manual
-    TCCR1A = 0;
+    set_pwm_off();
+    
     // Toggle timer 1 pin for a few us
     digitalWrite(PWM_1, HIGH);
     delayMicroseconds(us);
     digitalWrite(PWM_1, LOW);
-    // Set timer 1 pin linked to output compare
-    TCCR1A = _BV(COM1A1) | _BV(WGM11);
 }
