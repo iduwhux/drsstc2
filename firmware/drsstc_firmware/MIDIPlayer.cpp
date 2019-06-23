@@ -3,6 +3,8 @@
 #include "pin_definitions.h"
 #include "LEDRing.h"
 
+int midi_instruction_count = 0;
+
 namespace {
   const uint16_t PRESCALE1_VALUES[] = {1, 8, 64, 256, 1024};
   const uint16_t PRESCALE2_VALUES[] = {1, 8, 32, 64, 128, 256, 1024};
@@ -149,6 +151,7 @@ namespace {
       byte volume = *(pointer++);
       play_midi_note(note, volume, timer1);
     }
+    midi_instruction_count++;
     return pointer;
   }
 

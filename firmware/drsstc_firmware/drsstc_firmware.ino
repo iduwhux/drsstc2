@@ -5,6 +5,9 @@
 const uint8_t INITIAL_DAC_VALUE = 0x80;
 MCP47X6 DAC = MCP47X6(DAC_ADDRESS);
 
+unsigned long ocd_count = 0;
+void ocd_int() { ocd_count++; }
+
 void setup() {  
   // Set pin directions
   pinMode(NEOPIXEL, OUTPUT);
@@ -17,6 +20,9 @@ void setup() {
   pinMode(MODE_IN, INPUT);
   pinMode(TEST_IN, INPUT);
   pinMode(TRIG_IN, INPUT);
+
+  // Set OCD interrupt
+  attachInterrupt(digitalPinToInterrupt(OCD_DETECT), ocd_int, RISING);
 
   // Initialize output pins
   digitalWrite(PWM_1, LOW);
@@ -51,6 +57,11 @@ void setup() {
   init_led_strip();
 }
 
+#ifdef SERIAL_LOGGING
+  #define SERIAL_HEARTBEAT_TIME 2000
+  unsigned long last_serial_heartbeat = 0;
+#endif
+
 void loop() {
   update_state_machine();
   led_update();
@@ -65,4 +76,17 @@ void loop() {
       test_mode(); 
       break;
   }
+
+  #ifdef SERIAL_LOGGING
+  unsigned long timestamp = millis();
+  if (last_serial_heartbeat == 0 || last_serial_heartbeat > timestamp)
+    last_serial_heartbeat = timestamp;
+  if (timestamp > last_serial_heartbeat + SERIAL_HEARTBEAT_TIME) {
+    Serial.print(F("Heartbeat: "));
+    Serial.print(ocd_count);
+    Serial.print(F(" OCD, "));
+    Serial.print(midi_instruction_count);
+    Serial.println(F(" MIDI"));
+  }
+  #endif
 }
